@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.7acaea2f.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.07d3183d.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.c88c06f8.js",
     "index.html": "/command-repo-yourpet-frontend/index.html",
     "main.7acaea2f.css.map": "/command-repo-yourpet-frontend/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/command-repo-yourpet-frontend/static/js/main.07d3183d.js.map"
+    "main.c88c06f8.js.map": "/command-repo-yourpet-frontend/static/js/main.c88c06f8.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.c88c06f8.js"
   ]
 }
