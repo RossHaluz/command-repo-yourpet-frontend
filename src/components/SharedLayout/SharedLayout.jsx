@@ -2,6 +2,7 @@ import Header from 'components/Header';
 
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import { Container } from '@mui/material';
 
 const SharedLayout = () => {
   return (
@@ -9,7 +10,9 @@ const SharedLayout = () => {
       <Header />
       <div>
         <Suspense fallback={'Loading...'}>
-          <Outlet />
+          <Container fixed>
+            <Outlet />
+          </Container>
         </Suspense>
       </div>
     </>
