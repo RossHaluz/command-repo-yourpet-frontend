@@ -1,34 +1,51 @@
-import { List, Item, Image, Descr, Bold } from './PetsList.styled';
+import {
+  List,
+  Item,
+  Image,
+  Descr,
+  Bold,
+  Button,
+} from './PetsList.styled';
 import Box from '@mui/material/Box';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
-const PetsList = pets => {
+export const PetsList = ({ pets }) => {
   return (
     <List>
-      {pets.map(pet => (
-        <Item key={pet.id}>
-          <Image alt="pet description" width="240" height="240" />
-          <Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      {pets.length > 0 &&
+        pets.map(pet => (
+          <Item key={pet.id}>
+              <Image
+                src={pet.image}
+                alt="pet description"
+                width="240"
+                height="240"
+              />
+            <Box
+              sx={{
+                position: 'relative',
+                width: '100%',
+              }}
+            >
               <Descr>
-                <Bold>Name:</Bold> Jack
+                <Bold>Name:</Bold> {pet.name}
               </Descr>
-              <DeleteForeverOutlinedIcon />
+              <Button>
+                <DeleteForeverOutlinedIcon size="42" />
+              </Button>
+
+              <Descr>
+                <Bold>Date of birth:</Bold> {pet.birth}
+              </Descr>
+              <Descr>
+                <Bold>Breed:</Bold> {pet.breed}
+              </Descr>
+              <Descr>
+                <Bold>Comments:</Bold> {pet.descr}
+              </Descr>
             </Box>
-            <Descr>
-              <Bold>Date of birth:</Bold> 22.04.2018
-            </Descr>
-            <Descr>
-              <Bold>Breed:</Bold> Persian
-            </Descr>
-            <Descr>
-              <Bold>Comments:</Bold> Jack is a gray Persian cat with green eyes.
-              He loves to be pampered and groomed, and enjoys playing with toys.
-              Although a bitshy, he's a loyal and affectionate lap cat.
-            </Descr>
-          </Box>
-        </Item>
-      ))}
+          </Item>
+        ))}
     </List>
   );
 };
