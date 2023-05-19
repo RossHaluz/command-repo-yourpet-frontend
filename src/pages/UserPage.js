@@ -1,7 +1,13 @@
 import UserData from 'components/UserData';
+import PetsData from 'components/PetsData/PetsData';
 
 const UserPage = () => {
-  return <UserData />;
+  return (
+    <>
+      <UserData />
+      <PetsData />
+    </>
+  );
 };
 
 export default UserPage;
