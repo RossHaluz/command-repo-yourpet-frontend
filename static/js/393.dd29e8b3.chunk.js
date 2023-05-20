@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[393],{3393:function(t,e,n){n.r(e),n.d(e,{default:function(){return o}});var r=n(1087),a=n(184),u=function(){return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("h1",{children:"Page with information about authorithation user"}),(0,a.jsx)(r.OL,{to:"/add-pet",children:"Add pet"})]})},o=function(){return(0,a.jsx)(u,{})}}}]);
-//# sourceMappingURL=393.dd29e8b3.chunk.js.map
