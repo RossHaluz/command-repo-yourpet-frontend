@@ -16,7 +16,7 @@ export const PetsList = ({ pets }) => {
         pets.map(pet => (
           <Item key={pet.id}>
               <Image
-                src={pet.image}
+                src={pet.imgURL}
                 alt="pet description"
                 width="240"
                 height="240"
@@ -35,13 +35,13 @@ export const PetsList = ({ pets }) => {
               </Button>
 
               <Descr>
-                <Bold>Date of birth:</Bold> {pet.birth}
+                <Bold>Date of birth:</Bold> {pet.dateOfBirth}
               </Descr>
               <Descr>
                 <Bold>Breed:</Bold> {pet.breed}
               </Descr>
               <Descr>
-                <Bold>Comments:</Bold> {pet.descr}
+                <Bold>Comments:</Bold> {pet.comments}
               </Descr>
             </Box>
           </Item>
