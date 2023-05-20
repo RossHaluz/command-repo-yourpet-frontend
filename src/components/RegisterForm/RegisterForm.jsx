@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import { FormButton } from './RegisterForm.styled';
+import { register } from 'redux/auth /operetions';
+import { useDispatch } from 'react-redux';
 
 const validationSchema = yup.object({
   email: yup
@@ -21,25 +23,26 @@ const validationSchema = yup.object({
 
 const RegisteForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
-  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
-  const handleMouseDownConfirmPassword = (e) => {
-    e.preventDefault();
-  };
+  // const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+  // const handleMouseDownConfirmPassword = (e) => {
+  //   e.preventDefault();
+  // };
+
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
-      confirmPassword: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      dispatch(register(values))
 
       resetForm();
     },
@@ -87,7 +90,7 @@ const RegisteForm = () => {
           }}
         />
 
-        <TextField
+        {/* <TextField
           fullWidth
           id="confirmPassword"
           name="confirmPassword"
@@ -110,7 +113,7 @@ const RegisteForm = () => {
                 </IconButton>
               </InputAdornment>
           }}
-        />
+        /> */}
 
         <FormButton type="submit" variant="contained">
           Registration
