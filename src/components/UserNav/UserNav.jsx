@@ -1,18 +1,17 @@
-import { Typography, Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { logout } from 'redux/auth /operetions';
 import { selectUser } from 'redux/auth /selectors';
+import { UserLink, LogoutBtn } from './UserNav.styled';
 
 const UserNav = () => {
 const user = useSelector(selectUser);
 const dispatch = useDispatch();
 
   return (
-    <Typography component="p">
-   <NavLink to="user">{user.email}</NavLink>
-   <Button type="button" onClick={() => dispatch(logout())}>Logout</Button>
-    </Typography>
+    <>
+   <UserLink to="user">{user.email}</UserLink>
+   <LogoutBtn type="button" onClick={() => dispatch(logout())}>Logout</LogoutBtn>
+    </>
   );
 };
 
