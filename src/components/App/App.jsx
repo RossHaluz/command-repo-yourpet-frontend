@@ -11,6 +11,7 @@ const MainPage = lazy(() => import('../../pages/MainPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
 const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
+const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="user" element={<UserPage />} />
           <Route path="add-pet" element={<AddPetPage />} />
           <Route path="notices" element={<NoticesPage />} />
+          <Route path="friends" element={<OurFriendsPage />} />
         </Route>
       </Routes>
     </ThemeProvider>
