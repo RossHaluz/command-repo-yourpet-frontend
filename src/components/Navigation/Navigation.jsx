@@ -10,7 +10,7 @@ const isLogin = useSelector(state => state.auth.isUserLogin)
   return (
     <>
       <Nav />
-      {isLogin === true ? <UserNav /> :  <AuthNav/>}
+      {isLogin ? <UserNav /> :  <AuthNav/>}
     </>
   );
 };
