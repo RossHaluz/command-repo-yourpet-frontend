@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import {FormButton} from './LoginForm.styled';
+import { login } from 'redux/auth /operetions';
+import { useDispatch } from 'react-redux';
 
 const validationSchema = yup.object({
   email: yup
@@ -23,6 +25,8 @@ const LoginForm = () => {
     e.preventDefault();
   };
 
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -30,7 +34,7 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
+      dispatch(login(values))
       resetForm();
     },
   });

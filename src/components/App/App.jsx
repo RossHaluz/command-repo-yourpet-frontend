@@ -1,8 +1,10 @@
 import SharedLayout from 'components/SharedLayout';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from 'components/Theme/Theme';
+import { getCurrentUser } from 'redux/auth /operetions';
+import { useDispatch } from 'react-redux';
 
 
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
@@ -13,6 +15,12 @@ const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const AddPetPage = lazy(() => import('../../pages/AddPetPage'));
 
 const App = () => {
+const dispatch = useDispatch()
+
+useEffect(() => {
+dispatch(getCurrentUser())
+}, [dispatch])
+
   return (
     <ThemeProvider theme={Theme}>
       <Routes>
