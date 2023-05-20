@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.9603f384.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.ea97a190.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.01d64435.js",
     "static/js/569.31094e1e.chunk.js": "/command-repo-yourpet-frontend/static/js/569.31094e1e.chunk.js",
     "static/js/522.df41989c.chunk.js": "/command-repo-yourpet-frontend/static/js/522.df41989c.chunk.js",
     "static/js/722.a1eb597b.chunk.js": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js",
@@ -15,7 +15,7 @@
     "static/media/search.svg": "/command-repo-yourpet-frontend/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "main.9603f384.css.map": "/command-repo-yourpet-frontend/static/css/main.9603f384.css.map",
-    "main.ea97a190.js.map": "/command-repo-yourpet-frontend/static/js/main.ea97a190.js.map",
+    "main.01d64435.js.map": "/command-repo-yourpet-frontend/static/js/main.01d64435.js.map",
     "569.31094e1e.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.31094e1e.chunk.js.map",
     "522.df41989c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.df41989c.chunk.js.map",
     "722.a1eb597b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.9603f384.css",
-    "static/js/main.ea97a190.js"
+    "static/js/main.01d64435.js"
   ]
 }
