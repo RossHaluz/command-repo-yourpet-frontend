@@ -1,5 +1,5 @@
 import NoticesSearch from 'components/NoticesSearch';
-import { fetchNotices } from 'services/api';
+import { fetchNotices } from 'redux/notices/operations';
 import { useState, useEffect } from 'react';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 
