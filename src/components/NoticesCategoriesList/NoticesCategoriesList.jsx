@@ -1,4 +1,4 @@
-// import NoticesCategoriesItem
+// import NoticesCategoriesItem from 'components/NoticesCategoriesItem'
 import { List, Item } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = ({ notices }) => {
@@ -8,7 +8,7 @@ const NoticesCategoriesList = ({ notices }) => {
     <List>
       {notices.length > 0 &&
         notices.map(notice => (
-          <Item key={notice.id}>
+          <Item key={notice._id}>
             {/* <NoticesCategoriesItem notice={notice}/> */}
           </Item>
         ))}
