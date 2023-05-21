@@ -1,39 +1,36 @@
-import MenuIcon from '@mui/icons-material/Menu';
-
-import { AppBar, Container } from '@mui/material';
+import BurgerMenu from 'components/BurgerMenu';
 import Logo from 'components/Logo';
+import MobileMenuMain from 'components/MobileMenu/MobileMenu';
 import Navigation from 'components/Navigation';
 import { useState } from 'react';
-import { HeaderToolBar, BurgerMenu } from './Header.styled';
+import { HeaderContainer, MainHeader, HeaderWrapper, AuthNavigation } from './Header.styled';
 
 
 const Header = () => {
-const [isOpenMenu, setIsOpenMenu] = useState(false);
-
-const openMenu = () => {
-  setIsOpenMenu(true)
+const [isOpen, setIsOpen] = useState(false);
+ 
+const openMobileMenu = () => {
+  setIsOpen(true)
 }
 
-  return (
-   <> <AppBar position="static">
-   <Container fixed>
-     <HeaderToolBar>
-       <Logo />
+const closeMobileMenu = () => {
+  setIsOpen(false)
+}
 
-       <BurgerMenu
-         size="large"
-         edge="end"
-         aria-label="menu"
-         onClick={openMenu}
-         sx={{color: "white", mr: "none"}}
-       >
-         <MenuIcon/>
-       </BurgerMenu>
-     {isOpenMenu && <Navigation />}
-     </HeaderToolBar>
-   </Container>
- </AppBar>
-</>
+
+  return (
+<MainHeader>
+  <HeaderContainer>
+    <HeaderWrapper>
+<Logo/>
+    <AuthNavigation>
+    <Navigation/>
+    <button type="button" onClick={openMobileMenu}><BurgerMenu/></button>
+    {isOpen && <MobileMenuMain closeMenu={closeMobileMenu}/>}
+    </AuthNavigation>
+    </HeaderWrapper>
+  </HeaderContainer>
+</MainHeader>
   );
 };
 

@@ -1,5 +1,5 @@
 import SharedLayout from 'components/SharedLayout';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from 'components/Theme/Theme';
@@ -7,6 +7,7 @@ import { getCurrentUser } from 'redux/auth/operetions';
 import { useDispatch } from 'react-redux';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute/PublicRoute';
+import MobileMenuMain from 'components/MobileMenu/MobileMenu';
 
 
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
@@ -19,6 +20,12 @@ const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
 const dispatch = useDispatch()
+const [isOpenMenu, setIsOpenMenu] = useState();
+
+const openMobileMenu = () => {
+  setIsOpenMenu(true)
+}
+
 
 useEffect(() => {
 dispatch(getCurrentUser())
@@ -37,6 +44,7 @@ dispatch(getCurrentUser())
           <Route path="friends" element={<OurFriendsPage />} />
         </Route>
       </Routes>
+{isOpenMenu && <MobileMenuMain isOpen={openMobileMenu}/>}
     </ThemeProvider>
   );
 };
