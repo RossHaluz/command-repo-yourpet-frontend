@@ -1,9 +1,10 @@
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { AppBar, Container, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Container } from '@mui/material';
 import Logo from 'components/Logo';
 import Navigation from 'components/Navigation';
 import { useState } from 'react';
+import { HeaderToolBar, BurgerMenu } from './Header.styled';
 
 
 const Header = () => {
@@ -14,23 +15,25 @@ const openMenu = () => {
 }
 
   return (
-    <AppBar position="static">
-      <Container fixed>
-        <Toolbar>
-          <Logo />
+   <> <AppBar position="static">
+   <Container fixed>
+     <HeaderToolBar>
+       <Logo />
 
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="menu"
-            onClick={openMenu}
-          >
-            <MenuIcon/>
-          </IconButton>
-          {isOpenMenu && <Navigation />}
-        </Toolbar>
-      </Container>
-    </AppBar>
+       <BurgerMenu
+         size="large"
+         edge="end"
+         aria-label="menu"
+         onClick={openMenu}
+         sx={{color: "white", mr: "none"}}
+       >
+         <MenuIcon/>
+       </BurgerMenu>
+     {isOpenMenu && <Navigation />}
+     </HeaderToolBar>
+   </Container>
+ </AppBar>
+</>
   );
 };
 
