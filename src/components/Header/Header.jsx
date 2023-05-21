@@ -1,15 +1,27 @@
-import { AppBar, Container, Toolbar } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Container, IconButton } from '@mui/material';
 import Logo from 'components/Logo';
 import Navigation from 'components/Navigation';
+import { useState } from 'react';
+import { HeaderToolBar } from './Header.styled';
 
 const Header = () => {
+const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+const openMenu = () => {
+  setIsOpenMenu(true)
+}
+
   return (
     <AppBar position="static">
       <Container fixed>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <HeaderToolBar>
           <Logo />
-          <Navigation />
-        </Toolbar>
+          <IconButton edge="end" color="inherit" aria-label="menu" onClick={openMenu}>
+            <MenuIcon/>
+          </IconButton>
+          {isOpenMenu && <Navigation />}
+        </HeaderToolBar>
       </Container>
     </AppBar>
   );

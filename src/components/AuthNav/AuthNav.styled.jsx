@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 export const AuthNavigation = styled.nav`
   display: flex;
   gap: 15px;
+
+  @media (max-width: 768px){
+    display: none;
+  }
 `;
 
 export const AuthNavigationItem = styled(NavLink)`
