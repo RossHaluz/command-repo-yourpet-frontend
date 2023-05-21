@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'redux/auth/operetions';
-import { selectUser } from 'redux/auth/selectors';
+import { logout } from 'redux/auth-end/operetions';
+import { selectUser } from 'redux/auth-end/selectors';
 import { UserLink, LogoutBtn } from './UserNav.styled';
 
 const UserNav = () => {
