@@ -4,7 +4,6 @@ import { AppBar, Container, IconButton, Toolbar } from '@mui/material';
 import Logo from 'components/Logo';
 import Navigation from 'components/Navigation';
 import { useState } from 'react';
-import { HeaderToolBar } from './Header.styled';
 
 
 const Header = () => {
@@ -24,10 +23,11 @@ const openMenu = () => {
             size="large"
             edge="end"
             aria-label="menu"
+            onClick={openMenu}
           >
             <MenuIcon/>
           </IconButton>
-          <Navigation />
+          {isOpenMenu && <Navigation />}
         </Toolbar>
       </Container>
     </AppBar>

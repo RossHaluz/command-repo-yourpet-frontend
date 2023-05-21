@@ -10,7 +10,7 @@ import {
     REGISTER,
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage';
-import { authReducer } from "./auth-end/slice";
+import { authReducer } from "./auth/slice";
 
 const persistConfig = {
     key: 'token',
