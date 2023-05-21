@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import {FormButton} from './LoginForm.styled';
-import { login } from 'redux/auth/operetions';
+import { login } from 'redux/auth-end/operetions';
 import { useDispatch } from 'react-redux';
 
 const validationSchema = yup.object({

@@ -3,7 +3,7 @@ import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from 'components/Theme/Theme';
-import { getCurrentUser } from 'redux/auth/operetions';
+import { getCurrentUser } from 'redux/auth-end/operetions';
 import { useDispatch } from 'react-redux';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute/PublicRoute';

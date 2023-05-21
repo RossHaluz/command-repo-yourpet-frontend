@@ -1,10 +1,9 @@
-import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
+import { Toolbar } from "@mui/material";
 
-export const BurgerMenu = styled(MenuIcon)(({theme}) => ({
-    backgroundColor: "FFC107",
-
-    [theme.breakpoints.up('sm')]: {
-       display: 'none'
-    },
+export const HeaderToolBar = styled(Toolbar)(({theme}) => ({
+    [theme.breakpoints.down('tablet')]: {
+        justifyContent: 'space-between'
+    }
 }))
+      
