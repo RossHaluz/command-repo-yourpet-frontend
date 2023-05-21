@@ -4,17 +4,17 @@ export const List = styled.ul`
   
 `;
 
-export const Item = styled.li`
-  /* border-radius: 20px;
-  padding: 16px 20px 40px;
-  box-shadow: 3px 8px 8px rgba(136, 198, 253, 0.19);
-  background-color: #ffffff; */
+export const Item = styled.li`    
+  
+
+  @media screen and (max-width: 747.97px) {
+    margin-top: 24px;
+  }
 
   @media screen and (min-width: 748px) {
-    
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    column-gap: 32px;
   }
-
-  :not(:first-of-type) {
-    /* margin-top: 20px; */
-  }
-`;
+  `;

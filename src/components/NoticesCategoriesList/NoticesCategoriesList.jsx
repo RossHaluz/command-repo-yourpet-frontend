@@ -1,17 +1,18 @@
-// import NoticesCategoriesItem 
-import { List, Item } from "./NoticesCategoriesList.styled";
+// import NoticesCategoriesItem
+import { List, Item } from './NoticesCategoriesList.styled';
 
+const NoticesCategoriesList = ({ notices }) => {
+    // console.log(notices);
 
-const NoticesCategoriesList = ({notices}) => {
-    return (
+  return (
     <List>
       {notices.length > 0 &&
         notices.map(notice => (
           <Item key={notice.id}>
-              {/* <NoticesCategoriesItem notice={notice}/> */}
+            {/* <NoticesCategoriesItem notice={notice}/> */}
           </Item>
         ))}
-    </List>)
-}
-    ;
-export default NoticesCategoriesList
+    </List>
+  );
+};
+export default NoticesCategoriesList;
