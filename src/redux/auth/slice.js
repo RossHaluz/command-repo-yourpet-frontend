@@ -19,7 +19,7 @@ const authSlice = createSlice({
 
         [register.fulfilled](state, action){
             state.user = action.payload;
-            state.token = action.payload.token;
+            state.token = action.payload.user.token;
             state.isLoading = false;
             state.isUserLogin = true;
             state.isRefreshing = true;
@@ -28,8 +28,8 @@ const authSlice = createSlice({
             state.isLoading = true
         },
         [login.fulfilled](state, action){
-            state.user = action.payload;
-            state.token = action.payload.token;
+            state.user = action.payload.user;
+            state.token = action.payload.user.token;
             state.isLoading = false;
             state.isUserLogin = true;
             state.isRefreshing = true;
@@ -39,16 +39,16 @@ const authSlice = createSlice({
             state.token = null;
             state.isUserLogin = false;
         },
-        [getCurrentUser.pending](state, __){
-            state.isLoading = true;
+        [getCurrentUser.pending](state){
+            state.isRefreshing = true;
         },
         [getCurrentUser.fulfilled](state, action){
-            state.user = action.payload;
+            console.log(action);
+            state.user = action.payload.user;
             state.isUserLogin = true;
-            state.isLoading = false;
             state.isRefreshing = false;
         },
-        [getCurrentUser.rejected](state, __){
+        [getCurrentUser.rejected](state){
             state.isRefreshing = false;
             state.isUserLogin = false;
         }

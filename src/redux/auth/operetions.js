@@ -1,7 +1,9 @@
+// https://pets-back-end.onrender.com 
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://pets-back-end.onrender.com"
+axios.defaults.baseURL = "http://localhost:3001"
 
 const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
@@ -40,9 +42,12 @@ export const logout = createAsyncThunk('auth/logout', async (__, {rejectWithValu
     }
 })
 
+
+
 export const getCurrentUser = createAsyncThunk('auth/current', async (__, {getState, rejectWithValue}) => {
     const state = getState();
-        const token = state.auth.state;
+    console.log(state);
+    const token = state.auth.token;
         if(!token){
             return rejectWithValue()
         }

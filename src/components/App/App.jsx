@@ -3,8 +3,10 @@ import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from 'components/Theme/Theme';
-import { getCurrentUser } from 'redux/auth /operetions';
+import { getCurrentUser } from 'redux/auth/operetions';
 import { useDispatch } from 'react-redux';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
+import { PublicRoute } from 'components/PublicRoute/PublicRoute';
 
 
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
@@ -26,10 +28,10 @@ dispatch(getCurrentUser())
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="user" element={<UserPage />} />
-          <Route path="add-pet" element={<AddPetPage />} />
+          <Route path="login" element={<PublicRoute redirectTo='/user' component={<LoginPage/>}/>} />
+          <Route path="register" element={<PublicRoute redirectTo='/user' component={<RegisterPage/>}/>}/>
+          <Route path="user" element={<PrivateRoute redirectTo='/login' component={<UserPage/>}/>} />
+          <Route path="add-pet" element={<PrivateRoute redirectTo='/login' component={<AddPetPage/>}/>} />
           <Route path="notices" element={<NoticesPage />} />
         </Route>
       </Routes>
