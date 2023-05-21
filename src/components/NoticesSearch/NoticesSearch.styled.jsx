@@ -1,4 +1,4 @@
-const { styled } = require('@mui/material');
+import { styled } from '@mui/system';
 
 export const MuiBtnWrapper = styled('div')({
   border: 'none',
