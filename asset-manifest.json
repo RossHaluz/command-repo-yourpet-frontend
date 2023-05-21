@@ -1,35 +1,33 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.9603f384.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.91b31d81.js",
-    "static/js/569.20072b00.chunk.js": "/command-repo-yourpet-frontend/static/js/569.20072b00.chunk.js",
-    "static/js/522.124d7eeb.chunk.js": "/command-repo-yourpet-frontend/static/js/522.124d7eeb.chunk.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.37f9d7fe.js",
+    "static/js/569.5ff409b7.chunk.js": "/command-repo-yourpet-frontend/static/js/569.5ff409b7.chunk.js",
+    "static/js/522.ea87c129.chunk.js": "/command-repo-yourpet-frontend/static/js/522.ea87c129.chunk.js",
     "static/js/722.a1eb597b.chunk.js": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js",
-    "static/js/420.24771511.chunk.js": "/command-repo-yourpet-frontend/static/js/420.24771511.chunk.js",
+    "static/js/420.979397f2.chunk.js": "/command-repo-yourpet-frontend/static/js/420.979397f2.chunk.js",
     "static/js/598.e10634a7.chunk.js": "/command-repo-yourpet-frontend/static/js/598.e10634a7.chunk.js",
     "static/js/464.14bc064c.chunk.js": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js",
-    "static/js/301.ff3f152d.chunk.js": "/command-repo-yourpet-frontend/static/js/301.ff3f152d.chunk.js",
-    "static/js/858.13ef653b.chunk.js": "/command-repo-yourpet-frontend/static/js/858.13ef653b.chunk.js",
-    "static/js/991.cfd401ad.chunk.js": "/command-repo-yourpet-frontend/static/js/991.cfd401ad.chunk.js",
+    "static/js/842.dd0f8e70.chunk.js": "/command-repo-yourpet-frontend/static/js/842.dd0f8e70.chunk.js",
+    "static/js/991.00c24ba2.chunk.js": "/command-repo-yourpet-frontend/static/js/991.00c24ba2.chunk.js",
     "static/js/949.9df84091.chunk.js": "/command-repo-yourpet-frontend/static/js/949.9df84091.chunk.js",
     "index.html": "/command-repo-yourpet-frontend/index.html",
     "static/media/search.svg": "/command-repo-yourpet-frontend/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "main.9603f384.css.map": "/command-repo-yourpet-frontend/static/css/main.9603f384.css.map",
-    "main.91b31d81.js.map": "/command-repo-yourpet-frontend/static/js/main.91b31d81.js.map",
-    "569.20072b00.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.20072b00.chunk.js.map",
-    "522.124d7eeb.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.124d7eeb.chunk.js.map",
+    "main.37f9d7fe.js.map": "/command-repo-yourpet-frontend/static/js/main.37f9d7fe.js.map",
+    "569.5ff409b7.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.5ff409b7.chunk.js.map",
+    "522.ea87c129.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.ea87c129.chunk.js.map",
     "722.a1eb597b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js.map",
-    "420.24771511.chunk.js.map": "/command-repo-yourpet-frontend/static/js/420.24771511.chunk.js.map",
+    "420.979397f2.chunk.js.map": "/command-repo-yourpet-frontend/static/js/420.979397f2.chunk.js.map",
     "598.e10634a7.chunk.js.map": "/command-repo-yourpet-frontend/static/js/598.e10634a7.chunk.js.map",
     "464.14bc064c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js.map",
-    "301.ff3f152d.chunk.js.map": "/command-repo-yourpet-frontend/static/js/301.ff3f152d.chunk.js.map",
-    "858.13ef653b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/858.13ef653b.chunk.js.map",
-    "991.cfd401ad.chunk.js.map": "/command-repo-yourpet-frontend/static/js/991.cfd401ad.chunk.js.map",
+    "842.dd0f8e70.chunk.js.map": "/command-repo-yourpet-frontend/static/js/842.dd0f8e70.chunk.js.map",
+    "991.00c24ba2.chunk.js.map": "/command-repo-yourpet-frontend/static/js/991.00c24ba2.chunk.js.map",
     "949.9df84091.chunk.js.map": "/command-repo-yourpet-frontend/static/js/949.9df84091.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9603f384.css",
-    "static/js/main.91b31d81.js"
+    "static/js/main.37f9d7fe.js"
   ]
 }
