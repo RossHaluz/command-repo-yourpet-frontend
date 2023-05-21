@@ -1,0 +1,17 @@
+// import NoticesCategoriesItem 
+import { List, Item } from "./NoticesCategoriesList.styled";
+
+
+const NoticesCategoriesList = ({notices}) => {
+    return (
+    <List>
+      {notices.length > 0 &&
+        notices.map(notice => (
+          <Item key={notice.id}>
+              {/* <NoticesCategoriesItem notice={notice}/> */}
+          </Item>
+        ))}
+    </List>)
+}
+    ;
+export default NoticesCategoriesList
