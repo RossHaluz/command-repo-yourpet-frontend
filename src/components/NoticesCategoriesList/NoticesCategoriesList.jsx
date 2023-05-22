@@ -1,6 +1,7 @@
 import React from 'react';
 import NoticeCategoryItem from './NoticeCategoryItem/NoticeCategoryItem';
 import { nanoid } from '@reduxjs/toolkit';
+import { CategoriesListWrapper } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
   const petSchemaArr = [
@@ -69,16 +70,18 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {petSchemaArr.map(item => {
-        const { name, dateOfBirth, breed, imgURL, comments } = item;
+      <CategoriesListWrapper>
+        {petSchemaArr.map(item => {
+          const { name, dateOfBirth, breed, imgURL, comments } = item;
 
-        return (
-          <NoticeCategoryItem
-            key={nanoid()}
-            petInfo={{name, dateOfBirth, breed, imgURL, comments}}
-          />
-        );
-      })}
+          return (
+            <NoticeCategoryItem
+              key={nanoid()}
+              petInfo={{ name, dateOfBirth, breed, imgURL, comments }}
+            />
+          );
+        })}
+      </CategoriesListWrapper>
     </>
   );
 };
