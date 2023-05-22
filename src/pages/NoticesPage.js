@@ -1,3 +1,6 @@
+import NoticesAddPetBtn from 'components/NoticesAddPetBtn/NoticesAddPetBtn';
+import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch';
 import { fetchNotices } from 'redux/notices/operations';
 import { useEffect } from 'react';
@@ -6,7 +9,6 @@ import {
   // selectIsLoading,
   selectNotices,
 } from 'redux/notices/selectors';
-// import NoticesCategoriesList from 'components/NoticesCategoriesList';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
@@ -24,7 +26,9 @@ const NoticesPage = () => {
   return (
     <>
       <NoticesSearch />
-      {/* <NoticesCategoriesList notices={notices} /> */}
+      <NoticesCategoriesNav />
+      <NoticesAddPetBtn />
+      <NoticesCategoriesList />
     </>
   );
 };

@@ -8,10 +8,10 @@ const Navigation = () => {
 const isLogin = useSelector(state => state.auth.isUserLogin)
 
   return (
-    <>
+      <>
       <Nav />
-      {isLogin ? <UserNav /> :  <AuthNav/>}
-    </>
+      {isLogin ? <UserNav /> :  <AuthNav/>}</>
+
   );
 };
 

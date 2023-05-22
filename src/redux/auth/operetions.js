@@ -1,5 +1,3 @@
-// https://pets-back-end.onrender.com
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
