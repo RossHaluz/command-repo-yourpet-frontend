@@ -1,8 +1,7 @@
 import { MobileMenuBurger } from './BurgerMenu.styled';
 
-
 const BurgerMenu = () => {
-    return <button type='button'><MobileMenuBurger/></button>
-}
+  return <MobileMenuBurger />;
+};
 
-export default BurgerMenu
+export default BurgerMenu;

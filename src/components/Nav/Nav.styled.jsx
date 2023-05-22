@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 export const MaineNavigation = styled.nav`
   display: flex;
   gap: 15px;
+  margin-right: 30px;
 
-  @media (max-width: 1200px){
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
