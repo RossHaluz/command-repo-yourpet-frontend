@@ -10,9 +10,16 @@ import {
   MobileMenuAuthNav,
   MobileManuMainNavigation,
   MobileManuMainNavigationItem,
+  UserIcon,
+  MobileMenuUser,
+  NameUser,
 } from './MobileMenu.styled';
+import { useSelector } from 'react-redux';
+import { selectIsUserLogin } from 'redux/auth/selectors';
 
 const MobileMenuMain = ({ closeMenu }) => {
+  const isLogin = useSelector(selectIsUserLogin);
+
   return (
     <MobileMenu>
       <MobileMenuWrapper>
@@ -22,14 +29,21 @@ const MobileMenuMain = ({ closeMenu }) => {
         </MobileMenuCrossBtn>
       </MobileMenuWrapper>
       <MobileMenuAuthNav>
-        <MobileMenuAuthWrapper>
-          <LoginBtn to="/login" onClick={() => closeMenu()}>
-            Login
-          </LoginBtn>
-          <RegisterBtn to="/register" onClick={() => closeMenu()}>
-            Register
-          </RegisterBtn>
-        </MobileMenuAuthWrapper>
+        {isLogin ? (
+          <MobileMenuUser to="user" onClick={() => closeMenu()}>
+            <NameUser>John</NameUser>
+            <UserIcon />
+          </MobileMenuUser>
+        ) : (
+          <MobileMenuAuthWrapper>
+            <LoginBtn to="/login" onClick={() => closeMenu()}>
+              Login
+            </LoginBtn>
+            <RegisterBtn to="/register" onClick={() => closeMenu()}>
+              Register
+            </RegisterBtn>
+          </MobileMenuAuthWrapper>
+        )}
         <MobileManuMainNavigation>
           <MobileManuMainNavigationItem to="news" onClick={() => closeMenu()}>
             Our news

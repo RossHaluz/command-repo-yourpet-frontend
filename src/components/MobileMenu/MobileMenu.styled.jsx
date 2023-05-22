@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { RxCross2 } from 'react-icons/rx';
 import { NavLink } from 'react-router-dom';
+import { RiAccountCircleLine } from 'react-icons/ri';
 
 export const MobileMenu = styled.div`
   position: fixed;
@@ -65,6 +66,7 @@ export const MobileMenuAuthNav = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
 `;
 
 export const MobileManuMainNavigation = styled.nav`
@@ -86,4 +88,23 @@ export const MobileManuMainNavigationItem = styled(NavLink)`
     font-weight: 700;
     color: #ffc107;
   }
+`;
+
+export const MobileMenuUser = styled(NavLink)`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+export const UserIcon = styled(RiAccountCircleLine)`
+  color: #ffc107;
+  font-size: 28px;
+`;
+
+export const NameUser = styled.p`
+  color: #ffc107;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
 `;

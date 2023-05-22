@@ -4,6 +4,8 @@ import { FiMenu } from 'react-icons/fi';
 export const MobileMenuBurger = styled(FiMenu)`
   color: #ffc107;
   font-size: 24px;
+  display: flex;
+  align-items: center;
 
   @media (min-width: 1200px) {
     display: none;
