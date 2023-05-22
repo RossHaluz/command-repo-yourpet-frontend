@@ -7,6 +7,7 @@
 - React
 - Node.js
 - MongoDB
+- Redux
 
 Підключені бібліотеки:
 
