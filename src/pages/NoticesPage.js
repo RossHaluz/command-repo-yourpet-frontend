@@ -6,14 +6,14 @@ import {
   // selectIsLoading,
   selectNotices,
 } from 'redux/notices/selectors';
-import NoticesCategoriesList from 'components/NoticesCategoriesList';
+// import NoticesCategoriesList from 'components/NoticesCategoriesList';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
   const notices = useSelector(selectNotices);
   const dispatch = useDispatch();
 
-  // console.log(notices);
+  console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
@@ -24,7 +24,7 @@ const NoticesPage = () => {
   return (
     <>
       <NoticesSearch />
-      <NoticesCategoriesList notices={notices} />
+      {/* <NoticesCategoriesList notices={notices} /> */}
     </>
   );
 };
