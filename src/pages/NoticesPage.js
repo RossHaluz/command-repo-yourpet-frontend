@@ -1,23 +1,25 @@
 import NoticesSearch from 'components/NoticesSearch';
 import { fetchNotices } from 'redux/notices/operations';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  // selectIsLoading,
+  selectNotices,
+} from 'redux/notices/selectors';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 
 const NoticesPage = () => {
-  const [notices, setNotices] = useState([]);
+  // const isLoading = useSelector(selectIsLoading);
+  const notices = useSelector(selectNotices);
+  const dispatch = useDispatch();
 
-  console.log(notices);
+  // console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
-    fetchNotices()
-      .then(data => {
-        // console.log(data.data.notices);
-        setNotices(data.data.notices);
-      })
-      .catch(error => {});
-  }, []);
+    dispatch(fetchNotices());
+  }, [dispatch]);
 
   return (
     <>
