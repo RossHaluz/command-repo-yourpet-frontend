@@ -12,11 +12,9 @@ import { useMediaQuery } from '@mui/material';
 export const NoticesAddPetBtn = () => {
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
   const isAuthorized = true; // will be recived from global redux object
-  const isPopUp = true; // will be recived from global redux object
+  // const isPopUp = true; // will be recived from global redux object
   const handleNavLinkClick = () => {
     alert('You should be authorized.'); //will be should Authoized popUp
-
-
   };
 
   return (

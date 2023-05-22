@@ -6,7 +6,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
 
   console.log('petInfo', petInfo);
 
-  const isAuthorized = true; // will be received from global Redux obj
+  // const isAuthorized = true; // will be received from global Redux obj
 
   return (
     <>
