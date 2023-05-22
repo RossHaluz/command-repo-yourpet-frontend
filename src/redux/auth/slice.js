@@ -20,7 +20,7 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       console.log(action);
       state.user = action.payload;
-      state.token = action.payload.user.token;
+      state.token = action.payload.token;
       state.isLoading = false;
       state.isUserLogin = true;
       state.isRefreshing = true;
