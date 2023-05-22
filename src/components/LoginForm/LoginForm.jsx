@@ -66,7 +66,7 @@ const LoginForm = () => {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
           InputProps={{
-            endAdornment: 
+            endAdornment:
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
