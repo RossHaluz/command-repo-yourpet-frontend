@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Ajax = axios.create({
-  baseURL: 'http://localhost:3001/', // Set your API base URL
+  baseURL: 'https://pets-back-end.onrender.com', // Set your API base URL
 });
 
 // Function to set the Bearer token in the request headers
