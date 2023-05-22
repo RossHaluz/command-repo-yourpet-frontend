@@ -4,7 +4,7 @@ import { fetchNotices } from './operations';
 const initialState = {
   items: [],
   isLoading: false,
-  category: [],
+  category: '',
 };
 
 export const noticesSlice = createSlice({
