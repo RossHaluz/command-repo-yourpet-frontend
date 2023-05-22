@@ -15,6 +15,7 @@ export const DialogPaperStyled = styled(Paper)(({ theme }) => ({
   },
   [theme.breakpoints.up('tablet')]: {
     minWidth: 608,
+    // width: '680px',
     borderRadius: 40
   },
 }));
