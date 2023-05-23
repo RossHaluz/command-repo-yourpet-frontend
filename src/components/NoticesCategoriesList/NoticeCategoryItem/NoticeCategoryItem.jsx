@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 
 import { ReactComponent as Famail } from './icons/famail.svg';
-import { ReactComponent as Male } from './icons/male.svg';
+// import { ReactComponent as Male } from './icons/male.svg';
 import { ReactComponent as Favorite } from './icons/favorite.svg';
 import { ReactComponent as FavoriteChecked } from './icons/favoriteChecked.svg';
 import { ReactComponent as Location } from './icons/lacation.svg';
@@ -24,8 +24,10 @@ import {
   StyledComent,
 } from './NoticeCategoryItem.styled';
 
+// name, dateOfBirth, breed, comments;
+
 const NoticeCategoryItem = ({ petInfo }) => {
-  const { name, dateOfBirth, breed, imgURL, comments } = petInfo;
+  const { imgURL } = petInfo;
 
   const isLoggeIn = useSelector(selectIsUserLogin);
   const id = '12314141414'; // will take from back and by Redux
