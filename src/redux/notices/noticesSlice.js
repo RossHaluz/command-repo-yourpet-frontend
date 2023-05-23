@@ -3,6 +3,9 @@ import {
   fetchNotices,
   fetchNoticesByCategory,
   deleteNotice,
+  fetchNoticesFavourite,
+  addNotice,
+  makeNoticeFavourite,
 } from './operations';
 
 const initialState = {
@@ -29,6 +32,10 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
+      .addCase(addNotice.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+        state.isLoading = false;
+      })
       .addCase(deleteNotice.fulfilled, (state, action) => {
         return {
           items: [
@@ -37,11 +44,28 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
+      .addCase(fetchNoticesFavourite.fulfilled, (state, action) => {
+        console.log('fetchNoticesFavourite');
+        return {
+          ...state,
+          isLoading: false,
+        };
+      })
+      .addCase(makeNoticeFavourite.fulfilled, (state, action) => {
+        console.log('makeNoticeFavourite');
+        return {
+          ...state,
+          isLoading: false,
+        };
+      })
       .addMatcher(
         isAnyOf(
           fetchNotices.pending,
           fetchNoticesByCategory.pending,
-          deleteNotice.pending
+          deleteNotice.pending,
+          fetchNoticesFavourite.pending,
+          addNotice.pending,
+          makeNoticeFavourite
         ),
         state => {
           state.isLoading = false;
@@ -51,7 +75,10 @@ export const noticesSlice = createSlice({
         isAnyOf(
           fetchNotices.rejected,
           fetchNoticesByCategory.rejected,
-          deleteNotice.rejected
+          deleteNotice.rejected,
+          fetchNoticesFavourite.rejected,
+          addNotice.rejected,
+          makeNoticeFavourite.rejected
         ),
         state => {
           state.isLoading = false;
