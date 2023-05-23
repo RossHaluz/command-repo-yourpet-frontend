@@ -9,26 +9,55 @@ import {
   // selectIsLoading,
   selectNotices,
 } from 'redux/notices/selectors';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { selectIsUserLogin } from 'redux/auth/selectors';
+import ErrorPage from './ErrorPage';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
   const notices = useSelector(selectNotices);
+  const IsLogin = useSelector(selectIsUserLogin);
   const dispatch = useDispatch();
-
-  console.log(notices);
+  const location = useLocation()
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
-
-    dispatch(fetchNotices());
-  }, [dispatch]);
+    const param = location.pathname.split('/')[2]
+    dispatch(fetchNotices()); //param
+  }, [dispatch, location]);
 
   return (
     <>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesAddPetBtn />
-      <NoticesCategoriesList notices={notices} />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<NoticesCategoriesList notices={notices} />}
+        />
+        <Route
+          path="/sell"
+          element={<NoticesCategoriesList notices={notices} />}
+        />
+        <Route
+          path="/lost-found"
+          element={<NoticesCategoriesList notices={notices} />}
+        />
+        <Route
+          path="/for-free"
+          element={<NoticesCategoriesList notices={notices} />}
+        />
+        <Route
+          path="/favorite"
+          element={IsLogin ? <NoticesCategoriesList notices={notices} /> : <ErrorPage />}
+        />
+        <Route
+          path="/own"
+          element={IsLogin ? <NoticesCategoriesList notices={notices} /> : <ErrorPage />}
+        />
+      </Routes>
     </>
   );
 };
