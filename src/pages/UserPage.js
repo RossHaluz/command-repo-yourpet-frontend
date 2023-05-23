@@ -7,7 +7,6 @@ import PetsData from 'components/PetsData/PetsData';
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchPets());

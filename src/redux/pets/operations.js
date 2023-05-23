@@ -14,3 +14,15 @@ export const fetchPets = createAsyncThunk(
     }
   }
 );
+
+export const deletePet = createAsyncThunk(
+  'pets/deletePet',
+  async (petId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/api/pets/${petId}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchPets } from './operations';
+import { fetchPets, deletePet } from './operations';
 
-const extraActions = [fetchPets];
+const extraActions = [fetchPets, deletePet];
 
 const getActions = type => extraActions.map(action => action[type]);
 
@@ -17,12 +17,15 @@ const contactsSlice = createSlice({
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
-      //   .addCase(addContact.fulfilled, (state, { payload }) => {
+      //   .addCase(addPet.fulfilled, (state, { payload }) => {
       //     state.items.unshift(payload);
       //   })
-      //   .addCase(deleteContact.fulfilled, (state, { payload }) => {
-      //     state.items = state.items.filter(contact => contact.id !== payload.id);
-      //   })
+      .addCase(deletePet.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.items = state.items.petsInfo.filter(
+          pet => pet._id !== payload.id
+        );
+      })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
       })
