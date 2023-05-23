@@ -1,10 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  fetchNotices,
+  fetchNoticesByCategory,
+  deleteNotice,
+} from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
-  category: '',
 };
 
 export const noticesSlice = createSlice({
@@ -12,9 +15,6 @@ export const noticesSlice = createSlice({
   initialState: initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchNotices.pending, state => {
-        state.isLoading = true;
-      })
       .addCase(fetchNotices.fulfilled, (state, action) => {
         // console.log(action.payload.data.notices);
         return {
@@ -23,15 +23,45 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addCase(fetchNotices.rejected, state => {
-        state.isLoading = false;
-      });
+      .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
+        // console.log(action.payload.data.notices);
+        return {
+          ...state,
+          items: [...action.payload.data.notices],
+          isLoading: false,
+        };
+      })
+      .addCase(deleteNotice.fulfilled, (state, action) => {
+        // console.log(action.payload.data.notices);
+        return {
+          items: [
+            ...state.items.filter(notice => notice.id !== action.payload.id),
+          ],
+          isLoading: false,
+        };
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchNotices.pending,
+          fetchNoticesByCategory.pending,
+          deleteNotice.pending
+        ),
+        state => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNotices.rejected,
+          fetchNoticesByCategory.rejected,
+          deleteNotice.rejected
+        ),
+        state => {
+          state.isLoading = false;
+        }
+      );
   },
-  reducers: {
-    chooseCategory: (state, action) => {
-      state.category = action.payload.category;
-    },
-  },
+  reducers: {},
 });
 
 export const { chooseCategory } = noticesSlice.actions;
