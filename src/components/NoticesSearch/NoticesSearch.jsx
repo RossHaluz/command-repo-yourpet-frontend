@@ -12,6 +12,7 @@ import {
 } from './NoticesSearch.styled';
 import { useMediaQuery } from '@mui/material';
 
+
 const NoticesSearch = () => {
   const formik = useFormik({
     initialValues: {

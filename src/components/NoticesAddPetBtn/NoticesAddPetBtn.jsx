@@ -8,10 +8,12 @@ import {
   AddPetStyledLinkMobile,
 } from './NoticesAddPetBtn.styled';
 import { useMediaQuery } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectIsUserLogin } from 'redux/auth/selectors';
 
 export const NoticesAddPetBtn = () => {
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
-  const isAuthorized = true; // will be recived from global redux object
+  const isLoggeIn = useSelector(selectIsUserLogin)
   // const isPopUp = true; // will be recived from global redux object
   const handleNavLinkClick = () => {
     alert('You should be authorized.'); //will be should Authoized popUp
@@ -21,7 +23,7 @@ export const NoticesAddPetBtn = () => {
     <>
       {/* {isPopUp && <popUp/>} */}
       {isMobileScreen ? (
-        isAuthorized ? (
+        isLoggeIn ? (
           <AddPetStyledLinkMobile to={'/add-pet'}>
             <PlusIcon />
             <span>Add Pet</span>
@@ -32,7 +34,7 @@ export const NoticesAddPetBtn = () => {
             <span>Add Pet</span>
           </AddPetStyledBtnMobile>
         )
-      ) : isAuthorized ? (
+      ) : isLoggeIn ? (
         <AddPetStyledLink to={'/add-pet'}>
           <span>Add Pet</span>
           <PlusIcon />
