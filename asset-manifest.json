@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.885936f7.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.84a39295.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.72a5778c.js",
     "static/js/569.0cab80ef.chunk.js": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js",
     "static/js/522.7e3f945c.chunk.js": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js",
     "static/js/722.a1eb597b.chunk.js": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js",
     "static/js/503.77374854.chunk.js": "/command-repo-yourpet-frontend/static/js/503.77374854.chunk.js",
-    "static/js/964.c0201850.chunk.js": "/command-repo-yourpet-frontend/static/js/964.c0201850.chunk.js",
+    "static/js/532.75838d65.chunk.js": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js",
     "static/js/464.14bc064c.chunk.js": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js",
     "static/js/580.58ef6ae6.chunk.js": "/command-repo-yourpet-frontend/static/js/580.58ef6ae6.chunk.js",
     "static/js/502.9e4526c7.chunk.js": "/command-repo-yourpet-frontend/static/js/502.9e4526c7.chunk.js",
@@ -16,17 +16,24 @@
     "static/media/errorImg.png": "/command-repo-yourpet-frontend/static/media/errorImg.ab8ed5309e8656863916.png",
     "static/media/barbos.png": "/command-repo-yourpet-frontend/static/media/barbos.4041f57497bbd447b9f9.png",
     "static/media/whiskas.png": "/command-repo-yourpet-frontend/static/media/whiskas.a41a4ca27fd7178a4dac.png",
+    "static/media/claw.svg": "/command-repo-yourpet-frontend/static/media/claw.756865185251503188e9a16feec88c03.svg",
     "index.html": "/command-repo-yourpet-frontend/index.html",
     "static/media/search.svg": "/command-repo-yourpet-frontend/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
+    "static/media/lacation.svg": "/command-repo-yourpet-frontend/static/media/lacation.03e4ae01791c2b394bb392f91078e0aa.svg",
+    "static/media/favoriteChecked.svg": "/command-repo-yourpet-frontend/static/media/favoriteChecked.d763aa1953d5dd4ae9e5dec8f684d498.svg",
+    "static/media/favorite.svg": "/command-repo-yourpet-frontend/static/media/favorite.b48cf4d2e34ee6acda81677cd28fd9e9.svg",
+    "static/media/old.svg": "/command-repo-yourpet-frontend/static/media/old.fea2094bf3d27348778f05b675255864.svg",
+    "static/media/trash.svg": "/command-repo-yourpet-frontend/static/media/trash.19a2f08e5acb73065dfbe08c4c0b61a7.svg",
+    "static/media/famail.svg": "/command-repo-yourpet-frontend/static/media/famail.e71be6c647c89366777934e46902ae13.svg",
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/command-repo-yourpet-frontend/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.885936f7.css.map": "/command-repo-yourpet-frontend/static/css/main.885936f7.css.map",
-    "main.84a39295.js.map": "/command-repo-yourpet-frontend/static/js/main.84a39295.js.map",
+    "main.72a5778c.js.map": "/command-repo-yourpet-frontend/static/js/main.72a5778c.js.map",
     "569.0cab80ef.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js.map",
     "522.7e3f945c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js.map",
     "722.a1eb597b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js.map",
     "503.77374854.chunk.js.map": "/command-repo-yourpet-frontend/static/js/503.77374854.chunk.js.map",
-    "964.c0201850.chunk.js.map": "/command-repo-yourpet-frontend/static/js/964.c0201850.chunk.js.map",
+    "532.75838d65.chunk.js.map": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js.map",
     "464.14bc064c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js.map",
     "580.58ef6ae6.chunk.js.map": "/command-repo-yourpet-frontend/static/js/580.58ef6ae6.chunk.js.map",
     "502.9e4526c7.chunk.js.map": "/command-repo-yourpet-frontend/static/js/502.9e4526c7.chunk.js.map",
@@ -36,6 +43,6 @@
   },
   "entrypoints": [
     "static/css/main.885936f7.css",
-    "static/js/main.84a39295.js"
+    "static/js/main.72a5778c.js"
   ]
 }
