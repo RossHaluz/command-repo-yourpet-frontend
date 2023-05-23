@@ -1,43 +1,38 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/auth/operetions';
+import UserInfoField from './UserInfoFild';
+import { Formik, Form } from 'formik';
 import {
   Box,
   Title,
   Img,
   Photo,
   EditPhoto,
-  Form,
-  Label,
-  Input,
   IconCamera,
   IconLogOut,
-  IconEdit,
   ButtonLogOut,
 } from './UserData.styled';
 
 const initialValues = {
-  name: 'Anna',
-  email: 'Anna@gmai.com',
-  phone: '+380-000-00-00',
-  birthday: '00.00.0000',
-  city: 'Dnipro',
+  Name: 'Anna',
+  Email: 'Anna@gmail.com',
+  Phone: '+3800000000',
+  Birthday: '00.00.0000',
+  City: 'Dnipro',
 };
 
 const UserData = () => {
-  const [userData, setUserData] = useState(initialValues);
+  const [activeInput, setActiveInput] = useState(null);
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setUserData(prevUserData => ({
-      ...prevUserData,
-      [name]: value,
-    }));
+  const dispatch = useDispatch();
+
+  const handleSubmit = values => {
+    // отправка данных на сервер
+    console.log('Отправка данных:', values);
   };
 
-  const handleEditClick = e => {
-    e.preventDefault();
-    // Отправка данных на сервер или другие действия при нажатии кнопки "Изменить"
-    console.log(userData);
-  };
+  const userInfoFields = ['Name', 'Email', 'Phone', 'Birthday', 'City'];
 
   return (
     <>
@@ -49,72 +44,28 @@ const UserData = () => {
             alt="User"
           />
         </Photo>
-
         <EditPhoto>
-          <IconCamera /> Edit photo
+          <IconCamera onClick={() => setActiveInput('photo')} />
+          Edit photo
         </EditPhoto>
 
-        <Form>
-          <Label>
-            Name:
-            <Input
-              type="text"
-              name="name"
-              value={userData.name}
-              onChange={handleInputChange}
-            />
-            <IconEdit onClick={handleEditClick}>Edit</IconEdit>
-          </Label>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Form>
+            {userInfoFields.map(field => (
+              <UserInfoField
+                key={field}
+                field={field}
+                activeInput={activeInput}
+                setActiveInput={setActiveInput}
+              />
+            ))}
 
-          <Label>
-            Email:
-            <Input
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleInputChange}
-            />
-            <IconEdit onClick={handleEditClick}>Edit</IconEdit>
-          </Label>
-
-          <Label>
-            Phone:
-            <Input
-              type="tel"
-              name="phone"
-              value={userData.phone}
-              onChange={handleInputChange}
-            />
-            <IconEdit onClick={handleEditClick}>Edit</IconEdit>
-          </Label>
-
-          <Label>
-            Birthday:
-            <Input
-              type="tel"
-              name="birthday"
-              value={userData.birthday}
-              onChange={handleInputChange}
-            />
-            <IconEdit onClick={handleEditClick}>Edit</IconEdit>
-          </Label>
-
-          <Label>
-            City:
-            <Input
-              type="text"
-              name="city"
-              value={userData.city}
-              onChange={handleInputChange}
-            />
-            <IconEdit onClick={handleEditClick}>Edit</IconEdit>
-          </Label>
-        </Form>
-
-        <ButtonLogOut type="button">
-          <IconLogOut />
-          Log Out
-        </ButtonLogOut>
+            <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
+              <IconLogOut />
+              Log Out
+            </ButtonLogOut>
+          </Form>
+        </Formik>
       </Box>
     </>
   );
