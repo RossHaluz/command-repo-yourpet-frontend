@@ -5,6 +5,7 @@ export const ImageWrapper = styled.div`
   top: 108px;
   width: 474px;
   height: 394px;
+  display: none;
 
   @media (min-width: 768px) {
     width: 985px;
