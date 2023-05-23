@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import CheckIcon from '@mui/icons-material/Check';
+import { Field } from 'formik';
 
 // import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
@@ -60,11 +62,11 @@ export const EditPhoto = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
 `;
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-`;
+// export const MyForm = styled(Form)`
+//   display: flex;
+//   flex-direction: column;
+//   margin-bottom: 115px;
+// `;
 
 export const Label = styled.label`
   position: relative;
@@ -79,7 +81,7 @@ export const Label = styled.label`
   letter-spacing: 0.04em;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 255px;
   height: 32px;
   padding: 0 15px 0 15px;
@@ -101,6 +103,7 @@ export const ButtonLogOut = styled.button`
   border: none;
   background-color: #fff;
   padding: 0;
+  margin-top: 20px;
 
   cursor: pointer;
   color: #888888;
@@ -128,4 +131,11 @@ export const IconEdit = styled(DriveFileRenameOutlineOutlinedIcon)`
 
   cursor: pointer;
   color: #54adff;
+`;
+export const IconCheck = styled(CheckIcon)`
+  position: absolute;
+  left: 90%;
+
+  cursor: pointer;
+  color: #20e820;
 `;
