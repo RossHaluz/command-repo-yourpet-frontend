@@ -52,11 +52,12 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(makeNoticeFavourite.fulfilled, (state, action) => {
-        console.log('makeNoticeFavourite');
-        return {
-          ...state,
-          isLoading: false,
-        };
+        console.log('makeNoticeFavourite', action.payload.id);
+        const index = state.items.findIndex(
+          notice => notice.id === action.payload.id
+        );
+        state.items.splice(index, 1, action.payload);
+        state.isLoading = false;
       })
       .addMatcher(
         isAnyOf(
