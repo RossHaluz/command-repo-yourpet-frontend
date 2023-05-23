@@ -87,5 +87,3 @@ export const noticesSlice = createSlice({
   },
   reducers: {},
 });
-
-export const { chooseCategory } = noticesSlice.actions;
