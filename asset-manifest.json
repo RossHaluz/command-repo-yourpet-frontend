@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.885936f7.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.72a5778c.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.fbf6a364.js",
     "static/js/569.0cab80ef.chunk.js": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js",
     "static/js/522.7e3f945c.chunk.js": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js",
     "static/js/722.a1eb597b.chunk.js": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js",
@@ -9,11 +9,16 @@
     "static/js/532.75838d65.chunk.js": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js",
     "static/js/464.14bc064c.chunk.js": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js",
     "static/js/580.58ef6ae6.chunk.js": "/command-repo-yourpet-frontend/static/js/580.58ef6ae6.chunk.js",
-    "static/js/502.9e4526c7.chunk.js": "/command-repo-yourpet-frontend/static/js/502.9e4526c7.chunk.js",
+    "static/js/542.0e28acbb.chunk.js": "/command-repo-yourpet-frontend/static/js/542.0e28acbb.chunk.js",
     "static/js/494.f7628411.chunk.js": "/command-repo-yourpet-frontend/static/js/494.f7628411.chunk.js",
     "static/js/386.61d5c746.chunk.js": "/command-repo-yourpet-frontend/static/js/386.61d5c746.chunk.js",
     "static/js/995.ba18ac3f.chunk.js": "/command-repo-yourpet-frontend/static/js/995.ba18ac3f.chunk.js",
-    "static/media/errorImg.png": "/command-repo-yourpet-frontend/static/media/errorImg.ab8ed5309e8656863916.png",
+    "static/media/error-lg-2x.png": "/command-repo-yourpet-frontend/static/media/error-lg-2x.7f564e30d89d11c8813e.png",
+    "static/media/error-md-2x.png": "/command-repo-yourpet-frontend/static/media/error-md-2x.cc5fd368ca407400b96c.png",
+    "static/media/error-lg-1x.png": "/command-repo-yourpet-frontend/static/media/error-lg-1x.e3d28be18b648a4932e8.png",
+    "static/media/error-md-1x.png": "/command-repo-yourpet-frontend/static/media/error-md-1x.21e3ad0d1a4089f216d0.png",
+    "static/media/error-sm-2x.png": "/command-repo-yourpet-frontend/static/media/error-sm-2x.e967be1ab6e5ee0c0054.png",
+    "static/media/error-sm-1x.png": "/command-repo-yourpet-frontend/static/media/error-sm-1x.ab8ed5309e8656863916.png",
     "static/media/barbos.png": "/command-repo-yourpet-frontend/static/media/barbos.4041f57497bbd447b9f9.png",
     "static/media/whiskas.png": "/command-repo-yourpet-frontend/static/media/whiskas.a41a4ca27fd7178a4dac.png",
     "static/media/claw.svg": "/command-repo-yourpet-frontend/static/media/claw.756865185251503188e9a16feec88c03.svg",
@@ -28,7 +33,7 @@
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/command-repo-yourpet-frontend/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.885936f7.css.map": "/command-repo-yourpet-frontend/static/css/main.885936f7.css.map",
-    "main.72a5778c.js.map": "/command-repo-yourpet-frontend/static/js/main.72a5778c.js.map",
+    "main.fbf6a364.js.map": "/command-repo-yourpet-frontend/static/js/main.fbf6a364.js.map",
     "569.0cab80ef.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js.map",
     "522.7e3f945c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js.map",
     "722.a1eb597b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js.map",
@@ -36,13 +41,13 @@
     "532.75838d65.chunk.js.map": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js.map",
     "464.14bc064c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js.map",
     "580.58ef6ae6.chunk.js.map": "/command-repo-yourpet-frontend/static/js/580.58ef6ae6.chunk.js.map",
-    "502.9e4526c7.chunk.js.map": "/command-repo-yourpet-frontend/static/js/502.9e4526c7.chunk.js.map",
+    "542.0e28acbb.chunk.js.map": "/command-repo-yourpet-frontend/static/js/542.0e28acbb.chunk.js.map",
     "494.f7628411.chunk.js.map": "/command-repo-yourpet-frontend/static/js/494.f7628411.chunk.js.map",
     "386.61d5c746.chunk.js.map": "/command-repo-yourpet-frontend/static/js/386.61d5c746.chunk.js.map",
     "995.ba18ac3f.chunk.js.map": "/command-repo-yourpet-frontend/static/js/995.ba18ac3f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.885936f7.css",
-    "static/js/main.72a5778c.js"
+    "static/js/main.fbf6a364.js"
   ]
 }
