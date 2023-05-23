@@ -16,7 +16,6 @@ export const noticesSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchNotices.fulfilled, (state, action) => {
-        // console.log(action.payload.data.notices);
         return {
           ...state,
           items: [...action.payload.data.notices],
@@ -24,7 +23,6 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
-        // console.log(action.payload.data.notices);
         return {
           ...state,
           items: [...action.payload.data.notices],
@@ -32,7 +30,6 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
-        // console.log(action.payload.data.notices);
         return {
           items: [
             ...state.items.filter(notice => notice.id !== action.payload.id),
