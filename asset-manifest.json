@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.885936f7.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.57b83672.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.3c5f7f9d.js",
     "static/js/569.0cab80ef.chunk.js": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js",
     "static/js/522.7e3f945c.chunk.js": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js",
-    "static/js/722.a1eb597b.chunk.js": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js",
+    "static/js/910.ca5b90d1.chunk.js": "/command-repo-yourpet-frontend/static/js/910.ca5b90d1.chunk.js",
     "static/js/375.6fc22934.chunk.js": "/command-repo-yourpet-frontend/static/js/375.6fc22934.chunk.js",
     "static/js/532.75838d65.chunk.js": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js",
     "static/js/464.14bc064c.chunk.js": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js",
@@ -17,10 +17,22 @@
     "static/media/error-md-2x.png": "/command-repo-yourpet-frontend/static/media/error-md-2x.cc5fd368ca407400b96c.png",
     "static/media/error-lg-1x.png": "/command-repo-yourpet-frontend/static/media/error-lg-1x.e3d28be18b648a4932e8.png",
     "static/media/error-md-1x.png": "/command-repo-yourpet-frontend/static/media/error-md-1x.21e3ad0d1a4089f216d0.png",
+    "static/media/dog-md-2x.webp": "/command-repo-yourpet-frontend/static/media/dog-md-2x.55b9f5aa546dd72bdad1.webp",
     "static/media/error-sm-2x.png": "/command-repo-yourpet-frontend/static/media/error-sm-2x.e967be1ab6e5ee0c0054.png",
+    "static/media/cat-md-2x.webp": "/command-repo-yourpet-frontend/static/media/cat-md-2x.ee11939819bac372603a.webp",
+    "static/media/doggy-md-2x.webp": "/command-repo-yourpet-frontend/static/media/doggy-md-2x.77f604e2c701a27e6e0b.webp",
+    "static/media/dog-md-1x.webp": "/command-repo-yourpet-frontend/static/media/dog-md-1x.cc8b911e684f5682a8bd.webp",
+    "static/media/dog-sm-2x.webp": "/command-repo-yourpet-frontend/static/media/dog-sm-2x.e6cc8b8f4f71dda48f34.webp",
     "static/media/error-sm-1x.png": "/command-repo-yourpet-frontend/static/media/error-sm-1x.ab8ed5309e8656863916.png",
+    "static/media/cat-md-1x.webp": "/command-repo-yourpet-frontend/static/media/cat-md-1x.be1e71acfdba062a972e.webp",
+    "static/media/cat-sm-2x.webp": "/command-repo-yourpet-frontend/static/media/cat-sm-2x.4e101db2e0d3d3effce7.webp",
     "static/media/barbos.png": "/command-repo-yourpet-frontend/static/media/barbos.4041f57497bbd447b9f9.png",
+    "static/media/doggy-md-1x.webp": "/command-repo-yourpet-frontend/static/media/doggy-md-1x.074c8013c08e7a8be385.webp",
+    "static/media/doffy-sm-2x.webp": "/command-repo-yourpet-frontend/static/media/doffy-sm-2x.637536a6f5765578ae33.webp",
     "static/media/whiskas.png": "/command-repo-yourpet-frontend/static/media/whiskas.a41a4ca27fd7178a4dac.png",
+    "static/media/dog-sm-1x.webp": "/command-repo-yourpet-frontend/static/media/dog-sm-1x.e4f1351ce66aa23ba10e.webp",
+    "static/media/doggy-sm-1x.webp": "/command-repo-yourpet-frontend/static/media/doggy-sm-1x.725db5a328d9687269c8.webp",
+    "static/media/cat-sm-1x.webp": "/command-repo-yourpet-frontend/static/media/cat-sm-1x.bb819b3f6430a390bfba.webp",
     "static/media/claw.svg": "/command-repo-yourpet-frontend/static/media/claw.756865185251503188e9a16feec88c03.svg",
     "index.html": "/command-repo-yourpet-frontend/index.html",
     "static/media/search.svg": "/command-repo-yourpet-frontend/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
@@ -33,10 +45,10 @@
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/command-repo-yourpet-frontend/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.885936f7.css.map": "/command-repo-yourpet-frontend/static/css/main.885936f7.css.map",
-    "main.57b83672.js.map": "/command-repo-yourpet-frontend/static/js/main.57b83672.js.map",
+    "main.3c5f7f9d.js.map": "/command-repo-yourpet-frontend/static/js/main.3c5f7f9d.js.map",
     "569.0cab80ef.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js.map",
     "522.7e3f945c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js.map",
-    "722.a1eb597b.chunk.js.map": "/command-repo-yourpet-frontend/static/js/722.a1eb597b.chunk.js.map",
+    "910.ca5b90d1.chunk.js.map": "/command-repo-yourpet-frontend/static/js/910.ca5b90d1.chunk.js.map",
     "375.6fc22934.chunk.js.map": "/command-repo-yourpet-frontend/static/js/375.6fc22934.chunk.js.map",
     "532.75838d65.chunk.js.map": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js.map",
     "464.14bc064c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js.map",
@@ -48,6 +60,6 @@
   },
   "entrypoints": [
     "static/css/main.885936f7.css",
-    "static/js/main.57b83672.js"
+    "static/js/main.3c5f7f9d.js"
   ]
 }
