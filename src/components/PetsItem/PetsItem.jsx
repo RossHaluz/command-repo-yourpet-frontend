@@ -1,17 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { deletePet } from 'redux/pets/operations';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 import { Image, Descr, Bold, Button } from './PetsItem.styled';
 import Box from '@mui/material/Box';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 
 export const PetsItem = ({ pet }) => {
-  const handleDelete = () => {
-    console.log('Delete pet');
-  };
-  
   const dispatch = useDispatch();
-  
+
   return (
     <>
       <Image src={pet.imgURL} alt="pet description" width="240" height="240" />
@@ -26,7 +22,7 @@ export const PetsItem = ({ pet }) => {
         </Descr>
 
         <Button type="button" onClick={() => dispatch(deletePet(pet._id))}>
-          <DeleteForeverOutlinedIcon size="42" />
+          <DeleteOutlinedIcon size="42" />
         </Button>
 
         <Descr>
