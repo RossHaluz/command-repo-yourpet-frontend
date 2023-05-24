@@ -5,7 +5,6 @@ export const ImageWrapper = styled.div`
   top: 108px;
   width: 474px;
   height: 394px;
-  display: none;
 
   @media (min-width: 768px) {
     width: 985px;
@@ -18,8 +17,8 @@ export const ImageWrapper = styled.div`
 
 export const CatImg = styled.img`
   position: absolute;
-  bottom: -19px;
-  right: 187px;
+  bottom: -10px;
+  right: 150px;
 
   @media (min-width: 768px) {
     left: 400px;
@@ -30,7 +29,7 @@ export const CatImg = styled.img`
 export const DogImg = styled.img`
   position: absolute;
   bottom: 130px;
-  left: 115px;
+  left: 125px;
 
   @media (min-width: 768px) {
     left: 350px;
