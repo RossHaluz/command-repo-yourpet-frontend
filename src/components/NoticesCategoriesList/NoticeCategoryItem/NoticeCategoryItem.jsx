@@ -11,6 +11,8 @@ import { ReactComponent as Location } from './icons/lacation.svg';
 import { ReactComponent as Age } from './icons/old.svg';
 import { ReactComponent as GarbageCan } from './icons/trash.svg';
 import { ReactComponent as Claw } from './icons/claw.svg';
+import useModal from 'hooks/useModal';
+import ModalNotice from 'components/ModalNotice/ModalNotice';
 
 import {
   BottomButtonWrapper,
@@ -24,11 +26,12 @@ import {
   StyledComent,
 } from './NoticeCategoryItem.styled';
 
+
 // name, dateOfBirth, breed, comments;
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const { imgURL } = petInfo;
-
+  const [isOpen, toggleModal] = useModal();
   const isLoggeIn = useSelector(selectIsUserLogin);
   const id = '12314141414'; // will take from back and by Redux
   const favorite = false; // will take from back and by Redux
@@ -42,17 +45,19 @@ const NoticeCategoryItem = ({ petInfo }) => {
       // function that call notification "you should logIn"
     }
   };
+
   const handleDelete = id => {
     // call delete function from redux
   };
-  const handleShowPopUp = id => {
-    if (isLoggeIn) {
-      // show pop up function
+
+const handleShowPopUp = () => {
+    if (isLoggeIn) { 
+      toggleModal();
     } else {
       alert('you should login');
-      // function that call notification "you should logIn"
     }
-  };
+}
+
 
   return (
     <>
@@ -86,9 +91,10 @@ const NoticeCategoryItem = ({ petInfo }) => {
         </StyledCardImgWrapper>
 
         <StyledComent>Сute dog looking for a home</StyledComent>
-        <LearnMore onClick={() => handleShowPopUp()}>
+        <LearnMore onClick={handleShowPopUp}>
           <span>Learn more</span> <Claw />
         </LearnMore>
+        <ModalNotice isOpen={isOpen} toggleModal={toggleModal} noticeId={petInfo.noticeId} ></ModalNotice>
       </StyledCardWrapper>
     </>
   );
@@ -101,6 +107,7 @@ NoticeCategoryItem.propTypes = {
     breed: PropTypes.string.isRequired,
     imgURL: PropTypes.string.isRequired,
     comments: PropTypes.string,
+    noticeId: PropTypes.string.isRequired,
   }).isRequired,
 };
 export default NoticeCategoryItem;

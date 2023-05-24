@@ -2,7 +2,7 @@ import { Box, List, Typography, ListItem, Button, CircularProgress } from "@mui/
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BasicModal from "components/Modal/BasicModal"
 import { useEffect, useState } from "react"
-import { CategoryChipStyled, ImageBoxStyled, InfoBoxStyled, PetImageStyled, InfoTitleStyled, ListItemTextStyled } from "./ModalNotice.styled";
+import { CategoryChipStyled, ImageBoxStyled, InfoBoxStyled, PetImageStyled, InfoTitleStyled, ListItemTextStyled, LinkStyled } from "./ModalNotice.styled";
 import { getNoticeById, addNoticeToFavorite, removeNoticeFromFavorite } from "api/NoticesApi";
 import { useSelector } from 'react-redux';
 import { selectUser } from "redux/auth/selectors";
@@ -16,8 +16,8 @@ const ModalNotice = ({ isOpen, toggleModal, noticeId = '646796b66c1bedf7dcac7be8
   const [isAddedToFavorite, setIsAddedToFavorite] = useState(false);
 
   const user = useSelector(selectUser);
-  const getPhone = (owner) => <a href={`tel: ${owner?.phone}`}>{owner?.phone}</a>;
-  const getEmail = (owner) => <a href={`mailto: ${owner?.email}`}>{owner?.email}</a>;
+  const getPhone = (owner) => <LinkStyled href={`tel: ${owner?.phone}`}>{owner?.phone}</LinkStyled>;
+  const getEmail = (owner) => <LinkStyled href={`mailto: ${owner?.email}`}>{owner?.email}</LinkStyled>;
   const { name, title, imgURL, category, dateOfBirth, breed, place, sex, comments, owner } = notice;
 
   const infoDefinitions = [

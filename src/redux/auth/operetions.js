@@ -11,29 +11,29 @@ const removeAuthHeader = () => {
     axios.defaults.headers.common.Authorization = ""
 }
 
-export const register = createAsyncThunk('auth/register', async (creadential, {rejectWithValue}) => {
+export const register = createAsyncThunk('auth/register', async (creadential, { rejectWithValue }) => {
     try {
-        const {data} = await axios.post('/api/users/register', creadential)
+        const { data } = await axios.post('/api/users/register', creadential)
         setAuthHeader(data.token)
-       return data
+        return data
     } catch (error) {
         rejectWithValue(error.message)
     }
 })
 
-export const login = createAsyncThunk('auth/login', async (creadential, {rejectWithValue}) => {
+export const login = createAsyncThunk('auth/login', async (creadential, { rejectWithValue }) => {
     try {
-        const {data} = await axios.post('/api/users/login', creadential);
-        setAuthHeader(data.token)
+        const { data } = await axios.post('/api/users/login', creadential);
+        setAuthHeader(data.user.token)
         return data;
     } catch (error) {
         rejectWithValue(error.message)
     }
 })
 
-export const logout = createAsyncThunk('auth/logout', async (__, {rejectWithValue}) => {
+export const logout = createAsyncThunk('auth/logout', async (__, { rejectWithValue }) => {
     try {
-        await axios.post('/api/users/logout') 
+        await axios.post('/api/users/logout')
         removeAuthHeader()
     } catch (error) {
         rejectWithValue(error.message)
@@ -42,18 +42,18 @@ export const logout = createAsyncThunk('auth/logout', async (__, {rejectWithValu
 
 
 
-export const getCurrentUser = createAsyncThunk('auth/current', async (__, {getState, rejectWithValue}) => {
+export const getCurrentUser = createAsyncThunk('auth/current', async (__, { getState, rejectWithValue }) => {
     const state = getState();
     console.log(state);
     const token = state.auth.token;
-        if(!token){
-            return rejectWithValue()
-        }
-        setAuthHeader(token)
-    
+    if (!token) {
+        return rejectWithValue()
+    }
+    setAuthHeader(token)
+
     try {
-    const {data} = await axios.get('/api/users/current')
-    return data
+        const { data } = await axios.get('/api/users/current')
+        return data
     } catch (error) {
         rejectWithValue(error.message)
     }

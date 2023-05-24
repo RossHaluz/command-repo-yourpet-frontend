@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, Chip, ListItemText, Typography } from '@mui/material';
+import { Box, Chip, Link, ListItemText, Typography } from '@mui/material';
 
 export const ImageBoxStyled = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -48,4 +48,14 @@ export const InfoTitleStyled = styled(Typography)(({ theme }) => ({
 
 export const ListItemTextStyled = styled(ListItemText)(({ theme }) => ({
   fontSize: '16px',
+}));
+
+
+export const LinkStyled = styled(Link)(({ theme }) => ({
+  color: '#FFC107',
+  textDecorationColor: '#FFC107',
+  '&:hover': {
+    color: '#54ADFF',
+    textDecorationColor: '#54ADFF',
+  }
 }));
