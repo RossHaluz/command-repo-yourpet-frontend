@@ -1,5 +1,14 @@
+import { SectionHero } from './Home.styled';
+import HomeImg from './HomeImg';
+import HomeTitle from './HomeTitle';
+
 const Home = () => {
-  return <h1 style={{ textAlign: 'center' }}>Welcome home</h1>;
+  return (
+    <SectionHero>
+      <HomeTitle />
+      <HomeImg />
+    </SectionHero>
+  );
 };
 
 export default Home;

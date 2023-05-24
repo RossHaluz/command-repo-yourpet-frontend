@@ -7,9 +7,9 @@ axios.defaults.baseURL = 'https://pets-back-end.onrender.com';
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchNotices',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/notices`);
+      const response = await axios.get(`/api/notices`, { params: { page } });
       return response.data;
     } catch (error) {
       console.log(error.message);
