@@ -9,6 +9,7 @@ export const StyledCardWrapper = styled('div')`
   box-sizing: border-box;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 `;
+
 export const StyledCardImgWrapper = styled('div')`
   position: relative;
   min-width: 280px;

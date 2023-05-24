@@ -9,4 +9,12 @@ export const CategoriesListWrapper = styled('div')`
   max-width: 1248px;
   margin: auto;
   padding: 0;
+
+  @media screen and (max-width: 747.98px) {
+    margin-top: 24px;
+  }
+
+  @media screen and (min-width: 748px) {
+    margin-top: 40px;
+  }  
 `;
