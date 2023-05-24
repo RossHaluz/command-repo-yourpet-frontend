@@ -2,7 +2,7 @@ import SharedLayout from 'components/SharedLayout';
 import { lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
-import Theme from 'components/Theme/Theme';
+import Theme from '../../theme/Theme';
 import { getCurrentUser } from 'redux/auth/operetions';
 import { useDispatch } from 'react-redux';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';

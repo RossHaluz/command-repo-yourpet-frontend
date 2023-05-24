@@ -4,9 +4,12 @@ import {
   StyledNavLinkWrapper,
 } from './NoticesCategoriesNav.styled';
 import { nanoid } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import { selectIsUserLogin } from 'redux/auth/selectors';
 
 const NoticesCategoriesNav = () => {
-  const IsAuthorized = true; // will be recived from global redux object
+  const isLoggeIn = useSelector(selectIsUserLogin)
+ 
 
   const [categories, setCategories] = useState([
     'sell',
@@ -17,11 +20,11 @@ const NoticesCategoriesNav = () => {
   ]);
 
   useEffect(() => {
-    if (!IsAuthorized) {
+    if (!isLoggeIn) {
       setCategories(categories =>
         categories.slice(0,3))
     }
-  }, [IsAuthorized]);
+  }, [isLoggeIn]);
 
   const categoriesObjLinks = {
     sell: '/notices/sell',

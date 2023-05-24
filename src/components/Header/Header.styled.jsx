@@ -6,8 +6,8 @@ export const HeaderContainer = styled.div`
   margin: 0 auto;
   padding: 0 15px;
 
-  @media (min-width: 480px) {
-    width: 480px;
+  @media (min-width: 320px) {
+    width: 320px;
   }
 
   @media (min-width: 768px) {
@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
   }
 
   @media (min-width: 1200px) {
-    width: 1200px;
+    width: 1280px;
   }
 `;
 

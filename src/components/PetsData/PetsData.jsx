@@ -16,6 +16,8 @@ const PetsData = () => {
 
   // const error = useSelector(selectError);
 
+
+const PetsData = () => {
   return (
     <>
       <TitleContainer>
