@@ -5,6 +5,7 @@ export const SectionHero = styled.div`
   flex-direction: column;
   gap: 40px;
   height: 100vh;
+  display: none;
 
   @media (min-width: 768px) {
     gap: 27px;
