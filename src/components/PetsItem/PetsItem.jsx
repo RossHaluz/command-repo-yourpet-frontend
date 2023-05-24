@@ -1,8 +1,12 @@
 import { Image, Descr, Bold, Button } from './PetsItem.styled';
 import Box from '@mui/material/Box';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 export const PetsItem = ({ pet }) => {
+  const handleDelete = () => {
+    console.log('Delete pet');
+  };
+  
   return (
     <>
       <Image src={pet.imgURL} alt="pet description" width="240" height="240" />
@@ -15,8 +19,8 @@ export const PetsItem = ({ pet }) => {
         <Descr>
           <Bold>Name:</Bold> {pet.name}
         </Descr>
-        <Button>
-          <DeleteForeverOutlinedIcon size="42" />
+        <Button onClick={handleDelete}>
+          <RiDeleteBin6Line size="24" />
         </Button>
 
         <Descr>
