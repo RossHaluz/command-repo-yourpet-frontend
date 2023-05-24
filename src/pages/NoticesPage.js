@@ -12,6 +12,7 @@ import {
   selectTotalPages,
 } from 'redux/notices/selectors';
 import { PageTitle } from 'components/PageTitle/PageTitle.styled';
+import Box from '@mui/material/Box';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
@@ -36,8 +37,15 @@ const NoticesPage = () => {
     <>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch />
-      <NoticesCategoriesNav />
-      <NoticesAddPetBtn />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <NoticesCategoriesNav />
+        <NoticesAddPetBtn />
+      </Box>
       <NoticesCategoriesList notices={notices} />
       <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
     </>
