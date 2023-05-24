@@ -14,10 +14,6 @@ const PetsData = () => {
   const allCurrentInfo = useSelector(selectAllCurrentInfo);
   const isLoading = useSelector(selectIsLoading);
 
-  // const error = useSelector(selectError);
-
-
-const PetsData = () => {
   return (
     <>
       <TitleContainer>
