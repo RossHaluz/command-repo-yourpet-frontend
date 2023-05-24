@@ -8,8 +8,10 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   // selectIsLoading,
-  selectNotices, selectTotalPages,
+  selectNotices,
+  selectTotalPages,
 } from 'redux/notices/selectors';
+import { PageTitle } from 'components/PageTitle/PageTitle.styled';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
@@ -28,10 +30,11 @@ const NoticesPage = () => {
 
   const handlePageChange = (e, page) => {
     setPage(page);
-  }
+  };
 
   return (
     <>
+      <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesAddPetBtn />

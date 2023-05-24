@@ -13,7 +13,6 @@ export const List = styled.ul`
     flex-wrap: wrap;
     justify-content: start;
     row-gap: 20px;
-    /* column-gap: 32px; */
   }
 `;
 
