@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
 export const SectionHero = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
   height: 100vh;
 
   @media (min-width: 768px) {

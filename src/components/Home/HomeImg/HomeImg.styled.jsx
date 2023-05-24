@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const ImageWrapper = styled.div`
-  position: absolute;
-  top: 108px;
+  position: relative;
+  top: 188px;
   width: 474px;
   height: 394px;
 
@@ -10,8 +10,9 @@ export const ImageWrapper = styled.div`
     width: 985px;
   }
   @media (min-width: 1280px) {
-    top: -195px;
-    right: -135px;
+    height: auto;
+    top: 55px;
+    right: 70px;
   }
 `;
 
@@ -22,7 +23,7 @@ export const CatImg = styled.img`
 
   @media (min-width: 768px) {
     left: 400px;
-    top: 640px;
+    top: 260px;
   }
 `;
 
@@ -44,6 +45,6 @@ export const DoggyImg = styled.img`
 
   @media (min-width: 768px) {
     left: -75px;
-    top: 470px;
+    top: 180px;
   }
 `;
