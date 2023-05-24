@@ -1,10 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  fetchNotices,
+  fetchNoticesByCategory,
+  deleteNotice,
+  fetchNoticesFavourite,
+  addNotice,
+  makeNoticeFavourite,
+} from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
-  category: '',
 };
 
 export const noticesSlice = createSlice({
@@ -12,11 +18,7 @@ export const noticesSlice = createSlice({
   initialState: initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchNotices.pending, state => {
-        state.isLoading = true;
-      })
       .addCase(fetchNotices.fulfilled, (state, action) => {
-        // console.log(action.payload.data.notices);
         return {
           ...state,
           items: [...action.payload.data.notices],
@@ -24,15 +26,66 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addCase(fetchNotices.rejected, state => {
+      .addCase(fetchNoticesByCategory.fulfilled, (state, action) => {
+        return {
+          ...state,
+          items: [...action.payload.data.notices],
+          isLoading: false,
+        };
+      })
+      .addCase(addNotice.fulfilled, (state, action) => {
+        state.items.push(action.payload);
         state.isLoading = false;
-      });
+      })
+      .addCase(deleteNotice.fulfilled, (state, action) => {
+        return {
+          items: [
+            ...state.items.filter(notice => notice.id !== action.payload.id),
+          ],
+          isLoading: false,
+        };
+      })
+      .addCase(fetchNoticesFavourite.fulfilled, (state, action) => {
+        console.log('fetchNoticesFavourite');
+        return {
+          ...state,
+          isLoading: false,
+        };
+      })
+      .addCase(makeNoticeFavourite.fulfilled, (state, action) => {
+        console.log('makeNoticeFavourite', action.payload.id);
+        const index = state.items.findIndex(
+          notice => notice.id === action.payload.id
+        );
+        state.items.splice(index, 1, action.payload);
+        state.isLoading = false;
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchNotices.pending,
+          fetchNoticesByCategory.pending,
+          deleteNotice.pending,
+          fetchNoticesFavourite.pending,
+          addNotice.pending,
+          makeNoticeFavourite
+        ),
+        state => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNotices.rejected,
+          fetchNoticesByCategory.rejected,
+          deleteNotice.rejected,
+          fetchNoticesFavourite.rejected,
+          addNotice.rejected,
+          makeNoticeFavourite.rejected
+        ),
+        state => {
+          state.isLoading = false;
+        }
+      );
   },
-  reducers: {
-    chooseCategory: (state, action) => {
-      state.category = action.payload.category;
-    },
-  },
+  reducers: {},
 });
-
-export const { chooseCategory } = noticesSlice.actions;
