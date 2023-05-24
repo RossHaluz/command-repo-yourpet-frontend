@@ -1,54 +1,69 @@
 import styled from '@emotion/styled';
 
 export const ImageWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  top: 108px;
+  right: -60px;
   width: 474px;
   height: 394px;
 
   @media (min-width: 768px) {
-    width: 985px;
-    width: 985px;
-    top: 400px;
+    top: 200px;
+    right: -260px;
+    width: 1085px;
+    height: 918px;
   }
+
   @media (min-width: 1280px) {
-    height: auto;
-    right: 70px;
-    top: 565px;
+    top: 30px;
+    right: 0;
+    width: 917px;
+    height: 920px;
   }
 `;
 
 export const CatImg = styled.img`
   position: absolute;
-  bottom: -10px;
-  right: 150px;
+  top: 197px;
+  right: 25px;
 
   @media (min-width: 768px) {
-    left: 400px;
-    top: 35px;
+    top: 490px;
+    right: 250px;
   }
   @media (min-width: 1280px) {
-    left: 400px;
-    bottom: -100px;
+    top: 405px;
+    right: 50px;
   }
 `;
 
 export const DogImg = styled.img`
   position: absolute;
-  bottom: 180px;
-  left: 125px;
+  top: 0;
+  right: 0;
 
   @media (min-width: 768px) {
-    left: 350px;
-    bottom: -335px;
+    top: 40px;
+    right: 160px;
+  }
+
+  @media (min-width: 1280px) {
+    top: -35px;
+    right: -40px;
   }
 `;
 
 export const DoggyImg = styled.img`
   position: absolute;
-  bottom: 16px;
-  right: 367px;
+  top: 130px;
+  right: 243px;
 
   @media (min-width: 768px) {
-    left: -75px;
+    top: 320px;
+    right: 665px;
+  }
+  @media (min-width: 1280px) {
+    top: 230px;
+    right: 463px;
   }
 `;
