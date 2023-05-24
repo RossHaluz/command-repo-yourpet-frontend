@@ -20,6 +20,7 @@ export const noticesSlice = createSlice({
         return {
           ...state,
           items: [...action.payload.data.notices],
+          totalPages: action.payload.data.totalPages,
           isLoading: false,
         };
       })
