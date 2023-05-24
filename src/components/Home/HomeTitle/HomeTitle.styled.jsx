@@ -16,7 +16,7 @@ export const Title = styled.h1`
   }
 
   @media (min-width: 1280px) {
-    margin-top: 80px;
+    margin-top: 50px;
     font-weight: 800;
     font-size: 68px;
     line-height: 130%;

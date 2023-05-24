@@ -28,7 +28,7 @@ export const CatImg = styled.img`
 
 export const DogImg = styled.img`
   position: absolute;
-  bottom: 130px;
+  bottom: 180px;
   left: 125px;
 
   @media (min-width: 768px) {
