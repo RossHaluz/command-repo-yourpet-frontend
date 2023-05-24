@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/command-repo-yourpet-frontend/static/css/main.885936f7.css",
-    "main.js": "/command-repo-yourpet-frontend/static/js/main.f4c0819c.js",
+    "main.js": "/command-repo-yourpet-frontend/static/js/main.d55b5794.js",
     "static/js/569.0cab80ef.chunk.js": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js",
     "static/js/522.7e3f945c.chunk.js": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js",
-    "static/js/910.f182abd3.chunk.js": "/command-repo-yourpet-frontend/static/js/910.f182abd3.chunk.js",
+    "static/js/910.67c013da.chunk.js": "/command-repo-yourpet-frontend/static/js/910.67c013da.chunk.js",
     "static/js/375.6fc22934.chunk.js": "/command-repo-yourpet-frontend/static/js/375.6fc22934.chunk.js",
     "static/js/532.75838d65.chunk.js": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js",
     "static/js/464.14bc064c.chunk.js": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js",
@@ -45,10 +45,10 @@
     "static/media/searchCross.svg": "/command-repo-yourpet-frontend/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/command-repo-yourpet-frontend/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.885936f7.css.map": "/command-repo-yourpet-frontend/static/css/main.885936f7.css.map",
-    "main.f4c0819c.js.map": "/command-repo-yourpet-frontend/static/js/main.f4c0819c.js.map",
+    "main.d55b5794.js.map": "/command-repo-yourpet-frontend/static/js/main.d55b5794.js.map",
     "569.0cab80ef.chunk.js.map": "/command-repo-yourpet-frontend/static/js/569.0cab80ef.chunk.js.map",
     "522.7e3f945c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/522.7e3f945c.chunk.js.map",
-    "910.f182abd3.chunk.js.map": "/command-repo-yourpet-frontend/static/js/910.f182abd3.chunk.js.map",
+    "910.67c013da.chunk.js.map": "/command-repo-yourpet-frontend/static/js/910.67c013da.chunk.js.map",
     "375.6fc22934.chunk.js.map": "/command-repo-yourpet-frontend/static/js/375.6fc22934.chunk.js.map",
     "532.75838d65.chunk.js.map": "/command-repo-yourpet-frontend/static/js/532.75838d65.chunk.js.map",
     "464.14bc064c.chunk.js.map": "/command-repo-yourpet-frontend/static/js/464.14bc064c.chunk.js.map",
@@ -60,6 +60,6 @@
   },
   "entrypoints": [
     "static/css/main.885936f7.css",
-    "static/js/main.f4c0819c.js"
+    "static/js/main.d55b5794.js"
   ]
 }
