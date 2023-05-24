@@ -44,9 +44,11 @@ export const Item = styled.li`
   }
 `;
 
-export const Name = styled.h4`
+export const Name = styled.a`
   font-size: 24px;
+  font-weight: 700;
   color: #54adff;
+  text-decoration: none;
 `;
 
 export const ImgThumb = styled.div`

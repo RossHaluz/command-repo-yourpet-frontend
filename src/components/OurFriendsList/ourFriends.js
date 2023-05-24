@@ -19,6 +19,7 @@ export const ourFriends = [
     email: 'lkplev@gmail.com',
     phone: '(032) 293-30-41',
     image: lev,
+    link: 'https://www.lkplev.com',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ export const ourFriends = [
     email: 'barbos@gmail.com',
     phone: '066 488 0480',
     image: barbos,
+    link: 'https://www.facebook.com/NGO.Barbos',
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ export const ourFriends = [
     email: 'whiskas@gmail.com',
     phone: '0–800–500–155',
     image: whiskas,
+    link: 'http://www.whiskas.ua',
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ export const ourFriends = [
     email: 'hello@happypaw.ua',
     phone: '+380 44 290-03-29',
     image: happypaw,
+    link: 'http://www.happypaw.ua/ua/',
   },
   {
     id: 5,
@@ -55,6 +59,7 @@ export const ourFriends = [
     email: 'pithelp.ukr@gmail.com',
     phone: 'email only',
     image: pethelp,
+    link: 'http://www.pethelp.com.ua',
   },
   {
     id: 6,
@@ -64,6 +69,7 @@ export const ourFriends = [
     email: 'dogcat.sirius@gmail.com',
     phone: '+38 093 193 40 69',
     image: sirius,
+    link: 'http://www.dogcat.com.ua',
   },
   {
     id: 7,
@@ -73,6 +79,7 @@ export const ourFriends = [
     email: 'info@ua.nestle.com',
     phone: '1-800-778-7462',
     image: purina,
+    link: 'http://www.purina.ua',
   },
   {
     id: 8,
@@ -82,6 +89,7 @@ export const ourFriends = [
     email: 'info@josera.ua',
     phone: '0800 409 060',
     image: josera,
+    link: 'http://www.josera.ua',
   },
   {
     id: 9,
@@ -91,5 +99,6 @@ export const ourFriends = [
     email: 'lico@gmail.com',
     phone: '+38 097 509 8005',
     image: lico,
+    link: 'http://www.lico.vet',
   },
 ];
