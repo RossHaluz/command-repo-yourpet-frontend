@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 
-import { ReactComponent as Famail } from './icons/famail.svg';
-// import { ReactComponent as Male } from './icons/male.svg';
+import { ReactComponent as Femail } from './icons/famail.svg';
+import { ReactComponent as Male } from './icons/male.svg';
 import { ReactComponent as Favorite } from './icons/favorite.svg';
 import { ReactComponent as FavoriteChecked } from './icons/favoriteChecked.svg';
 import { ReactComponent as Location } from './icons/lacation.svg';
@@ -27,14 +27,30 @@ import {
 } from './NoticeCategoryItem.styled';
 
 
-// name, dateOfBirth, breed, comments;
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const { imgURL } = petInfo;
   const [isOpen, toggleModal] = useModal();
+  const { category, dateOfBirth, sex, imgURL, comments, place, favorite } =
+    petInfo;
+
+  function calculateTimeElapsedYears(dateString) {
+    const startDate = new Date(dateString);
+    const currentDate = new Date();
+    const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
+    return Math.round(yearsElapsed);
+  }
+  function calculateTimeElapsedMonthses(dateString) {
+    const startDate = new Date(dateString);
+    const currentDate = new Date();
+    const monthsElapsed =
+      (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
+      (currentDate.getMonth() - startDate.getMonth());
+    return Math.floor(monthsElapsed);
+  }
+
   const isLoggeIn = useSelector(selectIsUserLogin);
   const id = '12314141414'; // will take from back and by Redux
-  const favorite = false; // will take from back and by Redux
   const isWasCreatedByMe = false; // will take from back and by Redux
   const handleToggleFavorite = () => {
     if (isLoggeIn) {
@@ -59,23 +75,32 @@ const handleShowPopUp = () => {
 }
 
 
+  const years = calculateTimeElapsedYears(dateOfBirth);
+  const monthes = calculateTimeElapsedMonthses(dateOfBirth);
+
   return (
     <>
       <StyledCardWrapper>
         <StyledCardImgWrapper>
-          <img src={imgURL} alt="img" />
-          <CategoryBadge>{'sell'}</CategoryBadge>
+          <img
+            src={
+              imgURL.includes('http') ? imgURL : 'https://placehold.co/262x298'
+            }
+            alt="img"
+          />
+          <CategoryBadge>{category}</CategoryBadge>
           <BottomButtonWrapper>
             <StyledCardButtonBottom>
               <Location />
-              <span>{'location'}</span>
+              <span>{place}</span>
             </StyledCardButtonBottom>
             <StyledCardButtonBottom>
               <Age />
-              <span>{'age'}</span>
+              <span>{years < 1 ? monthes + ' mon' : years + ' year'}</span>
             </StyledCardButtonBottom>
             <StyledCardButtonBottom>
-              <Famail /> <span>{'sex'}</span>
+              {sex === 'male' ? <Male /> : <Femail />}
+              <span>{'sex'}</span>
             </StyledCardButtonBottom>
           </BottomButtonWrapper>
           <RightButtonWrapper>
@@ -92,6 +117,7 @@ const handleShowPopUp = () => {
 
         <StyledComent>Сute dog looking for a home</StyledComent>
         <LearnMore onClick={handleShowPopUp}>
+       
           <span>Learn more</span> <Claw />
         </LearnMore>
         <ModalNotice isOpen={isOpen} toggleModal={toggleModal} noticeId={petInfo.noticeId} ></ModalNotice>
