@@ -22,7 +22,7 @@ const NoticesPage = () => {
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
-    const param = location.pathname.split('/')[2];
+    // const param = location.pathname.split('/')[2];
     dispatch(fetchNotices()); //param
   }, [dispatch, location]);
 
