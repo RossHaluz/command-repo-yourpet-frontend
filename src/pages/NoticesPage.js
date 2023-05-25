@@ -6,6 +6,10 @@ import PaginationBox from 'components/PaginationBox/PaginationBox';
 import { fetchNotices } from 'redux/notices/operations';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { PageTitle } from 'components/PageTitle/PageTitle.styled';
+import Box from '@mui/material/Box';
+
 import { selectNotices, selectTotalPages } from 'redux/notices/selectors';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { selectIsUserLogin } from 'redux/auth/selectors';
@@ -38,9 +42,17 @@ const NoticesPage = () => {
 
   return (
     <>
+      <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch />
-      <NoticesCategoriesNav />
-      <NoticesAddPetBtn />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <NoticesCategoriesNav />
+        <NoticesAddPetBtn />
+      </Box>
 
       <Routes>
         <Route
@@ -81,6 +93,7 @@ const NoticesPage = () => {
           }
         />
       </Routes>
+
       <NoticesCategoriesList notices={notices} />
       <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
     </>

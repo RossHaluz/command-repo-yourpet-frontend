@@ -7,7 +7,7 @@ export const OurFriendsList = ({ ourFriends }) => {
       {ourFriends.length > 0 &&
         ourFriends.map(friend => (
           <Item key={friend.id}>
-            <Name>{friend.name}</Name>
+            <Name href={friend.link} target="_blank">{friend.name}</Name>
             <Box
               sx={{
                 display: 'flex', marginTop: "16px", justifyContent: 'space-between'
@@ -43,7 +43,7 @@ export const OurFriendsList = ({ ourFriends }) => {
                   {friend.phone}
                 </Contacts>
               </Box>
-            </Box>
+              </Box>
           </Item>
         ))}
     </List>

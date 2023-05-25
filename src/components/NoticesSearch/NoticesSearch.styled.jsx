@@ -21,10 +21,12 @@ export const MuiBtnSearcCross = styled('button')({
 export const MuiFormDesctop = styled('form')({
   position: 'relative',
   maxWidth: '608px',
+  margin: '40px auto',
 });
 export const MuiFormMobile = styled('form')({
   position: 'relative',
   maxWidth: '280px',
+  margin: '24px auto 20px',
 });
 
 export const MuiInputDesctop = styled('input')({
