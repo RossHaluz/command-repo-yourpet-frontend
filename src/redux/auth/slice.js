@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   isUserLogin: false,
   isRefreshing: false,
+  modalSuccessRegister: false,
 };
 
 const authSlice = createSlice({
@@ -18,12 +19,12 @@ const authSlice = createSlice({
     },
 
     [register.fulfilled](state, action) {
-      console.log(action);
       state.user = action.payload;
       state.token = action.payload.token;
       state.isLoading = false;
       state.isUserLogin = true;
       state.isRefreshing = true;
+      state.modalSuccessRegister = true;
     },
     [login.pending](state, __) {
       state.isLoading = true;
@@ -40,12 +41,12 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.isUserLogin = false;
+      state.isRefreshing = false;
     },
     [getCurrentUser.pending](state) {
       state.isRefreshing = true;
     },
     [getCurrentUser.fulfilled](state, action) {
-      // console.log(action);
       state.user = action.payload.userInfo;
       state.isUserLogin = true;
       state.isRefreshing = false;

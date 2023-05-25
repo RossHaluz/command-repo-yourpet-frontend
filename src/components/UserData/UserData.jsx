@@ -13,6 +13,8 @@ import {
   IconLogOut,
   ButtonLogOut,
 } from './UserData.styled';
+import LogoutModal from 'components/Modal/LogoutModal';
+import useModal from 'hooks/useModal';
 
 const initialValues = {
   Name: 'Anna',
@@ -24,7 +26,7 @@ const initialValues = {
 
 const UserData = () => {
   const [activeInput, setActiveInput] = useState(null);
-
+  const [isOpen, toggleModal] = useModal();
   const dispatch = useDispatch();
 
   const handleSubmit = values => {
@@ -33,6 +35,10 @@ const UserData = () => {
   };
 
   const userInfoFields = ['Name', 'Email', 'Phone', 'Birthday', 'City'];
+  const handleLogout = () => {
+    toggleModal();
+    dispatch(logout());
+  }
 
   return (
     <>
@@ -60,10 +66,11 @@ const UserData = () => {
               />
             ))}
 
-            <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
+            <ButtonLogOut type="button" onClick={toggleModal}>
               <IconLogOut />
               Log Out
             </ButtonLogOut>
+            <LogoutModal isOpen={isOpen} toggleModal={toggleModal} onLogout={handleLogout}></LogoutModal>
           </Form>
         </Formik>
       </Box>

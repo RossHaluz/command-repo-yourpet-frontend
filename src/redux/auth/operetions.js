@@ -29,7 +29,7 @@ export const login = createAsyncThunk(
   async (creadential, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/api/users/login', creadential);
-      setAuthHeader(data.token);
+      setAuthHeader(data.user.token);
       return data;
     } catch (error) {
       rejectWithValue(error.message);
