@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 
 export const MoreInfoWrapper = styled.div`
   margin-bottom: 24px;
@@ -18,13 +18,6 @@ export const TheSexWrapper = styled.div`
     display: flex;
   }
 
-  > p {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: calc(19 / 14);
-    color: #111111;
-  }
-
   > span {
     position: absolute;
     bottom: -10px;
@@ -33,6 +26,13 @@ export const TheSexWrapper = styled.div`
     line-height: calc(16 / 12);
     color: #f43f5e;
   }
+`;
+
+export const TheSexTitle = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  color: #111111;
 `;
 
 export const SexLabel = styled.label`
@@ -142,10 +142,12 @@ export const Input = styled(Field)`
 
   outline: none;
   border-radius: 40px;
-  border: 1px solid #54adff;
+  border: 1px solid;
+  border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
 `;
 
 export const CommentsLabel = styled.label`
+  position: relative;
   display: block;
   color: #111111;
   font-weight: 500;
@@ -154,6 +156,7 @@ export const CommentsLabel = styled.label`
 `;
 
 export const TextArea = styled(Field)`
+
   width: 100%;
   height: 112px;
   padding: 9px 15px;
@@ -168,5 +171,15 @@ export const TextArea = styled(Field)`
   resize: none;
   outline: none;
   border-radius: 20px;
-  border: 1px solid #54adff;
+  border: 1px solid;
+  border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
+`;
+
+export const Message = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -15px;
+  left: 20px;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  color: #f43f5e;
 `;

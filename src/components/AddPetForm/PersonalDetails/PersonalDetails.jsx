@@ -5,29 +5,49 @@ import {
   PersonalDetailsWrapper,
 } from './PersonalDetails.styled';
 
-const PersonalDetails = ({ category }) => {
+const PersonalDetails = ({ category, touched, errors }) => {
   return (
     <PersonalDetailsWrapper category={category}>
       {category !== 'my-pet' && (
         <Label>
           Title of add
-          <Input type="text" name="title" placeholder="Title of add" />
+          <Input
+            type="text"
+            name="title"
+            placeholder="Title of add"
+            errors={touched.title && errors.title}
+          />
           <Message name="title" component="p" />
         </Label>
       )}
       <Label>
         Name pet
-        <Input type="text" name="name" placeholder="Type name pet" />
+        <Input
+          type="text"
+          name="name"
+          placeholder="Type name pet"
+          errors={touched.name && errors.name}
+        />
         <Message name="name" component="p" />
       </Label>
       <Label>
         Date of birth
-        <Input type="text" name="date" placeholder="Type date of birth" />
+        <Input
+          type="text"
+          name="date"
+          placeholder="Type date of birth"
+          errors={touched.date && errors.date}
+        />
         <Message name="date" component="p" />
       </Label>
       <Label>
         Breed
-        <Input type="text" name="breed" placeholder="Type breed" />
+        <Input
+          type="text"
+          name="breed"
+          placeholder="Type breed"
+          errors={touched.breed && errors.breed}
+        />
         <Message name="breed" component="p" />
       </Label>
     </PersonalDetailsWrapper>

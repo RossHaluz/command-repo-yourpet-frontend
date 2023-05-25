@@ -10,25 +10,40 @@ import {
   FormFields,
   SexLabel,
   PhotoText,
+  TheSexTitle,
 } from './MoreInfo.styled';
 import { Field } from 'formik';
+import { Message } from './MoreInfo.styled';
 import { Add, Male, Female } from '@mui/icons-material';
 
 const MoreInfo = ({
-  file,
-  handleFileChange,
+  setFieldValue,
   category,
   step,
   values,
   errors,
   touched,
 }) => {
+  const handleFileChange = e => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (file && file.size < 3000000) {
+      setFieldValue('file', file);
+    } else {
+      setFieldValue('file', '');
+      alert('File is too big');
+    }
+  };
   return (
     <MoreInfoWrapper step={step} category={category}>
       <div>
         {category !== 'my-pet' && (
           <TheSexWrapper>
-            <p>The sex</p>
+            <TheSexTitle>The sex</TheSexTitle>
             <div>
               <SexLabel checked={values.sex === 'female'}>
                 <Female
@@ -64,46 +79,69 @@ const MoreInfo = ({
                 />
               </SexLabel>
             </div>
-            {errors.sex && touched.sex ? <span>{errors.sex}</span> : null}
+            <Message name="sex" component="p" />
           </TheSexWrapper>
         )}
+
         <PhotoWrap step={step} category={category}>
           <PhotoText step={step} category={category}>
-            {file ? 'Add photo' : 'Load the pet’s image: '}
+            {values.file ? 'Add photo' : 'Load the pet’s image: '}
           </PhotoText>
           <AddLabel>
-            {file ? (
-              <img src={file} alt="pet" />
+            {/* {console.log(values.file)} */}
+            {values.file ? (
+              <img src={URL.createObjectURL(values.file)} alt="pet" />
             ) : (
               <Add sx={{ fontSize: 50, color: '#54ADFF' }} />
             )}
-            <input type="file" onChange={handleFileChange} hidden />
+            <input
+              type="file"
+              name="file"
+              accept="image/*"
+              multiple={false}
+              onChange={handleFileChange}
+              hidden
+            />
           </AddLabel>
         </PhotoWrap>
       </div>
 
-      <FormFields error={errors.location}>
+      <FormFields>
         {category !== 'my-pet' && (
           <Label>
             Location
-            <Input type="text" name="location" placeholder="Type location" />
-            {touched.location && errors.location ? (
-              <span>{errors.location}</span>
-            ) : null}
+            <Input
+              type="text"
+              name="location"
+              placeholder="Type location"
+              errors={touched.location && errors.location}
+            />
+            <Message name="location" component="p" />
           </Label>
         )}
 
         {category === 'sell' && (
           <Label>
             Price
-            <Input type="text" name="price" placeholder="Type price" />
-            {errors.price && touched.price ? <span>{errors.price}</span> : null}
+            <Input
+              type="text"
+              name="price"
+              placeholder="Type price"
+              errors={touched.price && errors.price}
+            />
+            <Message name="price" component="p" />
           </Label>
         )}
 
         <CommentsLabel>
           Comments
-          <TextArea as="textarea" name="comments" placeholder="Type comment" />
+          <TextArea
+            as="textarea"
+            name="comments"
+            placeholder="Type comment"
+            errors={touched.comments && errors.comments}
+          />
+          <Message name="comments" component="p" />
         </CommentsLabel>
       </FormFields>
     </MoreInfoWrapper>
