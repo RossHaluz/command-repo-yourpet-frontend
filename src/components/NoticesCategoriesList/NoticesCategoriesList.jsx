@@ -8,37 +8,26 @@ const NoticesCategoriesList = ({ notices }) => {
       <CategoriesListWrapper>
         {notices.length > 0 &&
           notices.map(item => {
-         
-            const { name, dateOfBirth, breed, imgURL, comments, _id: noticeId } = item;
-
-            return (
-              <NoticeCategoryItem
-                key={nanoid()}
-                petInfo={{ name, dateOfBirth, breed, imgURL, comments, noticeId }}
-
             const {
-              category,
+              name,
               dateOfBirth,
-              sex,
+              breed,
               imgURL,
               comments,
-              place,
-              favorite,
+              _id: noticeId,
             } = item;
 
             return (
               <NoticeCategoryItem
-                key={item._id}
+                key={noticeId}
                 petInfo={{
-                  category,
+                  name,
                   dateOfBirth,
-                  sex,
+                  breed,
                   imgURL,
                   comments,
-                  place,
-                  favorite,
+                  noticeId,
                 }}
-                
               />
             );
           })}

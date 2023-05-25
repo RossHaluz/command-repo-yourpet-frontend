@@ -26,10 +26,7 @@ import {
   StyledComent,
 } from './NoticeCategoryItem.styled';
 
-
-
 const NoticeCategoryItem = ({ petInfo }) => {
-  const { imgURL } = petInfo;
   const [isOpen, toggleModal] = useModal();
   const { category, dateOfBirth, sex, imgURL, comments, place, favorite } =
     petInfo;
@@ -66,14 +63,13 @@ const NoticeCategoryItem = ({ petInfo }) => {
     // call delete function from redux
   };
 
-const handleShowPopUp = () => {
-    if (isLoggeIn) { 
+  const handleShowPopUp = () => {
+    if (isLoggeIn) {
       toggleModal();
     } else {
       alert('you should login');
     }
-}
-
+  };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
   const monthes = calculateTimeElapsedMonthses(dateOfBirth);
@@ -117,10 +113,13 @@ const handleShowPopUp = () => {
 
         <StyledComent>Сute dog looking for a home</StyledComent>
         <LearnMore onClick={handleShowPopUp}>
-       
           <span>Learn more</span> <Claw />
         </LearnMore>
-        <ModalNotice isOpen={isOpen} toggleModal={toggleModal} noticeId={petInfo.noticeId} ></ModalNotice>
+        <ModalNotice
+          isOpen={isOpen}
+          toggleModal={toggleModal}
+          noticeId={petInfo.noticeId}
+        ></ModalNotice>
       </StyledCardWrapper>
     </>
   );
