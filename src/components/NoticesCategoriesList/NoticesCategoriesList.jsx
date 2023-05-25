@@ -9,12 +9,29 @@ const NoticesCategoriesList = ({ notices }) => {
       <CategoriesListWrapper>
         {notices.length > 0 &&
           notices.map(item => {
-            const { name, dateOfBirth, breed, imgURL, comments } = item;
+            console.log('item', item);
+            const {
+              category,
+              dateOfBirth,
+              sex,
+              imgURL,
+              comments,
+              place,
+              favorite,
+            } = item;
 
             return (
               <NoticeCategoryItem
-                key={nanoid()}
-                petInfo={{ name, dateOfBirth, breed, imgURL, comments }}
+                key={item._id}
+                petInfo={{
+                  category,
+                  dateOfBirth,
+                  sex,
+                  imgURL,
+                  comments,
+                  place,
+                  favorite,
+                }}
               />
             );
           })}
