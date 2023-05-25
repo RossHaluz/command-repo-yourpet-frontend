@@ -28,8 +28,7 @@ import {
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const [isOpen, toggleModal] = useModal();
-  const { category, dateOfBirth, sex, imgURL, comments, place, favorite } =
-    petInfo;
+  const { category, dateOfBirth, sex, imgURL, place, favorite } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString);
