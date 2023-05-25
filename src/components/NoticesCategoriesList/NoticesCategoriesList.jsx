@@ -1,6 +1,5 @@
 import React from 'react';
 import NoticeCategoryItem from './NoticeCategoryItem/NoticeCategoryItem';
-import { nanoid } from '@reduxjs/toolkit';
 import { CategoriesListWrapper } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = ({ notices }) => {

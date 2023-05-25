@@ -6,32 +6,25 @@ import PaginationBox from 'components/PaginationBox/PaginationBox';
 import { fetchNotices } from 'redux/notices/operations';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  // selectIsLoading,
-  selectNotices, selectTotalPages,
-} from 'redux/notices/selectors';
-import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { selectNotices, selectTotalPages } from 'redux/notices/selectors';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 import ErrorPage from './ErrorPage';
 
 const NoticesPage = () => {
-  // const isLoading = useSelector(selectIsLoading);
   const [page, setPage] = useState(1);
   const notices = useSelector(selectNotices);
   const IsLogin = useSelector(selectIsUserLogin);
+  const totalPages = useSelector(selectTotalPages);
+
   const dispatch = useDispatch();
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
-    const param = location.pathname.split('/')[2]
+    const param = location.pathname.split('/')[2];
     dispatch(fetchNotices()); //param
   }, [dispatch, location]);
-
-  const totalPages = useSelector(selectTotalPages);
-  const dispatch = useDispatch();
-
-  // console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
@@ -41,14 +34,14 @@ const NoticesPage = () => {
 
   const handlePageChange = (e, page) => {
     setPage(page);
-  }
+  };
 
   return (
     <>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesAddPetBtn />
-    
+
       <Routes>
         <Route
           exact
@@ -69,11 +62,23 @@ const NoticesPage = () => {
         />
         <Route
           path="/favorite"
-          element={IsLogin ? <NoticesCategoriesList notices={notices} /> : <ErrorPage />}
+          element={
+            IsLogin ? (
+              <NoticesCategoriesList notices={notices} />
+            ) : (
+              <ErrorPage />
+            )
+          }
         />
         <Route
           path="/own"
-          element={IsLogin ? <NoticesCategoriesList notices={notices} /> : <ErrorPage />}
+          element={
+            IsLogin ? (
+              <NoticesCategoriesList notices={notices} />
+            ) : (
+              <ErrorPage />
+            )
+          }
         />
       </Routes>
       <NoticesCategoriesList notices={notices} />
