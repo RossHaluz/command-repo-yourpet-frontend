@@ -40,6 +40,7 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.isUserLogin = false;
+      state.isRefreshing = false;
     },
     [getCurrentUser.pending](state) {
       state.isRefreshing = true;
