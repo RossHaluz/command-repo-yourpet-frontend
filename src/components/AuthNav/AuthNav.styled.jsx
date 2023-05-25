@@ -5,7 +5,7 @@ export const AuthNavigation = styled.nav`
   display: flex;
   gap: 15px;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     display: none;
   }
 
@@ -15,15 +15,15 @@ export const AuthNavigation = styled.nav`
     margin-right: 28px;
   }
 
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     margin-left: 0;
+    margin-right: 0;
   }
 `;
 
 export const AuthNavigationItem = styled(NavLink)`
-background-color: #FFC107;
-border-radius: 40px;
-color: white;
-padding: 9px 40px;
-
+  background-color: #ffc107;
+  border-radius: 40px;
+  color: white;
+  padding: 9px 40px;
 `;

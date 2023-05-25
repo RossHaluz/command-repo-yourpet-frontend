@@ -2,12 +2,13 @@ import NoticesAddPetBtn from 'components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch';
+import PaginationBox from 'components/PaginationBox/PaginationBox';
 import { fetchNotices } from 'redux/notices/operations';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   // selectIsLoading,
-  selectNotices,
+  selectNotices, selectTotalPages,
 } from 'redux/notices/selectors';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { selectIsUserLogin } from 'redux/auth/selectors';
@@ -15,6 +16,7 @@ import ErrorPage from './ErrorPage';
 
 const NoticesPage = () => {
   // const isLoading = useSelector(selectIsLoading);
+  const [page, setPage] = useState(1);
   const notices = useSelector(selectNotices);
   const IsLogin = useSelector(selectIsUserLogin);
   const dispatch = useDispatch();
@@ -26,11 +28,27 @@ const NoticesPage = () => {
     dispatch(fetchNotices()); //param
   }, [dispatch, location]);
 
+  const totalPages = useSelector(selectTotalPages);
+  const dispatch = useDispatch();
+
+  // console.log(notices);
+
+  useEffect(() => {
+    document.title = 'YourPet | Find pet';
+
+    dispatch(fetchNotices(page));
+  }, [dispatch, page]);
+
+  const handlePageChange = (e, page) => {
+    setPage(page);
+  }
+
   return (
     <>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesAddPetBtn />
+    
       <Routes>
         <Route
           exact
@@ -58,6 +76,8 @@ const NoticesPage = () => {
           element={IsLogin ? <NoticesCategoriesList notices={notices} /> : <ErrorPage />}
         />
       </Routes>
+      <NoticesCategoriesList notices={notices} />
+      <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
     </>
   );
 };
