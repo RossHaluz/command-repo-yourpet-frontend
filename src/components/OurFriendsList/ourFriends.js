@@ -9,10 +9,11 @@ import {
   josera,
   whiskas,
 } from 'images';
+import { nanoid } from '@reduxjs/toolkit';
 
 export const ourFriends = [
   {
-    id: 1,
+    id: nanoid(4),
     name: 'ЛКП "ЛЕВ"',
     time: '8:00 - 19:00',
     address: 'Promuslova Street, 56',
@@ -22,7 +23,7 @@ export const ourFriends = [
     link: 'https://www.lkplev.com',
   },
   {
-    id: 2,
+    id: nanoid(4),
     name: 'Барбос',
     time: '8:00 - 20:00',
     address: 'Grigorenka Street, 56',
@@ -32,7 +33,7 @@ export const ourFriends = [
     link: 'https://www.facebook.com/NGO.Barbos',
   },
   {
-    id: 3,
+    id: nanoid(4),
     name: 'Whiskas',
     time: 'day and night',
     address: 'website only',
@@ -42,7 +43,7 @@ export const ourFriends = [
     link: 'http://www.whiskas.ua',
   },
   {
-    id: 4,
+    id: nanoid(4),
     name: 'Happy Paw',
     time: '9:00 - 19:00',
     address: 'Chota Rystaveli Street, 44',
@@ -52,7 +53,7 @@ export const ourFriends = [
     link: 'http://www.happypaw.ua/ua/',
   },
   {
-    id: 5,
+    id: nanoid(4),
     name: 'PetHelp',
     time: 'day and night',
     address: 'website only',
@@ -62,7 +63,7 @@ export const ourFriends = [
     link: 'http://www.pethelp.com.ua',
   },
   {
-    id: 6,
+    id: nanoid(4),
     name: 'Сіріус',
     time: '11:00 - 16:00',
     address: 'Fedorivka, Kyiv Oblast',
@@ -72,7 +73,7 @@ export const ourFriends = [
     link: 'http://www.dogcat.com.ua',
   },
   {
-    id: 7,
+    id: nanoid(4),
     name: 'PURINA',
     time: 'day and night',
     address: 'website only',
@@ -82,7 +83,7 @@ export const ourFriends = [
     link: 'http://www.purina.ua',
   },
   {
-    id: 8,
+    id: nanoid(4),
     name: 'Josera',
     time: '9:00 - 17:00',
     address: 'Sholom-Aleikhema St, 11',
@@ -92,7 +93,7 @@ export const ourFriends = [
     link: 'http://www.josera.ua',
   },
   {
-    id: 9,
+    id: nanoid(4),
     name: 'LICO',
     time: '9:00 - 20:00',
     address: 'Dryhetiv Street, 77',
