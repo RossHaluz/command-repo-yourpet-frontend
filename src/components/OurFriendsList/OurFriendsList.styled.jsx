@@ -27,7 +27,7 @@ export const Item = styled.li`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (max-width: 747px) {
+  @media screen and (min-width: 481px) {
     :not(:first-of-type) {
       margin-top: 20px;
     }

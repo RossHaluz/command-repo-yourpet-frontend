@@ -4,6 +4,7 @@ import { logout } from 'redux/auth/operetions';
 
 import { Formik } from 'formik';
 import {
+  Conteiner,
   Box,
   Title,
   Img,
@@ -113,7 +114,7 @@ const UserData = () => {
   ];
 
   return (
-    <>
+    <Conteiner>
       <Title>My information:</Title>
 
       <Box>
@@ -175,7 +176,7 @@ const UserData = () => {
           </MyForm>
         </Formik>
       </Box>
-    </>
+    </Conteiner>
   );
 };
 
