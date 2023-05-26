@@ -68,3 +68,10 @@ export const getCurrentUser = createAsyncThunk(
     }
   }
 );
+
+export const hideModalSuccessRegister = createAsyncThunk(
+  'auth/hideModalSuccessRegister',
+  async (_, __) => {
+    return false;
+  }
+);

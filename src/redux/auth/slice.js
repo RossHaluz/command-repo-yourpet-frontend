@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, getCurrentUser } from './operetions';
+import { register, login, logout, getCurrentUser, hideModalSuccessRegister } from './operetions';
 
 const initialState = {
   user: { email: null, password: null },
@@ -55,6 +55,9 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.isUserLogin = false;
     },
+    [hideModalSuccessRegister.fulfilled](state, action) {
+      state.modalSuccessRegister = action.payload;
+    }
   },
 });
 
