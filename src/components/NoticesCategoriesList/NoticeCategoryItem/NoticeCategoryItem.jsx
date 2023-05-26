@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 
@@ -28,7 +28,7 @@ import {
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const [isOpen, toggleModal] = useModal();
-  const { category, dateOfBirth, sex, imgURL, place, favorite } = petInfo;
+  const { category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString);
@@ -36,6 +36,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
     const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
     return Math.round(yearsElapsed);
   }
+
   function calculateTimeElapsedMonthses(dateString) {
     const startDate = new Date(dateString);
     const currentDate = new Date();
@@ -110,7 +111,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
           </RightButtonWrapper>
         </StyledCardImgWrapper>
 
-        <StyledComent>Сute dog looking for a home</StyledComent>
+        <StyledComent>{comments}</StyledComent>
         <LearnMore onClick={handleShowPopUp}>
           <span>Learn more</span> <Claw />
         </LearnMore>
@@ -124,14 +125,14 @@ const NoticeCategoryItem = ({ petInfo }) => {
   );
 };
 
-NoticeCategoryItem.propTypes = {
-  petInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    breed: PropTypes.string.isRequired,
-    imgURL: PropTypes.string.isRequired,
-    comments: PropTypes.string,
-    noticeId: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// NoticeCategoryItem.propTypes = {
+//   petInfo: PropTypes.shape({
+//     name: PropTypes.string.isRequired,
+//     dateOfBirth: PropTypes.string.isRequired,
+//     breed: PropTypes.string.isRequired,
+//     imgURL: PropTypes.string.isRequired,
+//     comments: PropTypes.string,
+//     noticeId: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 export default NoticeCategoryItem;
