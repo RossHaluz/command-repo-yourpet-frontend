@@ -14,6 +14,7 @@ const NoticesCategoriesList = ({ notices }) => {
               breed,
               imgURL,
               comments,
+              favorite,
               _id: noticeId,
             } = item;
 
@@ -26,6 +27,7 @@ const NoticesCategoriesList = ({ notices }) => {
                   breed,
                   imgURL,
                   comments,
+                  favorite,
                   noticeId,
                 }}
               />
