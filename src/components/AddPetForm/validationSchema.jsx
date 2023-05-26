@@ -29,7 +29,7 @@ const validationSchema = step => {
         then: () =>
           Yup.string()
             .oneOf(['male', 'female'])
-            .required('Location is required'),
+            .required('The sex is required'),
       }),
       location: Yup.string().when('category', {
         is: category => ['sell', 'lost-found', 'for-free'].includes(category),
@@ -37,7 +37,7 @@ const validationSchema = step => {
       }),
       price: Yup.string().when('category', {
         is: category => category === 'sell',
-        then: () => Yup.string().required('Location is required'),
+        then: () => Yup.string().required('Price is required'),
       }),
       comments: Yup.string()
         .min(4, 'Comments should be at least 4 characters')

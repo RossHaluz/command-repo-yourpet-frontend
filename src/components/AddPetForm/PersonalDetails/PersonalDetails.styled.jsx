@@ -26,7 +26,8 @@ export const Input = styled(Field)`
 
   outline: none;
   border-radius: 40px;
-  border: 1px solid #54adff;
+  border: 1px solid;
+  border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
 `;
 
 export const Message = styled(ErrorMessage)`

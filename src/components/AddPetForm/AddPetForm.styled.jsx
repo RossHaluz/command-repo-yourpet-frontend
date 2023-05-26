@@ -128,6 +128,12 @@ export const ButtonFilled = styled.button`
   border: none;
   border-radius: 40px;
   cursor: pointer;
+
+  disabled: true;
+
+  :disabled {
+    background-color: #111111;
+  }
 `;
 
 export const Button = styled.button`
