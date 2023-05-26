@@ -2,18 +2,18 @@ import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/operetions';
 
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import {
   Conteiner,
   Box,
   Title,
   Img,
-  Photo,
+  PhotoBox,
+  PhotoWrapper,
   DivEditPhoto,
   EditButtonPhoto,
   IconWrapperCheck,
   IconWrapperCross,
-  MyForm,
   Label,
   Input,
   IconCamera,
@@ -118,46 +118,48 @@ const UserData = () => {
       <Title>My information:</Title>
 
       <Box>
-        <Photo>
-          {selectedFile ? (
-            <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
-          ) : (
-            <Img
-              src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
-              alt="User"
-            />
-          )}
-        </Photo>
-
-        <DivEditPhoto>
-          <EditButtonPhoto onClick={handleButtonClick}>
-            <input
-              ref={fileInputRef}
-              type="file"
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-            />
-            {isEditingPhoto ? (
-              <>
-                <IconWrapperCheck>
-                  <IconCheck onClick={handleConfirmPhoto} />
-                </IconWrapperCheck>
-                <span>Confirm</span>
-                <IconWrapperCross>
-                  <IconCross onClick={handleCancelPhoto} />
-                </IconWrapperCross>
-              </>
+        <PhotoBox>
+          <PhotoWrapper>
+            {selectedFile ? (
+              <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
             ) : (
-              <>
-                <IconCamera />
-                <span>Edit photo</span>
-              </>
+              <Img
+                src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+                alt="User"
+              />
             )}
-          </EditButtonPhoto>
-        </DivEditPhoto>
+          </PhotoWrapper>
+
+          <DivEditPhoto>
+            <EditButtonPhoto onClick={handleButtonClick}>
+              <input
+                ref={fileInputRef}
+                type="file"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              {isEditingPhoto ? (
+                <>
+                  <IconWrapperCheck>
+                    <IconCheck onClick={handleConfirmPhoto} />
+                  </IconWrapperCheck>
+                  <span>Confirm</span>
+                  <IconWrapperCross>
+                    <IconCross onClick={handleCancelPhoto} />
+                  </IconWrapperCross>
+                </>
+              ) : (
+                <>
+                  <IconCamera />
+                  <span>Edit photo</span>
+                </>
+              )}
+            </EditButtonPhoto>
+          </DivEditPhoto>
+        </PhotoBox>
 
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          <MyForm>
+          <Form>
             {fields.map(field => (
               <Field
                 key={field.name}
@@ -167,13 +169,14 @@ const UserData = () => {
                 handleClick={handleClick}
               />
             ))}
+
             <DivLogOut>
               <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
                 <IconLogOut />
                 Log Out
               </ButtonLogOut>
             </DivLogOut>
-          </MyForm>
+          </Form>
         </Formik>
       </Box>
     </Conteiner>
