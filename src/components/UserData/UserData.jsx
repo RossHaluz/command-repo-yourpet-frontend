@@ -25,6 +25,8 @@ import {
   IconCheck,
   IconCross,
 } from './UserData.styled';
+import useModal from 'hooks/useModal';
+import LogoutModal from "../Modal/LogoutModal";
 
 const initialValues = {
   name: '',
@@ -63,6 +65,7 @@ const UserData = () => {
   const [activeInput, setActiveInput] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
+  const [isOpen, toggleModal] = useModal();
 
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
@@ -104,6 +107,11 @@ const UserData = () => {
       handleEditPhoto();
     }
   };
+
+  const handleLogout = () => {
+    toggleModal();
+    dispatch(logout());
+  }
 
   const fields = [
     { name: 'Name', value: 'Anna' },
@@ -171,10 +179,11 @@ const UserData = () => {
             ))}
 
             <DivLogOut>
-              <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
+              <ButtonLogOut type="button" onClick={handleLogout}>
                 <IconLogOut />
                 Log Out
               </ButtonLogOut>
+              <LogoutModal isOpen={isOpen} toggleModal={toggleModal} onLogout={handleLogout}></LogoutModal>
             </DivLogOut>
           </Form>
         </Formik>

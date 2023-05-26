@@ -5,17 +5,19 @@ import { useEffect, useState } from "react"
 import { CategoryChipStyled, ImageBoxStyled, InfoBoxStyled, PetImageStyled, InfoTitleStyled, ListItemTextStyled, LinkStyled } from "./ModalNotice.styled";
 import { getNoticeById, addNoticeToFavorite, removeNoticeFromFavorite } from "api/NoticesApi";
 import { useSelector } from 'react-redux';
-import { selectUser } from "redux/auth/selectors";
+import { selectUser, selectIsUserLogin } from "redux/auth/selectors";
 
 const IMG_PLACEHOLDER = 'https://placehold.co/600x650';
 
-const ModalNotice = ({ isOpen, toggleModal, noticeId = '646796b66c1bedf7dcac7be8'}) => {
+const ModalNotice = ({ isOpen, toggleModal, noticeId}) => {
   const [notice, setNotice] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const [isAddedToFavorite, setIsAddedToFavorite] = useState(false);
 
   const user = useSelector(selectUser);
+  const isUserLogin = useSelector(selectIsUserLogin);
+
   const getPhone = (owner) => <LinkStyled href={`tel: ${owner?.phone}`}>{owner?.phone}</LinkStyled>;
   const getEmail = (owner) => <LinkStyled href={`mailto: ${owner?.email}`}>{owner?.email}</LinkStyled>;
   const { name, title, imgURL, category, dateOfBirth, breed, place, sex, comments, owner } = notice;
@@ -45,6 +47,12 @@ const ModalNotice = ({ isOpen, toggleModal, noticeId = '646796b66c1bedf7dcac7be8
   }, [isOpen, noticeId, user?._id])
 
   const onAddToFavoritesClick = (e) => {
+    if (!isUserLogin) {
+      alert('You need to be authorized to add to favorites');
+      
+      return;
+    }
+
     if (!isAddedToFavorite) {
       addNoticeToFavorite(noticeId).then((data) => {
         setIsAddedToFavorite(true)
