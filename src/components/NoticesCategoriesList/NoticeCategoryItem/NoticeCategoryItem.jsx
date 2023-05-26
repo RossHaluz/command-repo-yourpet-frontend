@@ -63,14 +63,6 @@ const NoticeCategoryItem = ({ petInfo }) => {
     // call delete function from redux
   };
 
-  const handleShowPopUp = () => {
-    if (isLoggeIn) {
-      toggleModal();
-    } else {
-      alert('you should login');
-    }
-  };
-
   const years = calculateTimeElapsedYears(dateOfBirth);
   const monthes = calculateTimeElapsedMonthses(dateOfBirth);
 
@@ -111,8 +103,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
           </RightButtonWrapper>
         </StyledCardImgWrapper>
 
+
         <StyledComent>{comments}</StyledComent>
-        <LearnMore onClick={handleShowPopUp}>
+        <LearnMore onClick={toggleModal}>       
           <span>Learn more</span> <Claw />
         </LearnMore>
         <ModalNotice

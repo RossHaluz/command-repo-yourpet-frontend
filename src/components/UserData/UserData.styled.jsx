@@ -3,23 +3,19 @@ import { CiEdit, CiLogout } from 'react-icons/ci';
 import { BsCamera } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 import { AiOutlineCheck } from 'react-icons/ai';
-import { Field, Form } from 'formik';
+import { Field } from 'formik';
 import { Typography } from '@mui/material';
 
-export const Box = styled.div`
+export const Conteiner = styled.div`
   display: flex;
   flex-direction: column;
-  width: 395px;
-  height: 520px;
-  padding: 0 17px 0 17px;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
-  background-color: #fff;
+  margin-bottom: 40px;
 `;
 
 export const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('tablet')]: {
     fontSize: '24px',
+    margin: '0 0 18px 0',
     fontWeight: theme.typography.fontWeightBold,
   },
   [theme.breakpoints.up('tablet')]: {
@@ -29,11 +25,42 @@ export const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const Photo = styled.div`
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 517px;
+  padding: 20px 8px 20px 8px;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  border-radius: 40px;
+  background-color: #fff;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap-reverse;
+
+    width: 704px;
+    height: 268px;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    height: 520px;
+
+    padding: 20px 17px 0 17px;
+  }
+`;
+
+export const PhotoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PhotoWrapper = styled.div`
   display: flex;
   justify-content: center;
-
-  margin: 20px 0 15px 0;
+  margin-bottom: 15px;
 `;
 
 export const Img = styled.img`
@@ -46,6 +73,7 @@ export const Img = styled.img`
 
 export const DivEditPhoto = styled.div`
   display: flex;
+
   justify-content: center;
 
   margin-bottom: 25px;
@@ -69,16 +97,15 @@ export const EditButtonPhoto = styled.button`
 `;
 
 export const IconWrapperCheck = styled.div`
+  display: flex;
+  align-items: center;
   margin-right: 5px;
 `;
 
 export const IconWrapperCross = styled.div`
-  margin-left: 5px;
-`;
-
-export const MyForm = styled(Form)`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
 `;
 
 export const Label = styled.label`
@@ -86,24 +113,42 @@ export const Label = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   margin-bottom: 10px;
 
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   letter-spacing: 0.04em;
+
+  @media screen and (min-width: 768px) {
+    width: 355px;
+
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
 `;
 
 export const Input = styled(Field)`
-  width: 255px;
-  height: 32px;
+  width: 190px;
+  height: 28px;
+
   padding: 0 40px 0 15px;
   border: 1px solid #54adff;
   border-radius: 20px;
   outline: none;
   background-color: #fff;
 
-  font-size: 16px;
+  font-size: 12px;
   letter-spacing: 0.04em;
+
+  @media screen and (min-width: 768px) {
+    width: 255px;
+    height: 32px;
+
+    font-size: 16px;
+    letter-spacing: 0.04em;
+  }
 
   &.editing {
     border: 1px solid #20e820;
@@ -116,7 +161,7 @@ export const Input = styled(Field)`
 
 export const DivLogOut = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-top: 15px;
 `;
 
 export const ButtonLogOut = styled.button`
@@ -133,12 +178,6 @@ export const ButtonLogOut = styled.button`
   letter-spacing: 0.04em;
 `;
 
-export const IconCamera = styled(BsCamera)`
-  margin-right: 10px;
-  color: #54adff;
-  font-size: 18px;
-`;
-
 export const IconLogOut = styled(CiLogout)`
   margin-right: 10px;
 
@@ -146,13 +185,24 @@ export const IconLogOut = styled(CiLogout)`
   font-size: 25px;
 `;
 
+export const IconCamera = styled(BsCamera)`
+  margin-right: 10px;
+  color: #54adff;
+  font-size: 18px;
+`;
+
 export const IconEdit = styled(CiEdit)`
   position: absolute;
-  left: 90%;
+  left: 88%;
 
-  font-size: 25px;
+  font-size: 20px;
   cursor: pointer;
   color: #54adff;
+
+  @media screen and (min-width: 768px) {
+    left: 90%;
+    font-size: 23px;
+  }
 
   :hover {
     color: red;
@@ -161,14 +211,24 @@ export const IconEdit = styled(CiEdit)`
 
 export const DivIconCheck = styled.div`
   position: absolute;
-  left: 90.5%;
+  display: flex;
+  align-items: center;
+  left: 89%;
+
+  @media screen and (min-width: 768px) {
+    left: 90.5%;
+  }
 `;
 
 export const IconCheck = styled(AiOutlineCheck)`
-  font-size: 23px;
+  font-size: 18px;
 
   cursor: pointer;
   color: #20e820;
+
+  @media screen and (min-width: 768px) {
+    font-size: 21px;
+  }
 `;
 
 export const IconCross = styled(RxCross1)`

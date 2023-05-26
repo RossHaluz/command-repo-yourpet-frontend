@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchPets } from 'redux/pets/operations';
+import { hideModalSuccessRegister } from 'redux/auth/operetions';
 import { useSelector } from 'react-redux';
 
 import UserData from 'components/UserData';
@@ -19,10 +20,14 @@ const UserPage = () => {
     dispatch(fetchPets());
   }, [dispatch, setIsOpen]);
 
+  const onModalToggle = () => {
+    dispatch(hideModalSuccessRegister())
+    toggleModal()
+  }
   return (
     <>
       {successRegister && (
-        <CongratsModal isOpen={isOpen} toggleModal={toggleModal} />
+        <CongratsModal isOpen={isOpen} toggleModal={(onModalToggle)} />
       )}
       <UserData />
       <PetsData />
