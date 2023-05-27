@@ -34,14 +34,14 @@ const NoticeCategoryItem = ({ petInfo }) => {
   const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
-    const startDate = new Date(dateString);
+    const startDate = new Date(dateString.split('.').reverse().join('.'));
     const currentDate = new Date();
     const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
     return Math.round(yearsElapsed);
   }
 
   function calculateTimeElapsedMonthses(dateString) {
-    const startDate = new Date(dateString);
+    const startDate = new Date(dateString.split('.').reverse().join('.'));
     const currentDate = new Date();
     const monthsElapsed =
       (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
