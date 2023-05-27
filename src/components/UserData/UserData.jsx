@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import useModal from 'hooks/useModal';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/operetions';
 import { useSelector } from 'react-redux';
@@ -60,6 +61,7 @@ const UserData = () => {
   const [activeInput, setActiveInput] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
+  const [isOpen, toggleModal] = useModal();
 
   const fileInputRef = useRef(null);
   const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
@@ -176,6 +178,11 @@ const UserData = () => {
                   <IconLogOut />
                   Log Out
                 </ButtonLogOut>
+                <LogoutModal
+                  isOpen={isOpen}
+                  toggleModal={toggleModal}
+                  onLogout={handleLogout}
+                ></LogoutModal>
               </DivLogOut>
             </Form>
           </Formik>
