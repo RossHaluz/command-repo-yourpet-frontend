@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 import useModal from 'hooks/useModal';
 import LogoutModal from '../Modal/LogoutModal';
-import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/operetions';
+import { updateUserInfo } from 'redux/pets/operations';
 import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
@@ -11,7 +13,6 @@ import {
 } from 'redux/pets/selectors';
 import { avatarDefault } from 'images';
 
-import { Formik, Form } from 'formik';
 import {
   Conteiner,
   Box,
@@ -35,9 +36,14 @@ import {
   IconCross,
 } from './UserData.styled';
 
-const Field = React.memo(({ name, activeInput, handleClick }) => {
+const Field = React.memo(({ name, activeInput, handleClick, handleSubmit }) => {
   const isActive = activeInput === name;
   const isEditing = isActive && activeInput !== null;
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    handleSubmit(name, value); // Виклик оновленої функції handleSubmit з назвою поля і значенням
+  };
 
   return (
     <Label>
@@ -47,6 +53,7 @@ const Field = React.memo(({ name, activeInput, handleClick }) => {
         name={name}
         disabled={!isActive}
         className={isEditing ? 'editing' : ''}
+        onChange={handleChange}
       />
       {isActive ? (
         <DivIconCheck>
@@ -80,9 +87,12 @@ const UserData = () => {
     setActiveInput(prevInput => (prevInput === inputName ? null : inputName));
   };
 
-  const handleSubmit = values => {
-    // код для отправки данных на сервер
-    console.log('Отправка данных:', values);
+  const handleSubmit = (fieldName, fieldValue) => {
+    const updatedData = {
+      [fieldName]: fieldValue,
+    };
+
+    dispatch(updateUserInfo(updatedData));
   };
 
   const handleEditPhoto = () => {
@@ -93,6 +103,18 @@ const UserData = () => {
   const handleConfirmPhoto = () => {
     setIsEditingPhoto(false);
     // Dispatch the updateUserInfo action with the updated data
+
+    // Викликати дію для оновлення фото користувача
+    const updatedData = {
+      image: selectedFile,
+    };
+    dispatch(updateUserInfo(updatedData));
+    // .then(() => {
+    //   // Обробка успішного оновлення фото
+    // })
+    // .catch(error => {
+    //   // Обробка помилки оновлення фото
+    // });
   };
 
   const handleCancelPhoto = () => {
@@ -174,6 +196,7 @@ const UserData = () => {
                   name={field}
                   activeInput={activeInput}
                   handleClick={handleClick}
+                  handleSubmit={handleSubmit}
                 />
               ))}
 

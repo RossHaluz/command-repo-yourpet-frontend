@@ -40,14 +40,14 @@ export const addPet = createAsyncThunk(
   }
 );
 
-// export const updateUserInfo = createAsyncThunk(
-//   'pets/updateUserInfo',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.put(`/api/users/update`);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const updateUserInfo = createAsyncThunk(
+  'pets/updateUserInfo',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.put(`/api/users/update`, userData);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

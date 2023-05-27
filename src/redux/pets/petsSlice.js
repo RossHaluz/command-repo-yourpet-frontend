@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchPets, addPet, deletePet } from './operations';
+import { fetchPets, addPet, deletePet, updateUserInfo } from './operations';
 
-const extraActions = [fetchPets, deletePet];
+const extraActions = [fetchPets, addPet, deletePet, updateUserInfo];
 
 const getActions = type => extraActions.map(action => action[type]);
 
@@ -24,9 +24,14 @@ const contactsSlice = createSlice({
         state.petsInfo.push(action.payload);
         state.isLoading = false;
       })
-      // .addCase(updateUserInfo.fulfilled, (state, action) => {
-      //   state.userInfo = action.payload;
-      // })
+      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        const updatedFields = payload;
+        state.userInfo = {
+          ...state.userInfo,
+          ...updatedFields,
+        };
+      })
       //   .addCase(addPet.fulfilled, (state, { payload }) => {
       //     state.items.unshift(payload);
       //   })
