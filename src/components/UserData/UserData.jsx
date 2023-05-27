@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import useModal from 'hooks/useModal';
 import LogoutModal from '../Modal/LogoutModal';
 import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/operations';
+import { logout } from 'redux/auth/operetions';
 import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
