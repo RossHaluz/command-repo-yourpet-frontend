@@ -47,7 +47,6 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(fetchNoticesFavourite.fulfilled, (state, action) => {
-        console.log(action.payload.data.notices);
         return {
           ...state,
           items: [...action.payload.data.notices],
