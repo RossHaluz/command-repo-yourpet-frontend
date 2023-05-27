@@ -26,3 +26,31 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
+<<<<<<< Updated upstream
+=======
+
+export const addPet = createAsyncThunk(
+  'notices/addPet',
+  async (newPet, thunkAPI) => {
+    try {
+      const response = await axios.post(`/api/pets`, newPet);
+      return response.data;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
+
+// export const updateUserInfo = createAsyncThunk(
+//   'pets/updateUserInfo',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.put(`/api/users/update`);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+>>>>>>> Stashed changes

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchPets, deletePet } from './operations';
+import { fetchPets, addPet, deletePet } from './operations';
 
 const extraActions = [fetchPets, deletePet];
 
@@ -17,6 +17,17 @@ const contactsSlice = createSlice({
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
+<<<<<<< Updated upstream
+=======
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.petsInfo.push(action.payload);
+        state.isLoading = false;
+      })
+      // .addCase(updateUserInfo.fulfilled, (state, action) => {
+      //   state.userInfo = action.payload;
+      // })
+
+>>>>>>> Stashed changes
       //   .addCase(addPet.fulfilled, (state, { payload }) => {
       //     state.items.unshift(payload);
       //   })
