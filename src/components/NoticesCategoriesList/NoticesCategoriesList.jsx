@@ -30,9 +30,7 @@ const NoticesCategoriesList = ({ notices }) => {
                   favorite,
                   noticeId,
                 }}
-              />
-            );
-          })}
+          )}
       </CategoriesListWrapper>
     </>
   );

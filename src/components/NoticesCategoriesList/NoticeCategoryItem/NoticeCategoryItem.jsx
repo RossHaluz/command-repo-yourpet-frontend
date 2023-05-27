@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {selectIsUserLogin, selectUser} from 'redux/auth/selectors';
+import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
 import { ReactComponent as Male } from './icons/male.svg';
@@ -30,7 +31,7 @@ import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
-  const { category, dateOfBirth, sex, imgURL, place, favorite, noticeId } = petInfo;
+  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString);
@@ -38,6 +39,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
     const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
     return Math.round(yearsElapsed);
   }
+
   function calculateTimeElapsedMonthses(dateString) {
     const startDate = new Date(dateString);
     const currentDate = new Date();
@@ -59,14 +61,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
       } else {
         dispatch(removeNoticeFavourite(noticeId))
       }
-    } else {
-      alert('you should login');
-      // function that call notification "you should logIn"
-    }
-  };
 
   const handleDelete = id => {
-    // call delete function from redux
+    dispatch(deleteNotice(id))
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
@@ -109,28 +106,22 @@ const NoticeCategoryItem = ({ petInfo }) => {
           </RightButtonWrapper>
         </StyledCardImgWrapper>
 
-        <StyledComent>Сute dog looking for a home</StyledComent>
-        <LearnMore onClick={toggleModal}>
+
+        <StyledComent>{comments}</StyledComent>
+        <LearnMore onClick={toggleModal}>       
           <span>Learn more</span> <Claw />
         </LearnMore>
+        
         <ModalNotice
           isOpen={isOpen}
           toggleModal={toggleModal}
-          noticeId={petInfo.noticeId}
+          noticeId={noticeId}
         />
+        ></ModalNotice>
+
       </StyledCardWrapper>
     </>
   );
 };
 
-NoticeCategoryItem.propTypes = {
-  petInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    breed: PropTypes.string.isRequired,
-    imgURL: PropTypes.string.isRequired,
-    comments: PropTypes.string,
-    noticeId: PropTypes.string.isRequired,
-  }).isRequired,
-};
 export default NoticeCategoryItem;
