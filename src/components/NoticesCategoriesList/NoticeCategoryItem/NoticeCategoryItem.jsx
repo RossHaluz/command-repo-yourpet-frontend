@@ -29,7 +29,7 @@ import {
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const [isOpen, toggleModal] = useModal();
-  const { _id: id, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
+  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
   const dispatch = useDispatch()
 
   function calculateTimeElapsedYears(dateString) {
@@ -49,7 +49,6 @@ const NoticeCategoryItem = ({ petInfo }) => {
   }
 
   const isLoggedIn = useSelector(selectIsUserLogin);
-  // const id = '12314141414'; // will take from back and by Redux
   const isWasCreatedByMe = false; // will take from back and by Redux
   const handleToggleFavorite = () => {
     if (isLoggedIn) {
@@ -98,7 +97,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
               {favorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
             {isWasCreatedByMe && (
-              <StyledCardButtonRight onClick={() => handleDelete(id)}>
+              <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
                 <GarbageCan />
               </StyledCardButtonRight>
             )}
@@ -114,7 +113,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
         <ModalNotice
           isOpen={isOpen}
           toggleModal={toggleModal}
-          noticeId={id}
+          noticeId={noticeId}
         ></ModalNotice>
       </StyledCardWrapper>
     </>
