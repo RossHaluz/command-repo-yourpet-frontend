@@ -93,12 +93,12 @@ const MoreInfo = ({
             <input
               type="file"
               name="image"
-              accept="image/*"
+              accept=".png, .jpg"
               multiple={false}
               onChange={handleFileChange}
               hidden
             />
-            {/* {touched.file && errors.file ? <div>{errors.file}</div> : null} */}
+
             <Message name="image" component="div" />
           </AddLabel>
         </PhotoWrap>
