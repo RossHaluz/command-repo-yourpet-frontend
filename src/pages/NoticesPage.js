@@ -15,6 +15,7 @@ import { selectNotices, selectTotalPages } from 'redux/notices/selectors';
 
 const NoticesPage = () => {
   const [page, setPage] = useState(1);
+  const [searchParam, useSearchParam] = useState('')  // i am search params and should me given to dispach function
   const dispatch = useDispatch();
   const notices = useSelector(selectNotices);
   const totalPages = useSelector(selectTotalPages);
@@ -29,11 +30,16 @@ const NoticesPage = () => {
     else return path.split('-').join(' ');
   }
 
+ 
+
+
+
   useEffect(() => {
     document.title = 'YourPet | Find pet';
-
+    console.log(' searchParam',  searchParam)
+   
     dispatch(fetchNoticesByCategory(formatPath(category)));
-  }, [dispatch, page, category]);
+  }, [dispatch, page, category,searchParam]);
 
   const handlePageChange = (e, page) => {
     setPage(page);
@@ -42,7 +48,7 @@ const NoticesPage = () => {
   return (
     <>
       <PageTitle>Find your favorite pet</PageTitle>
-      <NoticesSearch />
+      <NoticesSearch handleSearch={useSearchParam} />
       <Box
         sx={{
           display: 'flex',

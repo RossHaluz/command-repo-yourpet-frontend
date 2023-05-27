@@ -13,7 +13,7 @@ import {
 import { useMediaQuery } from '@mui/material';
 
 
-const NoticesSearch = () => {
+const NoticesSearch = ({handleSearch}) => {
   const formik = useFormik({
     initialValues: {
       search: '',
@@ -24,7 +24,7 @@ const NoticesSearch = () => {
         //simple type of validation will be discused
         alert('Invalid query'); // should be kind of toast
       } else {
-        //  function that will be used to reqest new limited api date
+         handleSearch(search)
         actions.resetForm();
       }
     },
