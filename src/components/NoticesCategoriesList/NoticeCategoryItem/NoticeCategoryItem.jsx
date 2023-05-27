@@ -26,12 +26,12 @@ import {
   StyledComent,
 } from './NoticeCategoryItem.styled';
 
-import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices/operations";
+import {makeNoticeFavourite, removeNoticeFavourite} from "redux/notices/operations";
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
-  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
+  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments, owner } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString.split('.').reverse().join('.'));
@@ -49,13 +49,13 @@ const NoticeCategoryItem = ({ petInfo }) => {
     return Math.floor(monthsElapsed);
   }
 
-  const isLoggeIn = useSelector(selectIsUserLogin);
+  const isLoggedIn = useSelector(selectIsUserLogin);
   const {_id: userId} = useSelector(selectUser);
   const isFavorite = favorite.includes(userId);
 
-  const isWasCreatedByMe = false; // will take from back and by Redux
+  const isCreatedByMe = userId === owner;
   const handleToggleFavorite = (noticeId) => {
-    if (isLoggeIn) {
+    if (isLoggedIn) {
       if (!isFavorite) {
         dispatch(makeNoticeFavourite(noticeId))
       } else {
@@ -100,7 +100,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
             <StyledCardButtonRight onClick={() => handleToggleFavorite(noticeId)}>
               {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
-            {isWasCreatedByMe && (
+            {isCreatedByMe && (
               <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
                 <GarbageCan />
               </StyledCardButtonRight>

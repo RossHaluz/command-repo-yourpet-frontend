@@ -18,7 +18,7 @@ const NoticesPage = () => {
   const notices = useSelector(selectNotices);
   const totalPages = useSelector(selectTotalPages);
 
-  // console.log(notices);
+  console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
