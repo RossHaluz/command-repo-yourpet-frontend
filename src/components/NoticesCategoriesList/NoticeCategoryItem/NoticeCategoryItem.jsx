@@ -114,7 +114,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
         <ModalNotice
           isOpen={isOpen}
           toggleModal={toggleModal}
-          noticeId={petInfo.noticeId}
+          noticeId={id}
         ></ModalNotice>
       </StyledCardWrapper>
     </>
