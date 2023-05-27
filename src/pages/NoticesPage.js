@@ -21,7 +21,7 @@ const NoticesPage = () => {
   // const IsLogin = useSelector(selectIsUserLogin);
   const totalPages = useSelector(selectTotalPages);
 
-  // console.log(notices);
+  console.log(notices);
 
   const dispatch = useDispatch();
   const location = useLocation();
