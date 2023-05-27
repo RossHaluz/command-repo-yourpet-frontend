@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsUserLogin } from 'redux/auth/selectors';
+import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import {selectIsUserLogin, selectUser} from 'redux/auth/selectors';
 import { deleteNotice } from 'redux/notices/operations';
-import { useDispatch } from 'react-redux';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
 import { ReactComponent as Male } from './icons/male.svg';
@@ -26,11 +26,12 @@ import {
   StyledCardWrapper,
   StyledComent,
 } from './NoticeCategoryItem.styled';
+import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices/operations";
 
 const NoticeCategoryItem = ({ petInfo }) => {
+  const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
   const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
-  const dispatch = useDispatch()
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString);
@@ -48,17 +49,18 @@ const NoticeCategoryItem = ({ petInfo }) => {
     return Math.floor(monthsElapsed);
   }
 
-  const isLoggedIn = useSelector(selectIsUserLogin);
+  const isLoggeIn = useSelector(selectIsUserLogin);
+  const {_id: userId} = useSelector(selectUser);
+  const isFavorite = favorite.includes(userId);
+
   const isWasCreatedByMe = false; // will take from back and by Redux
-  const handleToggleFavorite = () => {
-    if (isLoggedIn) {
-      console.log('logined');
-      // patch favorite to !favorite
-    } else {
-      alert('you should login');
-      // function that call notification "you should logIn"
-    }
-  };
+  const handleToggleFavorite = (noticeId) => {
+    if (isLoggeIn) {
+      if (!isFavorite) {
+        dispatch(makeNoticeFavourite(noticeId))
+      } else {
+        dispatch(removeNoticeFavourite(noticeId))
+      }
 
   const handleDelete = id => {
     dispatch(deleteNotice(id))
@@ -93,8 +95,8 @@ const NoticeCategoryItem = ({ petInfo }) => {
             </StyledCardButtonBottom>
           </BottomButtonWrapper>
           <RightButtonWrapper>
-            <StyledCardButtonRight onClick={() => handleToggleFavorite()}>
-              {favorite ? <FavoriteChecked /> : <Favorite />}
+            <StyledCardButtonRight onClick={() => handleToggleFavorite(noticeId)}>
+              {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
             {isWasCreatedByMe && (
               <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
@@ -114,7 +116,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
           isOpen={isOpen}
           toggleModal={toggleModal}
           noticeId={noticeId}
+        />
         ></ModalNotice>
+
       </StyledCardWrapper>
     </>
   );

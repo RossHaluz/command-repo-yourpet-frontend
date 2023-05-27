@@ -7,11 +7,29 @@ const NoticesCategoriesList = ({ notices }) => {
     <>
       <CategoriesListWrapper>
         {notices.length > 0 &&
-          notices.map(item => 
-            <NoticeCategoryItem
-                key={item._id}
-                petInfo={item}
-              />
+          notices.map(item => {
+            const {
+              name,
+              dateOfBirth,
+              breed,
+              imgURL,
+              comments,
+              favorite,
+              _id: noticeId,
+            } = item;
+
+            return (
+              <NoticeCategoryItem
+                key={noticeId}
+                petInfo={{
+                  name,
+                  dateOfBirth,
+                  breed,
+                  imgURL,
+                  comments,
+                  favorite,
+                  noticeId,
+                }}
           )}
       </CategoriesListWrapper>
     </>
