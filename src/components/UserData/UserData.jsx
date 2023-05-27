@@ -107,6 +107,11 @@ const UserData = () => {
     }
   };
 
+  const handleLogout = () => {
+    toggleModal();
+    dispatch(logout());
+  };
+
   const initialValues = {
     Name: name ? name : 'Name',
     Email: email ? email : 'Name@gmail.com',
