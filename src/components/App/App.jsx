@@ -12,7 +12,7 @@ import Theme from 'theme/Theme';
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const MainPage = lazy(() => import('pages/MainPage'));
-const UserPage = lazy(() => import('pages/UserPage'));
+const UserPage = lazy(() => import('pages/UserPage/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const AddPetPage = lazy(() => import('pages/AddPetPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));

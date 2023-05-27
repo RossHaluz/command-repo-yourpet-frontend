@@ -1,4 +1,6 @@
-export const selectAllCurrentInfo = state => state.pets.items;
+export const selectUserInfo = state => state.pets.userInfo;
+
+export const selectPetsInfo = state => state.pets.petsInfo;
 
 export const selectIsLoading = state => state.pets.isLoading;
 

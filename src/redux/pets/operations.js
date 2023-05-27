@@ -26,3 +26,15 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
+
+// export const updateUserInfo = createAsyncThunk(
+//   'pets/updateUserInfo',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.put(`/api/users/update`);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
