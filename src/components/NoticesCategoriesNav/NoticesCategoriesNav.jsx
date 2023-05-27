@@ -29,7 +29,7 @@ const NoticesCategoriesNav = () => {
 
       {isLoggedIn && (
         <>
-          <StyledNavLink to={`/notices/favourite`} onClick={handleFavorite}>favorite</StyledNavLink>
+          <StyledNavLink to={`/notices/favourite`} onClick={handleFavorite}>favourite</StyledNavLink>
 
           <StyledNavLink to={`/notices/my-ads`} onClick={handleMyAds}>my ads</StyledNavLink>
         </>
