@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { selectIsUserLogin } from 'redux/auth/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import {selectIsUserLogin, selectUser} from 'redux/auth/selectors';
+import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
 import { ReactComponent as Male } from './icons/male.svg';
@@ -25,10 +26,12 @@ import {
   StyledCardWrapper,
   StyledComent,
 } from './NoticeCategoryItem.styled';
+import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices/operations";
 
 const NoticeCategoryItem = ({ petInfo }) => {
+  const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
-  const { category, dateOfBirth, sex, imgURL, place, favorite } = petInfo;
+  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString);
@@ -36,6 +39,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
     const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
     return Math.round(yearsElapsed);
   }
+
   function calculateTimeElapsedMonthses(dateString) {
     const startDate = new Date(dateString);
     const currentDate = new Date();
@@ -46,28 +50,20 @@ const NoticeCategoryItem = ({ petInfo }) => {
   }
 
   const isLoggeIn = useSelector(selectIsUserLogin);
-  const id = '12314141414'; // will take from back and by Redux
+  const {_id: userId} = useSelector(selectUser);
+  const isFavorite = favorite.includes(userId);
+
   const isWasCreatedByMe = false; // will take from back and by Redux
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (noticeId) => {
     if (isLoggeIn) {
-      console.log('logined');
-      // patch favorite to !favorite
-    } else {
-      alert('you should login');
-      // function that call notification "you should logIn"
-    }
-  };
+      if (!isFavorite) {
+        dispatch(makeNoticeFavourite(noticeId))
+      } else {
+        dispatch(removeNoticeFavourite(noticeId))
+      }
 
   const handleDelete = id => {
-    // call delete function from redux
-  };
-
-  const handleShowPopUp = () => {
-    if (isLoggeIn) {
-      toggleModal();
-    } else {
-      alert('you should login');
-    }
+    dispatch(deleteNotice(id))
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
@@ -99,39 +95,33 @@ const NoticeCategoryItem = ({ petInfo }) => {
             </StyledCardButtonBottom>
           </BottomButtonWrapper>
           <RightButtonWrapper>
-            <StyledCardButtonRight onClick={() => handleToggleFavorite()}>
-              {favorite ? <FavoriteChecked /> : <Favorite />}
+            <StyledCardButtonRight onClick={() => handleToggleFavorite(noticeId)}>
+              {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
             {isWasCreatedByMe && (
-              <StyledCardButtonRight onClick={() => handleDelete(id)}>
+              <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
                 <GarbageCan />
               </StyledCardButtonRight>
             )}
           </RightButtonWrapper>
         </StyledCardImgWrapper>
 
-        <StyledComent>Сute dog looking for a home</StyledComent>
-        <LearnMore onClick={handleShowPopUp}>
+
+        <StyledComent>{comments}</StyledComent>
+        <LearnMore onClick={toggleModal}>       
           <span>Learn more</span> <Claw />
         </LearnMore>
+        
         <ModalNotice
           isOpen={isOpen}
           toggleModal={toggleModal}
-          noticeId={petInfo.noticeId}
+          noticeId={noticeId}
+        />
         ></ModalNotice>
+
       </StyledCardWrapper>
     </>
   );
 };
 
-NoticeCategoryItem.propTypes = {
-  petInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    breed: PropTypes.string.isRequired,
-    imgURL: PropTypes.string.isRequired,
-    comments: PropTypes.string,
-    noticeId: PropTypes.string.isRequired,
-  }).isRequired,
-};
 export default NoticeCategoryItem;

@@ -75,10 +75,12 @@ export const AddPetStyledLinkMobile = styled(NavLink)`
   cursor: pointer;
   border: none;
   gap: 8px;
+  z-index: 99;
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
 `;
+
 export const AddPetStyledBtnMobile = styled('button')`
   box-sizing: border-box;
   position: fixed;
@@ -103,6 +105,8 @@ export const AddPetStyledBtnMobile = styled('button')`
   cursor: pointer;
   border: none;
   gap: 8px;
+  z-index: 99;
+  
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }

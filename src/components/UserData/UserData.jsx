@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import useModal from 'hooks/useModal';
 import LogoutModal from '../Modal/LogoutModal';
 import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/operetions';
+import { logout } from 'redux/auth/operations';
 import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
@@ -90,9 +90,7 @@ const UserData = () => {
 
   const handleConfirmPhoto = () => {
     setIsEditingPhoto(false);
-    // Dispatch the updateUserData action with the updated data
-    const updatedData = { photo: selectedFile };
-    dispatch(updatedData);
+    // Dispatch the updateUserInfo action with the updated data
   };
 
   const handleCancelPhoto = () => {
@@ -181,7 +179,7 @@ const UserData = () => {
               ))}
 
               <DivLogOut>
-                <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
+                <ButtonLogOut type="button" onClick={handleLogout}>
                   <IconLogOut />
                   Log Out
                 </ButtonLogOut>

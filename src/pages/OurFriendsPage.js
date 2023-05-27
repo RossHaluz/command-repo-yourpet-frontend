@@ -1,6 +1,6 @@
 import OurFriendsList from 'components/OurFriendsList';
 import { ourFriends } from 'components/OurFriendsList/ourFriends';
-import { Title } from 'components/OurFriendsList/OurFriendsList.styled';
+import { PageTitle } from 'components/PageTitle/PageTitle.styled';
 import { useEffect } from 'react';
 
 const OurFriendsPage = () => {
@@ -10,7 +10,7 @@ const OurFriendsPage = () => {
 
   return (
     <>
-      <Title>Our friends</Title>
+      <PageTitle>Our friends</PageTitle>
       <OurFriendsList ourFriends={ourFriends} />
     </>
   );

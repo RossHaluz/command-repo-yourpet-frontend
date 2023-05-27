@@ -5,7 +5,7 @@ import {
   deleteNotice,
   fetchNoticesFavourite,
   addNotice,
-  makeNoticeFavourite,
+  makeNoticeFavourite, removeNoticeFavourite,
 } from './operations';
 
 const initialState = {
@@ -53,12 +53,16 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(makeNoticeFavourite.fulfilled, (state, action) => {
-        console.log('makeNoticeFavourite', action.payload.id);
         const index = state.items.findIndex(
-          notice => notice.id === action.payload.id
+          notice => notice._id === action.payload._id
         );
         state.items.splice(index, 1, action.payload);
-        state.isLoading = false;
+      })
+      .addCase(removeNoticeFavourite.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          notice => notice._id === action.payload._id
+        );
+        state.items.splice(index, 1, action.payload);
       })
       .addMatcher(
         isAnyOf(
@@ -67,7 +71,8 @@ export const noticesSlice = createSlice({
           deleteNotice.pending,
           fetchNoticesFavourite.pending,
           addNotice.pending,
-          makeNoticeFavourite
+          makeNoticeFavourite.pending,
+          removeNoticeFavourite.pending
         ),
         state => {
           state.isLoading = false;
@@ -80,7 +85,8 @@ export const noticesSlice = createSlice({
           deleteNotice.rejected,
           fetchNoticesFavourite.rejected,
           addNotice.rejected,
-          makeNoticeFavourite.rejected
+          makeNoticeFavourite.rejected,
+          removeNoticeFavourite.rejected
         ),
         state => {
           state.isLoading = false;
