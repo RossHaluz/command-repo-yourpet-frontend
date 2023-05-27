@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNotice } from 'redux/notices/operations';
+import { addPet } from 'redux/pets/operations';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import ChooseOption from './ChooseOption/ChooseOption';
@@ -40,7 +41,7 @@ const AddPetForm = () => {
 
   const handleClickNext = e => {
     e.preventDefault();
-    console.log(step);
+
     if (step === 2) {
       return;
     }
@@ -67,7 +68,7 @@ const AddPetForm = () => {
     formData.append('image', values.image, values.image.name);
 
     if (values.category === 'my-pet') {
-      console.log('add your pet');
+      dispatch(addPet(formData));
       navigate(-1);
       resetForm();
       return;
@@ -78,7 +79,6 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      console.log('add lost pet');
       dispatch(addNotice([values.category, formData]));
       navigate(-1);
       resetForm();
@@ -86,7 +86,6 @@ const AddPetForm = () => {
     }
 
     if (values.category === 'for-free') {
-      console.log('add for free');
       dispatch(addNotice([values.category, formData]));
       navigate(-1);
       resetForm();
