@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {selectIsUserLogin, selectUser} from 'redux/auth/selectors';
 import { deleteNotice } from 'redux/notices/operations';
@@ -26,6 +25,7 @@ import {
   StyledCardWrapper,
   StyledComent,
 } from './NoticeCategoryItem.styled';
+
 import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices/operations";
 
 const NoticeCategoryItem = ({ petInfo }) => {
@@ -61,6 +61,8 @@ const NoticeCategoryItem = ({ petInfo }) => {
       } else {
         dispatch(removeNoticeFavourite(noticeId))
       }
+    }
+  }
 
   const handleDelete = id => {
     dispatch(deleteNotice(id))
@@ -108,20 +110,19 @@ const NoticeCategoryItem = ({ petInfo }) => {
 
 
         <StyledComent>{comments}</StyledComent>
-        <LearnMore onClick={toggleModal}>       
+        <LearnMore onClick={toggleModal}>
           <span>Learn more</span> <Claw />
         </LearnMore>
-        
+
         <ModalNotice
           isOpen={isOpen}
           toggleModal={toggleModal}
           noticeId={noticeId}
         />
-        ></ModalNotice>
 
       </StyledCardWrapper>
     </>
   );
-};
+}
 
-export default NoticeCategoryItem;
+export default NoticeCategoryItem
