@@ -9,7 +9,15 @@ import { Typography } from '@mui/material';
 export const Conteiner = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  margin: 10px 0 40px 0;
+
+  @media screen and (min-width: 768px) {
+    margin: 35px 0 40px 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: 35px 0 0 0;
+  }
 `;
 
 export const Title = styled(Typography)(({ theme }) => ({
@@ -20,7 +28,7 @@ export const Title = styled(Typography)(({ theme }) => ({
   },
   [theme.breakpoints.up('tablet')]: {
     fontSize: '28px',
-    margin: '70px 0 24px 0',
+    margin: '0 0 24px 0',
     fontWeight: theme.typography.fontWeightBold,
   },
 }));
@@ -141,6 +149,7 @@ export const Input = styled(Field)`
 
   font-size: 12px;
   letter-spacing: 0.04em;
+  color: #000000;
 
   @media screen and (min-width: 768px) {
     width: 255px;
@@ -152,10 +161,6 @@ export const Input = styled(Field)`
 
   &.editing {
     border: 1px solid #20e820;
-  }
-
-  ::placeholder {
-    color: #000000;
   }
 `;
 

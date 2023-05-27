@@ -2,20 +2,20 @@ import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
   // selectError,
-  selectAllCurrentInfo,
+  selectPetsInfo,
 } from 'redux/pets/selectors';
 
 import AddIcon from '@mui/icons-material/Add';
-import { Title, AddButton, TitleContainer } from './PetsData.styled';
+import {Conteiner, Title, AddButton, TitleContainer } from './PetsData.styled';
 
 import PetsList from '../PetsList';
 
 const PetsData = () => {
-  const allCurrentInfo = useSelector(selectAllCurrentInfo);
+  const petsInfo = useSelector(selectPetsInfo);
   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <>
+    <Conteiner>
       <TitleContainer>
         <Title>My pets:</Title>
         <AddButton to="/add-pet">
@@ -23,12 +23,12 @@ const PetsData = () => {
         </AddButton>
       </TitleContainer>
 
-      {!isLoading && !allCurrentInfo.petsInfo ? (
+      {!isLoading && !petsInfo ? (
         <div>There is no Pets Info</div>
       ) : (
-        <PetsList pets={allCurrentInfo.petsInfo} />
+        <PetsList pets={petsInfo} />
       )}
-    </>
+    </Conteiner>
   );
 };
 

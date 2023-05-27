@@ -8,14 +8,16 @@ const getActions = type => extraActions.map(action => action[type]);
 const contactsSlice = createSlice({
   name: 'pets',
   initialState: {
-    items: [],
+    userInfo: [],
+    petsInfo: [],
     isLoading: false,
     error: null,
   },
   extraReducers: builder =>
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.userInfo = payload.userInfo;
+        state.petsInfo = payload.petsInfo;
       })
 
       .addCase(addPet.fulfilled, (state, action) => {
@@ -28,19 +30,22 @@ const contactsSlice = createSlice({
       //   .addCase(addPet.fulfilled, (state, { payload }) => {
       //     state.items.unshift(payload);
       //   })
+
       .addCase(deletePet.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.items = state.items.petsInfo.filter(
-          pet => pet._id !== payload.id
+        state.petsInfo = state.petsInfo.filter(
+          pet => pet._id !== payload.data._id
         );
       })
+
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
       })
+
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
+
       .addMatcher(isAnyOf(...getActions('fulfilled')), state => {
         state.isLoading = false;
         state.error = null;
