@@ -14,6 +14,16 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: calc(19 / 14);
   color: #111111;
+
+  > div {
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: calc(16 / 12);
+    color: #f43f5e;
+  }
 `;
 
 export const Input = styled(Field)`
@@ -35,6 +45,7 @@ export const Message = styled(ErrorMessage)`
   bottom: -15px;
   left: 20px;
   font-size: 12px;
+  font-weight: 400;
   line-height: calc(16 / 12);
   color: #f43f5e;
 `;

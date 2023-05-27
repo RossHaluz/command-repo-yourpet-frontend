@@ -42,7 +42,6 @@ const ChooseOption = ({ values }) => {
         />
         in good hands
       </Label>
-      <Message name="category" component="p" />
     </CategoryWrapper>
   );
 };

@@ -17,15 +17,6 @@ export const TheSexWrapper = styled.div`
   > div {
     display: flex;
   }
-
-  > span {
-    position: absolute;
-    bottom: -10px;
-    left: 20px;
-    font-size: 12px;
-    line-height: calc(16 / 12);
-    color: #f43f5e;
-  }
 `;
 
 export const TheSexTitle = styled.p`
@@ -83,6 +74,7 @@ export const PhotoText = styled.p`
 `;
 
 export const AddLabel = styled.label`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +82,6 @@ export const AddLabel = styled.label`
   height: 112px;
   background-color: #cce4fb;
   border-radius: 20px;
-  overflow: hidden;
 
   @media (min-width: 768px) {
     width: 182px;
@@ -102,6 +93,20 @@ export const AddLabel = styled.label`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
+
+    @media (min-width: 768px) {
+      border-radius: 40px;
+    }
+  }
+
+  > div {
+    width: 200px;
+    left: 0;
+
+    @media (min-width: 768px) {
+      // left: 50px;
+    }
   }
 `;
 
@@ -121,15 +126,6 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: calc(19 / 14);
   color: #111111;
-
-  > span {
-    position: absolute;
-    bottom: -15px;
-    left: 20px;
-    font-size: 12px;
-    line-height: calc(16 / 12);
-    color: #f43f5e;
-  }
 `;
 
 export const Input = styled(Field)`
@@ -180,6 +176,7 @@ export const Message = styled(ErrorMessage)`
   bottom: -15px;
   left: 20px;
   font-size: 12px;
+  font-weight: 400;
   line-height: calc(16 / 12);
   color: #f43f5e;
 `;

@@ -28,16 +28,12 @@ const MoreInfo = ({
     const file = e.target.files[0];
 
     if (!file) {
+      setFieldValue('image', '');
       return;
     }
-
-    if (file && file.size < 3000000) {
-      setFieldValue('file', file);
-    } else {
-      setFieldValue('file', '');
-      alert('File is too big');
-    }
+    setFieldValue('image', file);
   };
+
   return (
     <MoreInfoWrapper step={step} category={category}>
       <div>
@@ -79,29 +75,31 @@ const MoreInfo = ({
                 />
               </SexLabel>
             </div>
-            <Message name="sex" component="p" />
+            <Message name="sex" component="div" />
           </TheSexWrapper>
         )}
 
         <PhotoWrap step={step} category={category}>
           <PhotoText step={step} category={category}>
-            {values.file ? 'Add photo' : 'Load the pet’s image: '}
+            {values.image ? 'Add photo' : 'Load the pet’s image: '}
           </PhotoText>
           <AddLabel>
             {/* {console.log(values.file)} */}
-            {values.file ? (
-              <img src={URL.createObjectURL(values.file)} alt="pet" />
+            {values.image ? (
+              <img src={URL.createObjectURL(values.image)} alt="pet" />
             ) : (
               <Add sx={{ fontSize: 50, color: '#54ADFF' }} />
             )}
             <input
               type="file"
-              name="file"
+              name="image"
               accept="image/*"
               multiple={false}
               onChange={handleFileChange}
               hidden
             />
+            {/* {touched.file && errors.file ? <div>{errors.file}</div> : null} */}
+            <Message name="image" component="div" />
           </AddLabel>
         </PhotoWrap>
       </div>
@@ -112,11 +110,11 @@ const MoreInfo = ({
             Location
             <Input
               type="text"
-              name="location"
+              name="place"
               placeholder="Type location"
               errors={touched.location && errors.location}
             />
-            <Message name="location" component="p" />
+            <Message name="place" component="div" />
           </Label>
         )}
 
@@ -129,7 +127,7 @@ const MoreInfo = ({
               placeholder="Type price"
               errors={touched.price && errors.price}
             />
-            <Message name="price" component="p" />
+            <Message name="price" component="div" />
           </Label>
         )}
 
@@ -141,7 +139,7 @@ const MoreInfo = ({
             placeholder="Type comment"
             errors={touched.comments && errors.comments}
           />
-          <Message name="comments" component="p" />
+          <Message name="comments" component="div" />
         </CommentsLabel>
       </FormFields>
     </MoreInfoWrapper>

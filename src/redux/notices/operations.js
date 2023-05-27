@@ -59,9 +59,13 @@ export const fetchNoticesFavourite = createAsyncThunk(
 
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
-  async (newNotice, thunkAPI) => {
+  async ([category, data], thunkAPI) => {
     try {
-      const response = await axios.post(`/api/notices/category`, newNotice);
+      console.log(data);
+      const response = await axios.post(
+        `/api/notices/category?category=${category}`,
+        data
+      );
       return response.data;
     } catch (error) {
       console.log(error.message);
@@ -74,9 +78,9 @@ export const makeNoticeFavourite = createAsyncThunk(
   'notices/makeNoticeFavourite',
   async (id, thunkAPI) => {
     try {
-      const {data} = await axios.patch(`api/notices/favourite/${id}`);
+      const { data } = await axios.patch(`api/notices/favourite/${id}`);
 
-      return data.data.result;// такий респонс с сервера зараз
+      return data.data.result; // такий респонс с сервера зараз
     } catch (error) {
       console.log(error.message);
       return thunkAPI.rejectWithValue('');
@@ -88,7 +92,7 @@ export const removeNoticeFavourite = createAsyncThunk(
   'notices/removeNoticeFavourite',
   async (id, thunkAPI) => {
     try {
-      const {data} = await axios.delete(`api/notices/favourite/${id}`);
+      const { data } = await axios.delete(`api/notices/favourite/${id}`);
 
       return data.result;
     } catch (error) {

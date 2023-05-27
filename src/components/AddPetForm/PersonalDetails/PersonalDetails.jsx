@@ -1,9 +1,4 @@
-import {
-  Label,
-  Input,
-  Message,
-  PersonalDetailsWrapper,
-} from './PersonalDetails.styled';
+import { Label, Input, PersonalDetailsWrapper } from './PersonalDetails.styled';
 
 const PersonalDetails = ({ category, touched, errors }) => {
   return (
@@ -17,7 +12,7 @@ const PersonalDetails = ({ category, touched, errors }) => {
             placeholder="Title of add"
             errors={touched.title && errors.title}
           />
-          <Message name="title" component="p" />
+          {touched.title && errors.title && <div>{errors.title}</div>}
         </Label>
       )}
       <Label>
@@ -28,17 +23,19 @@ const PersonalDetails = ({ category, touched, errors }) => {
           placeholder="Type name pet"
           errors={touched.name && errors.name}
         />
-        <Message name="name" component="p" />
+        {touched.name && errors.name && <div>{errors.name}</div>}
       </Label>
       <Label>
         Date of birth
         <Input
           type="text"
-          name="date"
-          placeholder="Type date of birth"
-          errors={touched.date && errors.date}
+          name="dateOfBirth"
+          placeholder="dd.mm.yyyy"
+          errors={touched.dateOfBirth && errors.dateOfBirth}
         />
-        <Message name="date" component="p" />
+        {touched.dateOfBirth && errors.dateOfBirth && (
+          <div>{errors.dateOfBirth}</div>
+        )}
       </Label>
       <Label>
         Breed
@@ -48,7 +45,7 @@ const PersonalDetails = ({ category, touched, errors }) => {
           placeholder="Type breed"
           errors={touched.breed && errors.breed}
         />
-        <Message name="breed" component="p" />
+        {touched.breed && errors.breed && <div>{errors.breed}</div>}
       </Label>
     </PersonalDetailsWrapper>
   );
