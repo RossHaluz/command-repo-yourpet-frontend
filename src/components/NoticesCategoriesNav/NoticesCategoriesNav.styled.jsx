@@ -19,28 +19,7 @@ export const StyledNavLink = styled(NavLink)`
   letter-spacing: 0.04em;
   transition: color 250ms ease-in, background-color 250ms ease-in;
 
-  &.active {
-    color: #FEF9F9;
-    background: #54adff;
-  }
-`;
-
-export const StyledButton = styled('button')`
-  color: #54adff;
-  background: #cce4fb;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 40px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: color 250ms ease-in, background-color 250ms ease-in;
-
-  :hover, :focus-within {
+  :hover, &.active {
     color: #FEF9F9;
     background: #54adff;
   }
