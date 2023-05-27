@@ -33,9 +33,9 @@ export const fetchNoticeById = createAsyncThunk(
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchNoticesByCategory',
-  async (type, thunkAPI) => {
+  async ({category, search, page, limit = 10}, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/notices/?category=${type}`);
+      const response = await axios.get(`/api/notices/?category=${category}&search=${search}&page=${page}&limit=${limit}`);
       return response.data;
     } catch (error) {
       console.log(error.message);

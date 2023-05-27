@@ -24,11 +24,15 @@ const NoticesSearch = ({handleSearch}) => {
         //simple type of validation will be discused
         alert('Invalid query'); // should be kind of toast
       } else {
-         handleSearch(search)
-        actions.resetForm();
+        handleSearch(search)
       }
     },
   });
+
+  const handleCrossButtonClick = () => {
+    handleSearch('')
+    formik.resetForm();
+  }
 
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
   return (
@@ -70,7 +74,7 @@ const NoticesSearch = ({handleSearch}) => {
           />
           <MuiBtnWrapper>
             {formik.values.search && (
-              <MuiBtnSearcCross type="reset">
+              <MuiBtnSearcCross type="reset" onClick={handleCrossButtonClick}>
                 <SearcCrossIcon />
               </MuiBtnSearcCross>
             )}
