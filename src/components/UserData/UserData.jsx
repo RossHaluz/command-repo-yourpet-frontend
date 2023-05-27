@@ -9,6 +9,7 @@ import {
   // selectError,
   selectUserInfo,
 } from 'redux/pets/selectors';
+import { avatarDefault } from 'images';
 
 import { Formik, Form } from 'formik';
 import {
@@ -65,7 +66,8 @@ const UserData = () => {
   const [isOpen, toggleModal] = useModal();
 
   const fileInputRef = useRef(null);
-  const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
+  const { name, email, phone, birthday, city, image } =
+    useSelector(selectUserInfo);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
@@ -132,10 +134,7 @@ const UserData = () => {
               {selectedFile ? (
                 <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
               ) : (
-                <Img
-                  src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
-                  alt="User"
-                />
+                <Img src={image ? image : avatarDefault} alt="User" />
               )}
             </PhotoWrapper>
 
