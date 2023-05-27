@@ -26,8 +26,6 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
-<<<<<<< Updated upstream
-=======
 
 export const addPet = createAsyncThunk(
   'notices/addPet',
@@ -53,4 +51,3 @@ export const addPet = createAsyncThunk(
 //     }
 //   }
 // );
->>>>>>> Stashed changes
