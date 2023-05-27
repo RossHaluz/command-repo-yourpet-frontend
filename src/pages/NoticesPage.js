@@ -11,26 +11,14 @@ import { PageTitle } from 'components/PageTitle/PageTitle.styled';
 import Box from '@mui/material/Box';
 
 import { selectNotices, selectTotalPages } from 'redux/notices/selectors';
-import { useLocation } from 'react-router-dom';
-// import { selectIsUserLogin } from 'redux/auth/selectors';
-// import ErrorPage from './ErrorPage';
 
 const NoticesPage = () => {
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
   const notices = useSelector(selectNotices);
-  // const IsLogin = useSelector(selectIsUserLogin);
   const totalPages = useSelector(selectTotalPages);
 
-  console.log(notices);
-
-  const dispatch = useDispatch();
-  const location = useLocation();
-
-  useEffect(() => {
-    document.title = 'YourPet | Find pet';
-    // const param = location.pathname.split('/')[2];
-    dispatch(fetchNotices()); //param
-  }, [dispatch, location]);
+  // console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
