@@ -5,7 +5,8 @@ import {
   deleteNotice,
   fetchNoticesFavourite,
   addNotice,
-  makeNoticeFavourite, removeNoticeFavourite,
+  makeNoticeFavourite,
+  removeNoticeFavourite,
 } from './operations';
 
 const initialState = {
@@ -46,9 +47,9 @@ export const noticesSlice = createSlice({
         };
       })
       .addCase(fetchNoticesFavourite.fulfilled, (state, action) => {
-        console.log('fetchNoticesFavourite');
         return {
           ...state,
+          items: [...action.payload.data.notices],
           isLoading: false,
         };
       })

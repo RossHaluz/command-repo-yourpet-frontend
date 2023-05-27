@@ -1,44 +1,39 @@
-import React, { useEffect, useState } from 'react';
 import {
-  // StyledNavLink, 
-  StyledButton,
+  StyledNavLink,
   StyledNavLinkWrapper,
 } from './NoticesCategoriesNav.styled';
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
-import { fetchNoticesByCategory } from 'redux/notices/operations';
+import {
+  fetchNoticesFavourite,
+} from 'redux/notices/operations';
+import { fetchPets } from 'redux/pets/operations';
 
 const NoticesCategoriesNav = () => {
-  const isLoggedIn = useSelector(selectIsUserLogin)
+  const isLoggedIn = useSelector(selectIsUserLogin);
   const dispatch = useDispatch();
 
-  const [categories, setCategories] = useState([
-    'sell',
-    'lost/found',
-    'in good hands',
-    'favorite ads',
-    'my ads',
-  ]);
+  const handleFavorite = () => {
+    dispatch(fetchNoticesFavourite());
+  };
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setCategories(categories =>
-        categories.slice(0,3))
-    }
-  }, [isLoggedIn]);
-
-  const chooseCategory = (category) => {
-    dispatch(fetchNoticesByCategory(category))
-  }
+  const handleMyAds = () => {
+    dispatch(fetchPets());
+  };
 
   return (
-    <StyledNavLinkWrapper>      
-      {categories.map(category => (
-        <StyledButton key={nanoid()} onClick={() => chooseCategory(category)}>
-          {category}{' '}
-        </StyledButton>
-      ))}
+    <StyledNavLinkWrapper>
+      <StyledNavLink to={`/notices/sell`}>sell</StyledNavLink>
+      <StyledNavLink to={`/notices/lost-found`}>lost/found</StyledNavLink>
+      <StyledNavLink to={`/notices/in-good-hands`}>in good hands</StyledNavLink>
+
+      {isLoggedIn && (
+        <>
+          <StyledNavLink to={`/notices/favourite`} onClick={handleFavorite}>favorite</StyledNavLink>
+
+          <StyledNavLink to={`/notices/my-ads`} onClick={handleMyAds}>my ads</StyledNavLink>
+        </>
+      )}
     </StyledNavLinkWrapper>
   );
 };

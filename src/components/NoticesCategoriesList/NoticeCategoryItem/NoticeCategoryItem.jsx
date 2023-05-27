@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectIsUserLogin, selectUser} from 'redux/auth/selectors';
+import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
 import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
@@ -26,22 +26,35 @@ import {
   StyledComent,
 } from './NoticeCategoryItem.styled';
 
-import {makeNoticeFavourite, removeNoticeFavourite} from "../../../redux/notices/operations";
+import {
+  makeNoticeFavourite,
+  removeNoticeFavourite,
+} from 'redux/notices/operations';
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
-  const { _id: noticeId, category, dateOfBirth, sex, imgURL, place, favorite, comments } = petInfo;
+  const {
+    _id: noticeId,
+    category,
+    dateOfBirth,
+    sex,
+    imgURL,
+    place,
+    favorite,
+    comments,
+    owner,
+  } = petInfo;
 
   function calculateTimeElapsedYears(dateString) {
-    const startDate = new Date(dateString);
+    const startDate = new Date(dateString.split('.').reverse().join('.'));
     const currentDate = new Date();
     const yearsElapsed = currentDate.getFullYear() - startDate.getFullYear();
     return Math.round(yearsElapsed);
   }
 
   function calculateTimeElapsedMonthses(dateString) {
-    const startDate = new Date(dateString);
+    const startDate = new Date(dateString.split('.').reverse().join('.'));
     const currentDate = new Date();
     const monthsElapsed =
       (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
@@ -49,23 +62,23 @@ const NoticeCategoryItem = ({ petInfo }) => {
     return Math.floor(monthsElapsed);
   }
 
-  const isLoggeIn = useSelector(selectIsUserLogin);
-  const {_id: userId} = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsUserLogin);
+  const { _id: userId } = useSelector(selectUser);
   const isFavorite = favorite.includes(userId);
 
-  const isWasCreatedByMe = false; // will take from back and by Redux
-  const handleToggleFavorite = (noticeId) => {
-    if (isLoggeIn) {
+  const isCreatedByMe = userId === owner;
+  const handleToggleFavorite = noticeId => {
+    if (isLoggedIn) {
       if (!isFavorite) {
-        dispatch(makeNoticeFavourite(noticeId))
+        dispatch(makeNoticeFavourite(noticeId));
       } else {
-        dispatch(removeNoticeFavourite(noticeId))
+        dispatch(removeNoticeFavourite(noticeId));
       }
     }
-  }
+  };
 
   const handleDelete = id => {
-    dispatch(deleteNotice(id))
+    dispatch(deleteNotice(id));
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
@@ -97,17 +110,18 @@ const NoticeCategoryItem = ({ petInfo }) => {
             </StyledCardButtonBottom>
           </BottomButtonWrapper>
           <RightButtonWrapper>
-            <StyledCardButtonRight onClick={() => handleToggleFavorite(noticeId)}>
+            <StyledCardButtonRight
+              onClick={() => handleToggleFavorite(noticeId)}
+            >
               {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
-            {isWasCreatedByMe && (
+            {isCreatedByMe && (
               <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
                 <GarbageCan />
               </StyledCardButtonRight>
             )}
           </RightButtonWrapper>
         </StyledCardImgWrapper>
-
 
         <StyledComent>{comments}</StyledComent>
         <LearnMore onClick={toggleModal}>
@@ -119,10 +133,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
           toggleModal={toggleModal}
           noticeId={noticeId}
         />
-
       </StyledCardWrapper>
     </>
   );
-}
+};
 
-export default NoticeCategoryItem
+export default NoticeCategoryItem;

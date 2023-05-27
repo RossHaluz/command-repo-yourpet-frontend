@@ -3,9 +3,10 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCateg
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch';
 import PaginationBox from 'components/PaginationBox/PaginationBox';
-import { fetchNotices } from 'redux/notices/operations';
+import { fetchNoticesByCategory } from 'redux/notices/operations';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { PageTitle } from 'components/PageTitle/PageTitle.styled';
 import Box from '@mui/material/Box';
@@ -18,13 +19,21 @@ const NoticesPage = () => {
   const notices = useSelector(selectNotices);
   const totalPages = useSelector(selectTotalPages);
 
+  const params = useParams();
+  const category = params.category;
+
   // console.log(notices);
+
+  function formatPath(path) {
+    if (path === 'lost-found') return 'lost/found';
+    else return path.split('-').join(' ');
+  }
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
-    dispatch(fetchNotices(page));
-  }, [dispatch, page]);
+    dispatch(fetchNoticesByCategory(formatPath(category)));
+  }, [dispatch, page, category]);
 
   const handlePageChange = (e, page) => {
     setPage(page);
