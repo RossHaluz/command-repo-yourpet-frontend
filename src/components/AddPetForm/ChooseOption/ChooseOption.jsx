@@ -1,4 +1,4 @@
-import { CategoryWrapper, Label, Message } from './ChooseOption.styled';
+import { CategoryWrapper, Label } from './ChooseOption.styled';
 import { Field } from 'formik';
 
 const ChooseOption = ({ values }) => {
