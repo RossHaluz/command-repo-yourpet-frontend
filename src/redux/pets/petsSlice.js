@@ -20,8 +20,8 @@ const contactsSlice = createSlice({
         state.petsInfo = payload.petsInfo;
       })
 
-      // .addCase(updatePets, (state, action) => {
-      //   state.pets = action.payload;
+      // .addCase(updateUserInfo.fulfilled, (state, action) => {
+      //   state.userInfo = action.payload;
       // })
 
       //   .addCase(addPet.fulfilled, (state, { payload }) => {

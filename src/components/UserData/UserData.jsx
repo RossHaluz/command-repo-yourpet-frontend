@@ -90,8 +90,9 @@ const UserData = () => {
 
   const handleConfirmPhoto = () => {
     setIsEditingPhoto(false);
-    // Отправить выбранное фото на бекенд
-    // Отправить данные на бекенд (values)
+    // Dispatch the updateUserData action with the updated data
+    const updatedData = { photo: selectedFile };
+    dispatch(updatedData);
   };
 
   const handleCancelPhoto = () => {
