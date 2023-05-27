@@ -2,13 +2,13 @@ import {
   StyledButton,
   StyledNavLinkWrapper,
 } from './NoticesCategoriesNav.styled';
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 import {
   fetchNoticesByCategory,
   fetchNoticesFavourite,
 } from 'redux/notices/operations';
+import { fetchPets } from 'redux/pets/operations';
 
 const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsUserLogin);
@@ -25,14 +25,14 @@ const NoticesCategoriesNav = () => {
   };
 
   const handleMyAds = () => {
-    console.log('My ads');
+    dispatch(fetchPets());
   };
 
   return (
     <StyledNavLinkWrapper>
       {categories.map(category => (
-        <StyledButton key={nanoid()} onClick={() => chooseCategory(category)}>
-          {category}{' '}
+        <StyledButton key={category} onClick={() => chooseCategory(category)}>
+          {category}
         </StyledButton>
       ))}
 
