@@ -132,7 +132,7 @@ export const ButtonFilled = styled.button`
   disabled: true;
 
   :disabled {
-    background-color: #111111;
+    opacity: 0.5;
   }
 `;
 

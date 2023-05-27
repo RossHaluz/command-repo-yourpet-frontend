@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNotice } from 'redux/notices/operations';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import ChooseOption from './ChooseOption/ChooseOption';
@@ -18,13 +20,13 @@ import { Pets, West } from '@mui/icons-material';
 import validationSchema from './validationSchema';
 
 const initialValues = {
-  category: '',
+  category: 'my-pet',
   name: '',
-  date: '',
+  dateOfBirth: '',
   breed: '',
-  file: '',
+  image: '',
   sex: '',
-  location: '',
+  place: '',
   price: '',
   comments: '',
   title: '',
@@ -33,11 +35,12 @@ const initialValues = {
 const AddPetForm = () => {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const steps = ['Choose option', 'Personal details', 'More info'];
 
   const handleClickNext = e => {
     e.preventDefault();
-
+    console.log(step);
     if (step === 2) {
       return;
     }
@@ -52,17 +55,52 @@ const AddPetForm = () => {
     navigate(-1);
   };
 
-  const handleSubmit = (values, helpers) => {
-    console.log(values);
-    // URL.revokeObjectURL(va);
-    // if (step === 2) {
+  const handleSubmit = async (values, { resetForm }) => {
     console.log('send data to server');
-    helpers.resetForm();
-    navigate(-1);
-    // } else {
-    //   setStep(prev => prev + 1);
-    //   helpers.setTouched({});
-    // }
+
+    const formData = new FormData();
+
+    formData.append('name', values.name.trim());
+    formData.append('dateOfBirth', values.dateOfBirth);
+    formData.append('breed', values.breed.trim());
+    formData.append('comments', values.comments.trim());
+    formData.append('image', values.image, values.image.name);
+
+    if (values.category === 'my-pet') {
+      console.log('add your pet');
+      navigate(-1);
+      resetForm();
+      return;
+    }
+
+    formData.append('title', values.title.trim());
+    formData.append('place', values.place.trim());
+    formData.append('sex', values.sex);
+
+    if (values.category === 'lost-found') {
+      console.log('add lost pet');
+      dispatch(addNotice([values.category, formData]));
+      navigate(-1);
+      resetForm();
+      return;
+    }
+
+    if (values.category === 'for-free') {
+      console.log('add for free');
+      dispatch(addNotice([values.category, formData]));
+      navigate(-1);
+      resetForm();
+      return;
+    }
+
+    formData.append('price', values.price.toString());
+
+    if (values.category === 'sell') {
+      dispatch(addNotice([values.category, formData]));
+      navigate(-1);
+      resetForm();
+      return;
+    }
   };
 
   return (
@@ -71,7 +109,16 @@ const AddPetForm = () => {
       validationSchema={validationSchema(step)}
       onSubmit={handleSubmit}
     >
-      {({ values, touched, errors, setFieldValue }) => (
+      {({
+        values,
+        touched,
+        errors,
+        setFieldValue,
+        validateField,
+        isValid,
+        isSubmitting,
+        setTouched,
+      }) => (
         <AddPetFormWrapper
           step={step}
           category={values.category}
@@ -126,7 +173,7 @@ const AddPetForm = () => {
             )}
             <ButtonWrap category={values.category} step={step}>
               {step === 2 ? (
-                <ButtonFilled type="submit">
+                <ButtonFilled type="submit" disabled={isSubmitting}>
                   <span>Done</span>
                   <Pets
                     sx={{
@@ -140,29 +187,36 @@ const AddPetForm = () => {
               ) : (
                 <ButtonFilled
                   type="button"
-                  onClick={handleClickNext}
-                  disabled={
-                    step === 0
-                      ? !values.category
-                      : step === 1 && values.category === 'my-pet'
-                      ? !values.name ||
-                        !values.date ||
-                        !values.breed ||
-                        errors.name ||
-                        errors.date ||
-                        errors.breed
-                      : !values.name ||
-                        !values.date ||
-                        !values.breed ||
-                        !values.title ||
-                        errors.title ||
-                        errors.name ||
-                        errors.date ||
-                        errors.breed
-                  }
+                  onClick={e => {
+                    if (step === 0) {
+                      handleClickNext(e);
+                    }
+                    if (step === 1) {
+                      validateField('name');
+                      validateField('dateOfBirth');
+                      validateField('breed');
+                      validateField('title');
+                      setTouched({
+                        name: true,
+                        dateOfBirth: true,
+                        breed: true,
+                        title: true,
+                      });
+                    }
+                    if (
+                      step === 1 &&
+                      Object.keys(errors).length === 0 &&
+                      Object.keys(touched).length !== 0
+                    ) {
+                      handleClickNext(e);
+                    }
+                  }}
+                  // disabled={step === 1 && !isValid}
                 >
                   <span>Next</span>
-                  <Pets sx={{ width: 24, height: 24 }} />
+                  <Pets
+                    sx={{ width: 24, height: 24, transform: 'rotate(25deg)' }}
+                  />
                 </ButtonFilled>
               )}
               <Button
