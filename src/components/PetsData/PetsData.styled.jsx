@@ -2,6 +2,21 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
+export const Conteiner = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 703px;
+    margin: 0 0 40px 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 821px;
+    margin: 35px 0 0 0;
+  }
+`;
+
 export const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('tablet')]: {
     fontSize: '20px',

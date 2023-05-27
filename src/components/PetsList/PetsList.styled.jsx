@@ -1,5 +1,17 @@
 import styled from '@emotion/styled';
 
+export const Conteiner = styled.div`
+  width: 280px;
+
+  @media screen and (min-width: 768px) {
+    width: 703px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 821px;
+  }
+`;
+
 export const List = styled.ul`
   margin: 0;
   padding: 0;

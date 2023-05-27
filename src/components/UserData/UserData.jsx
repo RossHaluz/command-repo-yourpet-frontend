@@ -1,6 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from 'redux/auth/operetions';
+import { useSelector } from 'react-redux';
+import {
+  selectIsLoading,
+  // selectError,
+  selectUserInfo,
+} from 'redux/pets/selectors';
 
 import { Formik, Form } from 'formik';
 import {
@@ -26,15 +32,7 @@ import {
   IconCross,
 } from './UserData.styled';
 
-const initialValues = {
-  name: '',
-  email: '',
-  phone: '',
-  birthday: '',
-  city: '',
-};
-
-const Field = React.memo(({ name, value, activeInput, handleClick }) => {
+const Field = React.memo(({ name, activeInput, handleClick }) => {
   const isActive = activeInput === name;
   const isEditing = isActive && activeInput !== null;
 
@@ -44,7 +42,6 @@ const Field = React.memo(({ name, value, activeInput, handleClick }) => {
       <Input
         type="text"
         name={name}
-        placeholder={value}
         disabled={!isActive}
         className={isEditing ? 'editing' : ''}
       />
@@ -65,6 +62,8 @@ const UserData = () => {
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
 
   const fileInputRef = useRef(null);
+  const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const handleFileChange = event => {
@@ -105,80 +104,83 @@ const UserData = () => {
     }
   };
 
-  const fields = [
-    { name: 'Name', value: 'Anna' },
-    { name: 'Email', value: 'Anna@gmail.com' },
-    { name: 'Phone', value: '+3800000000' },
-    { name: 'Birthday', value: '00.00.0000' },
-    { name: 'City', value: 'Dnipro' },
-  ];
+  const initialValues = {
+    Name: name ? name : 'Name',
+    Email: email ? email : 'Name@gmail.com',
+    Phone: phone ? phone : '+380000000000',
+    Birthday: birthday ? birthday : '00.00.0000',
+    City: city ? city : 'Dnipro',
+  };
+
+  const userInfoFields = ['Name', 'Email', 'Phone', 'Birthday', 'City'];
 
   return (
     <Conteiner>
       <Title>My information:</Title>
 
-      <Box>
-        <PhotoBox>
-          <PhotoWrapper>
-            {selectedFile ? (
-              <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
-            ) : (
-              <Img
-                src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
-                alt="User"
-              />
-            )}
-          </PhotoWrapper>
-
-          <DivEditPhoto>
-            <EditButtonPhoto onClick={handleButtonClick}>
-              <input
-                ref={fileInputRef}
-                type="file"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-              />
-              {isEditingPhoto ? (
-                <>
-                  <IconWrapperCheck>
-                    <IconCheck onClick={handleConfirmPhoto} />
-                  </IconWrapperCheck>
-                  <span>Confirm</span>
-                  <IconWrapperCross>
-                    <IconCross onClick={handleCancelPhoto} />
-                  </IconWrapperCross>
-                </>
+      {!isLoading && (
+        <Box>
+          <PhotoBox>
+            <PhotoWrapper>
+              {selectedFile ? (
+                <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
               ) : (
-                <>
-                  <IconCamera />
-                  <span>Edit photo</span>
-                </>
+                <Img
+                  src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+                  alt="User"
+                />
               )}
-            </EditButtonPhoto>
-          </DivEditPhoto>
-        </PhotoBox>
+            </PhotoWrapper>
 
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          <Form>
-            {fields.map(field => (
-              <Field
-                key={field.name}
-                name={field.name}
-                value={field.value}
-                activeInput={activeInput}
-                handleClick={handleClick}
-              />
-            ))}
+            <DivEditPhoto>
+              <EditButtonPhoto onClick={handleButtonClick}>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                />
+                {isEditingPhoto ? (
+                  <>
+                    <IconWrapperCheck>
+                      <IconCheck onClick={handleConfirmPhoto} />
+                    </IconWrapperCheck>
+                    <span>Confirm</span>
+                    <IconWrapperCross>
+                      <IconCross onClick={handleCancelPhoto} />
+                    </IconWrapperCross>
+                  </>
+                ) : (
+                  <>
+                    <IconCamera />
+                    <span>Edit photo</span>
+                  </>
+                )}
+              </EditButtonPhoto>
+            </DivEditPhoto>
+          </PhotoBox>
 
-            <DivLogOut>
-              <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
-                <IconLogOut />
-                Log Out
-              </ButtonLogOut>
-            </DivLogOut>
-          </Form>
-        </Formik>
-      </Box>
+          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Form>
+              {userInfoFields.map(field => (
+                <Field
+                  key={field}
+                  name={field}
+                  activeInput={activeInput}
+                  handleClick={handleClick}
+                />
+              ))}
+
+              <DivLogOut>
+                <ButtonLogOut type="button" onClick={() => dispatch(logout())}>
+                  <IconLogOut />
+                  Log Out
+                </ButtonLogOut>
+              </DivLogOut>
+            </Form>
+          </Formik>
+        </Box>
+      )}
     </Conteiner>
   );
 };
