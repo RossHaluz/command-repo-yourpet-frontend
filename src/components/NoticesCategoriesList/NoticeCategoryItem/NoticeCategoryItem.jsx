@@ -80,11 +80,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
   };
 
   const handleDelete = id => {
-    // const result = alert.confirm("Want to delete you notice?");
-    
-    // if (confirm("Want to delete you notice?")) {
         dispatch(deleteNotice(id));
-    // }    
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
