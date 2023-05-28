@@ -26,19 +26,14 @@ const NoticesPage = () => {
 
   // console.log(notices);
 
-  function formatPath(path) {
-    if (path === 'lost-found') return 'lost/found';
-    else return path.split('-').join(' ');
-  }
-
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
     dispatch(
       fetchNoticesByCategory({
-        category: formatPath(category),
-        search: search,
-        page: page,
+        category,
+        search,
+        page,
         limit: 12,
       })
     );

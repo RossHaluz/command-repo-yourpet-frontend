@@ -25,13 +25,13 @@ const NoticesCategoriesNav = () => {
     <StyledNavLinkWrapper>
       <StyledNavLink to={`/notices/sell`}>sell</StyledNavLink>
       <StyledNavLink to={`/notices/lost-found`}>lost/found</StyledNavLink>
-      <StyledNavLink to={`/notices/in-good-hands`}>in good hands</StyledNavLink>
+      <StyledNavLink to={`/notices/for-free`}>for free</StyledNavLink>
 
       {isLoggedIn && (
         <>
           <StyledNavLink to={`/notices/favourite`} onClick={handleFavorite}>favourite</StyledNavLink>
 
-          <StyledNavLink to={`/notices/my-ads`} onClick={handleMyAds}>my ads</StyledNavLink>
+          <StyledNavLink to={`/notices/own`} onClick={handleMyAds}>own</StyledNavLink>
         </>
       )}
     </StyledNavLinkWrapper>
