@@ -13,7 +13,7 @@ import { Toaster } from 'react-hot-toast';
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const MainPage = lazy(() => import('pages/MainPage'));
-const UserPage = lazy(() => import('pages/UserPage/UserPage'));
+const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const AddPetPage = lazy(() => import('pages/AddPetPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={Theme}>
-      <Toaster/>
+      <Toaster />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
@@ -61,9 +61,12 @@ const App = () => {
               <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
             }
           />
-          <Route path="notices/" element={
+          <Route
+            path="notices/"
+            element={
               <PublicRoute redirectTo="sell" element={<NoticesPage />} />
-            } />
+            }
+          />
           <Route path="notices/:category" element={<NoticesPage />} />
 
           <Route path="friends" element={<OurFriendsPage />} />

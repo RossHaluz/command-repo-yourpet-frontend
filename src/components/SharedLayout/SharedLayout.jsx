@@ -10,7 +10,7 @@ const SharedLayout = () => {
       <Header />
       <div>
         <Suspense fallback={'Loading...'}>
-          <Container fixed sx={{ pr: '20px', pl: '20px' }}>
+          <Container fixed>
             <Outlet />
           </Container>
         </Suspense>

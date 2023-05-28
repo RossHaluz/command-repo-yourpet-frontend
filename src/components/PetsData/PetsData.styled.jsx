@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
-export const Conteiner = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -12,6 +12,8 @@ export const Conteiner = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    display: inline-flex;
+
     width: 821px;
     margin: 35px 0 0 0;
   }
