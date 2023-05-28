@@ -7,7 +7,7 @@ import { logout } from 'redux/auth/operetions';
 import { updateUserInfo } from 'redux/pets/operations';
 import { useSelector } from 'react-redux';
 import {
-  selectIsLoading,
+  // selectIsLoading,
   // selectError,
   selectUserInfo,
 } from 'redux/pets/selectors';
@@ -36,14 +36,9 @@ import {
   IconCross,
 } from './UserData.styled';
 
-const Field = React.memo(({ name, activeInput, handleClick, handleSubmit }) => {
+const Field = React.memo(({ name, activeInput, handleClick }) => {
   const isActive = activeInput === name;
   const isEditing = isActive && activeInput !== null;
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    handleSubmit(name, value); // Виклик оновленої функції handleSubmit з назвою поля і значенням
-  };
 
   return (
     <Label>
@@ -70,18 +65,11 @@ const UserData = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
   const [isOpen, toggleModal] = useModal();
-  const [formData, setFormData] = useState({
-    Name: '',
-    Email: '',
-    Phone: '',
-    Birthday: '',
-    City: '',
-  });
 
   const fileInputRef = useRef(null);
-  const { name, email, phone, birthday, city, image } =
+  const { name, email, phone, birthday, city, avatarURL } =
     useSelector(selectUserInfo);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const handleFileChange = event => {
@@ -90,11 +78,11 @@ const UserData = () => {
   };
 
   const handleChange = event => {
-    const { name, value } = event.target;
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    // const { name, value } = event.target;
+    // setFormData(prevFormData => ({
+    //   ...prevFormData,
+    //   [name]: value,
+    // }));
   };
 
   const handleClick = inputName => {
@@ -103,11 +91,10 @@ const UserData = () => {
   };
 
   const handleSubmit = (fieldName, fieldValue) => {
-    const updatedData = {
-      [fieldName]: fieldValue,
-    };
-
-    dispatch(updateUserInfo(updatedData));
+    // const updatedData = {
+    //   [fieldName]: fieldValue,
+    // };
+    // dispatch(updateUserInfo(updatedData));
   };
 
   const handleEditPhoto = () => {
@@ -117,20 +104,10 @@ const UserData = () => {
 
   const handleConfirmPhoto = () => {
     setIsEditingPhoto(false);
-    // Dispatch the updateUserInfo action with the updated data
 
-    // Викликати дію для оновлення фото користувача
-    const updatedData = {
-      image: selectedFile,
-    };
-    console.log(updatedData);
+    const updatedData = new FormData();
+    updatedData.append('image', selectedFile, selectedFile.name);
     dispatch(updateUserInfo(updatedData));
-    // .then(() => {
-    //   // Обробка успішного оновлення фото
-    // })
-    // .catch(error => {
-    //   // Обробка помилки оновлення фото
-    // });
   };
 
   const handleCancelPhoto = () => {
@@ -165,73 +142,71 @@ const UserData = () => {
     <Conteiner>
       <Title>My information:</Title>
 
-      {!isLoading && (
-        <Box>
-          <PhotoBox>
-            <PhotoWrapper>
-              {selectedFile ? (
-                <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
+      {/* {!isLoading && ( */}
+      <Box>
+        <PhotoBox>
+          <PhotoWrapper>
+            {selectedFile ? (
+              <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
+            ) : (
+              <Img src={avatarURL ? avatarURL : avatarDefault} alt="User" />
+            )}
+          </PhotoWrapper>
+
+          <DivEditPhoto>
+            <EditButtonPhoto onClick={handleButtonClick}>
+              <input
+                ref={fileInputRef}
+                type="file"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              {isEditingPhoto ? (
+                <>
+                  <IconWrapperCheck>
+                    <IconCheck onClick={handleConfirmPhoto} />
+                  </IconWrapperCheck>
+                  <span>Confirm</span>
+                  <IconWrapperCross>
+                    <IconCross onClick={handleCancelPhoto} />
+                  </IconWrapperCross>
+                </>
               ) : (
-                <Img src={image ? image : avatarDefault} alt="User" />
+                <>
+                  <IconCamera />
+                  <span>Edit photo</span>
+                </>
               )}
-            </PhotoWrapper>
+            </EditButtonPhoto>
+          </DivEditPhoto>
+        </PhotoBox>
 
-            <DivEditPhoto>
-              <EditButtonPhoto onClick={handleButtonClick}>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  style={{ display: 'none' }}
-                  onChange={handleFileChange}
-                />
-                {isEditingPhoto ? (
-                  <>
-                    <IconWrapperCheck>
-                      <IconCheck onClick={handleConfirmPhoto} />
-                    </IconWrapperCheck>
-                    <span>Confirm</span>
-                    <IconWrapperCross>
-                      <IconCross onClick={handleCancelPhoto} />
-                    </IconWrapperCross>
-                  </>
-                ) : (
-                  <>
-                    <IconCamera />
-                    <span>Edit photo</span>
-                  </>
-                )}
-              </EditButtonPhoto>
-            </DivEditPhoto>
-          </PhotoBox>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Form>
+            {userInfoFields.map(field => (
+              <Field
+                key={field}
+                name={field}
+                activeInput={activeInput}
+                handleClick={handleClick}
+              />
+            ))}
 
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <Form>
-              {userInfoFields.map(field => (
-                <Field
-                  key={field}
-                  name={field}
-                  activeInput={activeInput}
-                  handleClick={handleClick}
-                  handleChange={handleChange}
-                  value={formData[field]}
-                />
-              ))}
-
-              <DivLogOut>
-                <ButtonLogOut type="button" onClick={handleLogout}>
-                  <IconLogOut />
-                  Log Out
-                </ButtonLogOut>
-                <LogoutModal
-                  isOpen={isOpen}
-                  toggleModal={toggleModal}
-                  onLogout={handleLogout}
-                ></LogoutModal>
-              </DivLogOut>
-            </Form>
-          </Formik>
-        </Box>
-      )}
+            <DivLogOut>
+              <ButtonLogOut type="button" onClick={handleLogout}>
+                <IconLogOut />
+                Log Out
+              </ButtonLogOut>
+              <LogoutModal
+                isOpen={isOpen}
+                toggleModal={toggleModal}
+                onLogout={handleLogout}
+              ></LogoutModal>
+            </DivLogOut>
+          </Form>
+        </Formik>
+      </Box>
+      {/* )} */}
     </Conteiner>
   );
 };

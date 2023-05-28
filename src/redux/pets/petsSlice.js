@@ -32,10 +32,6 @@ const contactsSlice = createSlice({
           ...updatedFields,
         };
       })
-      //   .addCase(addPet.fulfilled, (state, { payload }) => {
-      //     state.items.unshift(payload);
-      //   })
-
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         state.petsInfo = state.petsInfo.filter(
           pet => pet._id !== payload.data._id

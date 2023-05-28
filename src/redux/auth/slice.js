@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, getCurrentUser, hideModalSuccessRegister } from './operetions';
+import {
+  register,
+  login,
+  logout,
+  getCurrentUser,
+  hideModalSuccessRegister,
+} from './operetions';
 
 const initialState = {
   user: { email: null, password: null },
@@ -30,7 +36,6 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [login.fulfilled](state, action) {
-      console.log(action);
       state.user = action.payload.user;
       state.token = action.payload.user.token;
       state.isLoading = false;
@@ -57,7 +62,7 @@ const authSlice = createSlice({
     },
     [hideModalSuccessRegister.fulfilled](state, action) {
       state.modalSuccessRegister = action.payload;
-    }
+    },
   },
 });
 
