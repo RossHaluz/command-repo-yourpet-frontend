@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { TextField, Typography, InputAdornment, IconButton } from '@mui/material';
+import {
+  TextField,
+  Typography,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { NavLink } from 'react-router-dom';
@@ -19,19 +24,25 @@ const validationSchema = yup.object({
     .string('Enter your password')
     .min(3, 'Password should be of minimum 3 characters length ')
     .required('Password is required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Password must match')
+    .required('Confirm password is require'),
 });
 
 const RegisteForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (e) => {
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleMouseDownPassword = e => {
     e.preventDefault();
   };
-  // const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
-  // const handleMouseDownConfirmPassword = (e) => {
-  //   e.preventDefault();
-  // };
+
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword(show => !show);
+  const handleMouseDownConfirmPassword = e => {
+    e.preventDefault();
+  };
 
   const dispatch = useDispatch();
 
@@ -39,10 +50,11 @@ const RegisteForm = () => {
     initialValues: {
       email: '',
       password: '',
+      confirmPassword: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      dispatch(register(values))
+      dispatch(register(values));
 
       resetForm();
     },
@@ -51,7 +63,7 @@ const RegisteForm = () => {
   return (
     <>
       <FormBox onSubmit={formik.handleSubmit}>
-        <FormTitle component="h2" sx={{textAlign: 'center'}} >
+        <FormTitle component="h2" sx={{ textAlign: 'center' }}>
           Registration
         </FormTitle>
         <TextField
@@ -76,7 +88,7 @@ const RegisteForm = () => {
           helperText={formik.touched.password && formik.errors.password}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
-            endAdornment: 
+            endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -87,21 +99,27 @@ const RegisteForm = () => {
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
+            ),
           }}
         />
 
-        {/* <TextField
+        <TextField
           fullWidth
           id="confirmPassword"
           name="confirmPassword"
           label="Confirm Password"
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
-          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+          error={
+            formik.touched.confirmPassword &&
+            Boolean(formik.errors.confirmPassword)
+          }
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
           type={showConfirmPassword ? 'text' : 'password'}
           InputProps={{
-            endAdornment: 
+            endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -112,16 +130,20 @@ const RegisteForm = () => {
                   {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
+            ),
           }}
-        /> */}
+        />
 
         <FormButton type="submit" variant="contained">
           Registration
         </FormButton>
-        <Typography component="p" sx={{ textAlign: 'center', mt: '15px', fontSize: '12px'}}>
+        <Typography
+          component="p"
+          sx={{ textAlign: 'center', mt: '15px', fontSize: '12px' }}
+        >
           If tou have an account. <NavLink to="/login">Login</NavLink>
         </Typography>
-      </FormBox>  
+      </FormBox>
     </>
   );
 };

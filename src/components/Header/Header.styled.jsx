@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
 
-export const MainHeader = styled.header``;
+export const MainHeader = styled.header`
+margin-bottom: 30px;
+`;
 
 export const HeaderContainer = styled.div`
+ display: flex;
   margin: 0 auto;
   padding: 0 15px;
 
   @media (min-width: 320px) {
     width: 320px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   @media (min-width: 768px) {
