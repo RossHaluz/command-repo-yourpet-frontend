@@ -77,13 +77,13 @@ const UserData = () => {
     setSelectedFile(file);
   };
 
-  const handleChange = event => {
-    // const { name, value } = event.target;
-    // setFormData(prevFormData => ({
-    //   ...prevFormData,
-    //   [name]: value,
-    // }));
-  };
+  // const handleChange = event => {
+  //   const { name, value } = event.target;
+  //   setFormData(prevFormData => ({
+  //     ...prevFormData,
+  //     [name]: value,
+  //   }));
+  // };
 
   const handleClick = inputName => {
     setActiveInput(prevInput => (prevInput === inputName ? null : inputName));
