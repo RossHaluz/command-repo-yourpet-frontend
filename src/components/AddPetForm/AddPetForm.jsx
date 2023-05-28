@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoading } from 'redux/pets/selectors';
+import { selectIsNoticeLoading } from 'redux/notices/selectors';
 import { addNotice } from 'redux/notices/operations';
 import { addPet } from 'redux/pets/operations';
 import { useNavigate } from 'react-router-dom';
@@ -38,6 +40,8 @@ const AddPetForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const steps = ['Choose option', 'Personal details', 'More info'];
+  const isLoading = useSelector(selectIsLoading);
+  const isNoticeLoading = useSelector(selectIsNoticeLoading);
 
   const handleClickNext = e => {
     e.preventDefault();
@@ -68,10 +72,16 @@ const AddPetForm = () => {
     formData.append('image', values.image, values.image.name);
 
     if (values.category === 'my-pet') {
-      dispatch(addPet(formData));
-      navigate('/user');
-      resetForm();
-      return;
+      dispatch(addPet(formData))
+        .then(response => {
+          if (!response.error) {
+            navigate('/user');
+            resetForm();
+            return;
+          }
+          return;
+        })
+        .catch(error => console.log(error));
     }
 
     formData.append('title', values.title.trim());
@@ -79,31 +89,38 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      try {
-        dispatch(addNotice([values.category, formData]));
-        navigate(`/notices/${values.category}`);
-        resetForm();
+      dispatch(addNotice([values.category, formData])).then(response => {
+        if (!response.error) {
+          navigate(`/notices/${values.category}`);
+          resetForm();
+          return;
+        }
         return;
-      } catch (error) {
-        console.log(error);
-      }
+      });
     }
 
     if (values.category === 'for-free') {
-      dispatch(addNotice([values.category, formData]));
-      navigate(`/notices/${values.category}`);
-
-      resetForm();
-      return;
+      dispatch(addNotice([values.category, formData])).then(response => {
+        if (!response.error) {
+          navigate(`/notices/${values.category}`);
+          resetForm();
+          return;
+        }
+        return;
+      });
     }
 
     formData.append('price', values.price.toString());
 
     if (values.category === 'sell') {
-      dispatch(addNotice([values.category, formData]));
-      navigate(`/notices/${values.category}`);
-      resetForm();
-      return;
+      dispatch(addNotice([values.category, formData])).then(response => {
+        if (!response.error) {
+          navigate(`/notices/${values.category}`);
+          resetForm();
+          return;
+        }
+        return;
+      });
     }
   };
 
@@ -119,7 +136,6 @@ const AddPetForm = () => {
         errors,
         setFieldValue,
         validateField,
-        isSubmitting,
         setTouched,
       }) => (
         <AddPetFormWrapper
@@ -176,7 +192,10 @@ const AddPetForm = () => {
             )}
             <ButtonWrap category={values.category} step={step}>
               {step === 2 ? (
-                <ButtonFilled type="submit" disabled={isSubmitting}>
+                <ButtonFilled
+                  type="submit"
+                  disabled={isLoading || isNoticeLoading}
+                >
                   <span>Done</span>
                   <Pets
                     sx={{
