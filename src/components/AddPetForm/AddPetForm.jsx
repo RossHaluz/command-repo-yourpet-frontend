@@ -49,10 +49,12 @@ const AddPetForm = () => {
   };
 
   const handleClickBack = e => {
+    e.preventDefault();
     setStep(step - 1);
   };
 
-  const handleCancel = () => {
+  const handleCancel = e => {
+    e.preventDefault();
     navigate(-1);
   };
 
@@ -188,6 +190,7 @@ const AddPetForm = () => {
                   type="button"
                   onClick={e => {
                     if (step === 0) {
+                      setTouched({});
                       handleClickNext(e);
                     }
                     if (step === 1) {
@@ -210,9 +213,9 @@ const AddPetForm = () => {
                       handleClickNext(e);
                     }
                   }}
-                  // disabled={step === 1 && !isValid}
                 >
                   <span>Next</span>
+                  {console.log(errors)}
                   <Pets
                     sx={{ width: 24, height: 24, transform: 'rotate(25deg)' }}
                   />
