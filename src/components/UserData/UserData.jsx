@@ -53,7 +53,6 @@ const Field = React.memo(({ name, activeInput, handleClick, handleSubmit }) => {
         name={name}
         disabled={!isActive}
         className={isEditing ? 'editing' : ''}
-        onChange={handleChange}
       />
       {isActive ? (
         <DivIconCheck>
@@ -71,6 +70,13 @@ const UserData = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
   const [isOpen, toggleModal] = useModal();
+  const [formData, setFormData] = useState({
+    Name: '',
+    Email: '',
+    Phone: '',
+    Birthday: '',
+    City: '',
+  });
 
   const fileInputRef = useRef(null);
   const { name, email, phone, birthday, city, image } =
@@ -83,8 +89,17 @@ const UserData = () => {
     setSelectedFile(file);
   };
 
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const handleClick = inputName => {
     setActiveInput(prevInput => (prevInput === inputName ? null : inputName));
+    // handleSubmit();
   };
 
   const handleSubmit = (fieldName, fieldValue) => {
@@ -108,6 +123,7 @@ const UserData = () => {
     const updatedData = {
       image: selectedFile,
     };
+    console.log(updatedData);
     dispatch(updateUserInfo(updatedData));
     // .then(() => {
     //   // Обробка успішного оновлення фото
@@ -196,7 +212,8 @@ const UserData = () => {
                   name={field}
                   activeInput={activeInput}
                   handleClick={handleClick}
-                  handleSubmit={handleSubmit}
+                  handleChange={handleChange}
+                  value={formData[field]}
                 />
               ))}
 
