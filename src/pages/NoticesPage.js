@@ -4,7 +4,7 @@ import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategor
 import NoticesSearch from 'components/NoticesSearch';
 import PaginationBox from 'components/PaginationBox/PaginationBox';
 import { fetchNoticesByCategory } from 'redux/notices/operations';
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -26,29 +26,41 @@ const NoticesPage = () => {
 
   // console.log(notices);
 
-  function formatPath(path) {
-    if (path === 'lost-found') return 'lost/found';
-    else return path.split('-').join(' ');
-  }
-
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
-    dispatch(fetchNoticesByCategory({category: formatPath(category), search: search, page: page, limit: 12}));
+    if (category !== 'favourite' && category !== 'own') {
+      dispatch(
+        fetchNoticesByCategory({
+          category,
+          search,
+          page,
+          limit: 12,
+        })
+      );
+    }
   }, [dispatch, page, category, search]);
 
   const handlePageChange = (e, page) => {
-    categoriesListRef.current.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    categoriesListRef.current.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth',
+    });
+
     setPage(page);
   };
-  const handleNoticeSearch = (search) => {
+
+  const handleNoticeSearch = search => {
     setPage(1);
     setSearch(search);
-  }
+  };
+
   return (
     <>
       <PageTitle>Find your favorite pet</PageTitle>
-      <NoticesSearch handleSearch={handleNoticeSearch}/>
+
+      <NoticesSearch handleSearch={handleNoticeSearch} />
+
       <Box
         sx={{
           display: 'flex',
@@ -60,6 +72,7 @@ const NoticesPage = () => {
       </Box>
 
       <NoticesCategoriesList ref={categoriesListRef} notices={notices} />
+
       <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
     </>
   );

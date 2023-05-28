@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
+import { selectIsLoading }from 'redux/notices/selectors'
 import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
@@ -45,6 +46,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
     comments,
     owner,
   } = petInfo;
+  const isLoading = useSelector(selectIsLoading)
 
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString.split('.').reverse().join('.'));
@@ -66,7 +68,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
   const { _id: userId } = useSelector(selectUser);
   const isFavorite = favorite.includes(userId);
 
-  const isCreatedByMe = userId === owner;
+  const isCreatedByMe = owner ? (userId === owner._id) : owner;
   const handleToggleFavorite = noticeId => {
     if (isLoggedIn) {
       if (!isFavorite) {
@@ -78,7 +80,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
   };
 
   const handleDelete = id => {
-    dispatch(deleteNotice(id));
+        dispatch(deleteNotice(id));
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
@@ -116,7 +118,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
               {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
             {isCreatedByMe && (
-              <StyledCardButtonRight onClick={() => handleDelete(noticeId)}>
+              <StyledCardButtonRight onClick={() => handleDelete(noticeId)} disable={isLoading}>
                 <GarbageCan />
               </StyledCardButtonRight>
             )}

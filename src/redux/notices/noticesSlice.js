@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  fetchNotices,
+  fetchUserNotices,
   fetchNoticesByCategory,
   deleteNotice,
   fetchNoticesFavourite,
@@ -19,7 +19,7 @@ export const noticesSlice = createSlice({
   initialState: initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchNotices.fulfilled, (state, action) => {
+      .addCase(fetchUserNotices.fulfilled, (state, action) => {
         return {
           ...state,
           items: [...action.payload.data.notices],
@@ -40,9 +40,12 @@ export const noticesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
+        console.log(action.payload);
         return {
           items: [
-            ...state.items.filter(notice => notice.id !== action.payload.id),
+            ...state.items.filter(
+              notice => notice._id !== action.payload.data._id
+            ),
           ],
           isLoading: false,
         };
@@ -68,7 +71,7 @@ export const noticesSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          fetchNotices.pending,
+          fetchUserNotices.pending,
           fetchNoticesByCategory.pending,
           deleteNotice.pending,
           fetchNoticesFavourite.pending,
@@ -82,7 +85,7 @@ export const noticesSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchNotices.rejected,
+          fetchUserNotices.rejected,
           fetchNoticesByCategory.rejected,
           deleteNotice.rejected,
           fetchNoticesFavourite.rejected,

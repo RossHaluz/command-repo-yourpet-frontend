@@ -5,11 +5,13 @@ axios.defaults.baseURL = 'https://pets-back-end.onrender.com';
 // axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
 // const errorMsg = "Something's wrong. Please update page and try again";
 
-export const fetchNotices = createAsyncThunk(
+export const fetchUserNotices = createAsyncThunk(
   'notices/fetchNotices',
   async (page, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/notices/`, { params: { page } });
+      const response = await axios.get(`/api/notices/user`, {
+        params: { page },
+      });
       return response.data;
     } catch (error) {
       console.log(error.message);
@@ -33,9 +35,11 @@ export const fetchNoticeById = createAsyncThunk(
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchNoticesByCategory',
-  async ({category, search, page, limit = 10}, thunkAPI) => {
+  async ({ category, search, page, limit = 10 }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/notices/?category=${category}&search=${search}&page=${page}&limit=${limit}`);
+      const response = await axios.get(
+        `/api/notices/?category=${category}&search=${search}&page=${page}&limit=${limit}`
+      );
       return response.data;
     } catch (error) {
       console.log(error.message);
