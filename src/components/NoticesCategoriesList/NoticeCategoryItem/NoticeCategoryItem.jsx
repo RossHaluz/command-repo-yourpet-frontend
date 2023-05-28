@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
-import { selectIsLoading } from 'redux/notices/selectors';
+import { selectIsNoticeLoading } from 'redux/notices/selectors';
 import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
@@ -49,7 +49,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
     comments,
     owner,
   } = petInfo;
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsNoticeLoading);
   const { _id: userId } = useSelector(selectUser);
   const [isFavorite, setIsFavorite] = useState(favorite.includes(userId));
   function calculateTimeElapsedYears(dateString) {
@@ -70,7 +70,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
 
   function formatComments(comment) {
     if (comment && comment.length > 40) {
-      return comment.slice(0, 40) + "..." ;
+      return comment.slice(0, 40) + '...';
     } else return comment;
   }
 

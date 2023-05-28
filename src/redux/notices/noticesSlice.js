@@ -80,7 +80,7 @@ export const noticesSlice = createSlice({
           removeNoticeFavourite.pending
         ),
         state => {
-          state.isLoading = false;
+          state.isLoading = true;
         }
       )
       .addMatcher(
