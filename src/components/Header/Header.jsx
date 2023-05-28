@@ -14,12 +14,8 @@ import {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openMobileMenu = () => {
-    setIsOpen(true);
-  };
-
-  const closeMobileMenu = () => {
-    setIsOpen(false);
+  const toggleMobileMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -29,10 +25,10 @@ const Header = () => {
           <Logo />
           <AuthNavigation>
             <Navigation />
-            <BurgerMenuBtn type="button" onClick={openMobileMenu}>
+            <BurgerMenuBtn type="button" onClick={toggleMobileMenu}>
               <BurgerMenu />
             </BurgerMenuBtn>
-            {isOpen && <MobileMenuMain closeMenu={closeMobileMenu} />}
+            {isOpen && <MobileMenuMain closeMenu={toggleMobileMenu} />}
           </AuthNavigation>
         </HeaderWrapper>
       </HeaderContainer>
