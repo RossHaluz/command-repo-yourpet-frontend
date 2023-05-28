@@ -5,9 +5,8 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
 import {
-  fetchNoticesFavourite,
+  fetchNoticesFavourite, fetchUserNotices,
 } from 'redux/notices/operations';
-import { fetchPets } from 'redux/pets/operations';
 
 const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsUserLogin);
@@ -17,8 +16,8 @@ const NoticesCategoriesNav = () => {
     dispatch(fetchNoticesFavourite());
   };
 
-  const handleMyAds = () => {
-    dispatch(fetchPets());
+  const handleMyNotices = () => {
+    dispatch(fetchUserNotices());
   };
 
   return (
@@ -31,7 +30,7 @@ const NoticesCategoriesNav = () => {
         <>
           <StyledNavLink to={`/notices/favourite`} onClick={handleFavorite}>favourite</StyledNavLink>
 
-          <StyledNavLink to={`/notices/own`} onClick={handleMyAds}>own</StyledNavLink>
+          <StyledNavLink to={`/notices/own`} onClick={handleMyNotices}>own</StyledNavLink>
         </>
       )}
     </StyledNavLinkWrapper>
