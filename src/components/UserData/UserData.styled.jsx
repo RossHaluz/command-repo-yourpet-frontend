@@ -6,7 +6,7 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import { Field } from 'formik';
 import { Typography } from '@mui/material';
 
-export const Conteiner = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px 0 40px 0;
@@ -16,7 +16,9 @@ export const Conteiner = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    margin: 35px 0 0 0;
+    display: inline-flex;
+
+    margin: 35px 32px 0 0;
   }
 `;
 

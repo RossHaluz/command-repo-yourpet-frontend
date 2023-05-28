@@ -9,7 +9,6 @@ import PetsData from 'components/PetsData/PetsData';
 import useModal from 'hooks/useModal';
 import { selectModalSuccessRegister } from 'redux/auth/selectors';
 import CongratsModal from 'components/Modal/CongratsModal';
-import { Conteiner } from './UserPage.styled';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -22,17 +21,17 @@ const UserPage = () => {
   }, [dispatch, setIsOpen]);
 
   const onModalToggle = () => {
-    dispatch(hideModalSuccessRegister())
-    toggleModal()
-  }
+    dispatch(hideModalSuccessRegister());
+    toggleModal();
+  };
   return (
-    <Conteiner>
+    <>
       {successRegister && (
-        <CongratsModal isOpen={isOpen} toggleModal={(onModalToggle)} />
+        <CongratsModal isOpen={isOpen} toggleModal={onModalToggle} />
       )}
       <UserData />
       <PetsData />
-    </Conteiner>
+    </>
   );
 };
 

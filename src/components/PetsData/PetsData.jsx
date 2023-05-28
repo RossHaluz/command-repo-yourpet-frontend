@@ -6,7 +6,7 @@ import {
 } from 'redux/pets/selectors';
 
 import AddIcon from '@mui/icons-material/Add';
-import {Conteiner, Title, AddButton, TitleContainer } from './PetsData.styled';
+import { Container, Title, AddButton, TitleContainer } from './PetsData.styled';
 
 import PetsList from '../PetsList';
 
@@ -15,7 +15,7 @@ const PetsData = () => {
   const isLoading = useSelector(selectIsLoading);
 
   return (
-    <Conteiner>
+    <Container>
       <TitleContainer>
         <Title>My pets:</Title>
         <AddButton to="/add-pet">
@@ -28,7 +28,7 @@ const PetsData = () => {
       ) : (
         <PetsList pets={petsInfo} />
       )}
-    </Conteiner>
+    </Container>
   );
 };
 
