@@ -59,8 +59,6 @@ const AddPetForm = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log('send data to server');
-
     const formData = new FormData();
 
     formData.append('name', values.name.trim());
@@ -71,7 +69,7 @@ const AddPetForm = () => {
 
     if (values.category === 'my-pet') {
       dispatch(addPet(formData));
-      navigate(-1);
+      navigate('/user');
       resetForm();
       return;
     }
@@ -81,15 +79,20 @@ const AddPetForm = () => {
     formData.append('sex', values.sex);
 
     if (values.category === 'lost-found') {
-      dispatch(addNotice([values.category, formData]));
-      navigate(-1);
-      resetForm();
-      return;
+      try {
+        dispatch(addNotice([values.category, formData]));
+        navigate(`/notices/${values.category}`);
+        resetForm();
+        return;
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     if (values.category === 'for-free') {
       dispatch(addNotice([values.category, formData]));
-      navigate(-1);
+      navigate(`/notices/${values.category}`);
+
       resetForm();
       return;
     }
@@ -98,7 +101,7 @@ const AddPetForm = () => {
 
     if (values.category === 'sell') {
       dispatch(addNotice([values.category, formData]));
-      navigate(-1);
+      navigate(`/notices/${values.category}`);
       resetForm();
       return;
     }
@@ -116,7 +119,6 @@ const AddPetForm = () => {
         errors,
         setFieldValue,
         validateField,
-        isValid,
         isSubmitting,
         setTouched,
       }) => (
@@ -215,7 +217,6 @@ const AddPetForm = () => {
                   }}
                 >
                   <span>Next</span>
-                  {console.log(errors)}
                   <Pets
                     sx={{ width: 24, height: 24, transform: 'rotate(25deg)' }}
                   />
