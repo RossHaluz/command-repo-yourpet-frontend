@@ -24,7 +24,7 @@ const NoticesCategoriesNav = () => {
     <StyledNavLinkWrapper>
       <StyledNavLink to={`/notices/sell`}>sell</StyledNavLink>
       <StyledNavLink to={`/notices/lost-found`}>lost/found</StyledNavLink>
-      <StyledNavLink to={`/notices/for-free`}>in goo hands</StyledNavLink>
+      <StyledNavLink to={`/notices/for-free`}>in good hands</StyledNavLink>
 
       {isLoggedIn && (
         <>
