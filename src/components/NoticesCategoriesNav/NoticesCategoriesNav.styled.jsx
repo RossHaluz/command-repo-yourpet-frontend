@@ -10,7 +10,7 @@ export const StyledNavLink = styled(NavLink)`
   justify-content: center;
   padding: 8px 16px;
   border-radius: 40px;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
