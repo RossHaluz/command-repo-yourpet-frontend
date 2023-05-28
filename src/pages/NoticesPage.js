@@ -23,7 +23,6 @@ const NoticesPage = () => {
 
   const params = useParams();
   const category = params.category;
-  console.log(category);
 
   // console.log(notices);
 
