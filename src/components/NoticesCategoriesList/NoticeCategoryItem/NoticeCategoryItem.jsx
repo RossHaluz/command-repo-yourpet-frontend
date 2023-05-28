@@ -69,7 +69,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
   }
 
   function formatComments(comment) {
-    if (comment.length > 40) {
+    if (comment && comment.length > 40) {
       return comment.slice(0, 40) + "..." ;
     } else return comment;
   }
