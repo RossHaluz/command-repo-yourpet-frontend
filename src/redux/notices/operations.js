@@ -65,7 +65,6 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async ([category, data], thunkAPI) => {
     try {
-      console.log(data);
       const response = await axios.post(
         `/api/notices/category?category=${category}`,
         data

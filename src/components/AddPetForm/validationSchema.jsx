@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
-import parse from 'date-fns/parse';
 
 const validationSchema = step => {
   let schema;
-  const today = new Date();
 
   if (step === 0) {
     schema = Yup.object().shape({
@@ -20,17 +18,26 @@ const validationSchema = step => {
         .trim()
         .min(2, 'Too Short!')
         .max(16, 'Too Long!'),
-      dateOfBirth: Yup.date()
-        .transform(function (value, originalValue) {
-          if (this.isType(value)) {
-            return value;
+      dateOfBirth: Yup.string()
+        .required('Date is required')
+        .matches(
+          /^(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
+          'Invalid date format (dd.mm.yyyy)'
+        )
+        .test(
+          'not-in-future',
+          'Date should not exceed the current date',
+          function (value) {
+            const currentDate = new Date();
+            const inputDate = new Date(
+              value.substring(6),
+              value.substring(3, 5) - 1,
+              value.substring(0, 2)
+            );
+            return inputDate <= currentDate;
           }
-          const result = parse(originalValue, 'dd.MM.yyyy', new Date());
-          return result;
-        })
-        .typeError('please enter a valid date')
-        .max(today, 'Date of birth should be less then today')
-        .required(),
+        ),
+
       breed: Yup.string()
         .required()
         .min(2, 'Too Short!')

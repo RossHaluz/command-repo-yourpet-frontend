@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ErrorMessage } from 'formik';
 
 export const CategoryWrapper = styled.div`
   display: flex;
@@ -29,13 +28,4 @@ export const Label = styled.label`
     height: 0;
     width: 0;
   }
-`;
-
-export const Message = styled(ErrorMessage)`
-  // position: absolute;
-  bottom: -15px;
-  left: 20px;
-  font-size: 12px;
-  line-height: calc(16 / 12);
-  color: #f43f5e;
 `;
