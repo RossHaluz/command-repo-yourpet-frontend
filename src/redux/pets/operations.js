@@ -11,7 +11,7 @@ export const fetchPets = createAsyncThunk(
     try {
       const response = await axios.get('/api/users/current');
       return response.data;
-    } catch (e) {
+    } catch (error) {
       toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }
@@ -24,7 +24,7 @@ export const deletePet = createAsyncThunk(
     try {
       const response = await axios.delete(`/api/pets/${petId}`);
       return response.data;
-    } catch (e) {
+    } catch (error) {
       toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }
@@ -50,7 +50,7 @@ export const updateUserInfo = createAsyncThunk(
     try {
       const response = await axios.put(`/api/users/update`, userData);
       return response.data;
-    } catch (e) {
+    } catch (error) {
       toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }
