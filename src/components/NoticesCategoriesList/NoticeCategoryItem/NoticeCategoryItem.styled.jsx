@@ -52,7 +52,7 @@ export const StyledCardButtonBottom = styled('button')`
   padding: 6px 0;
   background-color: #cce4fb;
   color: #111111;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: 'SemiBold';
   font-size: 12px;
   line-height: 16px;
@@ -73,7 +73,7 @@ export const StyledCardLinkBottom = styled('a')`
   padding: 6px 0;
   background-color: #cce4fb;
   color: #111111;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: 'SemiBold';
   font-size: 12px;
   line-height: 16px;
@@ -110,6 +110,7 @@ export const StyledCardButtonRight = styled('button')`
     }
   }
 `;
+
 export const CategoryBadge = styled('div')`
   top: 16px;
   left: 0;
@@ -120,7 +121,7 @@ export const CategoryBadge = styled('div')`
   vertical-align: middle;
   background-color: #cce4fb;
   color: #111111;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: 'SemiBold';
   font-size: 14px;
   line-height: 10px;
@@ -141,7 +142,7 @@ export const LearnMore = styled('button')`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: 'SemiBold';
   font-size: 16px;
   line-height: 22px;
@@ -164,7 +165,7 @@ export const LearnMore = styled('button')`
 
 export const StyledComent = styled('p')`
   margin: 20px;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: 'Bold';
   font-size: 24px;
   line-height: 33px;

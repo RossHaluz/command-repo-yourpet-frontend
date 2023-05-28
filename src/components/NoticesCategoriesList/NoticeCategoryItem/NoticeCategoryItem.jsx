@@ -37,7 +37,7 @@ import { toast } from 'react-hot-toast';
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
-    
+
   const {
     _id: noticeId,
     category,
@@ -68,17 +68,23 @@ const NoticeCategoryItem = ({ petInfo }) => {
     return Math.floor(monthsElapsed);
   }
 
+  function formatComments(comment) {
+    if (comment.length > 40) {
+      return comment.slice(0, 40) + "..." ;
+    } else return comment;
+  }
+
   const isLoggedIn = useSelector(selectIsUserLogin);
-  
+
   const isCreatedByMe = owner ? userId === owner._id : owner;
   const handleToggleFavorite = noticeId => {
     if (isLoggedIn) {
       if (!isFavorite) {
         dispatch(makeNoticeFavourite(noticeId));
-        setIsFavorite(!isFavorite)
+        setIsFavorite(!isFavorite);
       } else {
         dispatch(removeNoticeFavourite(noticeId));
-        setIsFavorite(!isFavorite)
+        setIsFavorite(!isFavorite);
       }
     } else {
       toast.error('You should be authorized.');
@@ -137,7 +143,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
           </RightButtonWrapper>
         </StyledCardImgWrapper>
 
-        <StyledComent>{comments}</StyledComent>
+        <StyledComent>{formatComments(comments)}</StyledComent>
         <LearnMore onClick={toggleModal}>
           <span>Learn more</span> <Claw />
         </LearnMore>
@@ -148,7 +154,6 @@ const NoticeCategoryItem = ({ petInfo }) => {
           noticeId={noticeId}
           handleToggleFavorite={handleToggleFavorite}
           isFavorite={isFavorite}
-          
         />
       </StyledCardWrapper>
     </>
