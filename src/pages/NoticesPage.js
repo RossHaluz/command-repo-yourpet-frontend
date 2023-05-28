@@ -30,7 +30,7 @@ const NoticesPage = () => {
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
-    if (category !== 'favourite' || category !== 'own') {
+    if (category !== 'favourite' && category !== 'own') {
       dispatch(
         fetchNoticesByCategory({
           category,
