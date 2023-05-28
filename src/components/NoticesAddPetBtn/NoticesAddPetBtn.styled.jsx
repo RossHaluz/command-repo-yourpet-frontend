@@ -2,7 +2,7 @@ import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 
 export const AddPetStyledLink = styled(NavLink)`
-  width: 129px;
+  /* width: 129px; */
   box-sizing: border-box;
   color: #fef9f9;
   background: #54adff;
@@ -11,7 +11,7 @@ export const AddPetStyledLink = styled(NavLink)`
   justify-content: center;
   padding: 8px 16px;
   border-radius: 40px;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -27,7 +27,7 @@ export const AddPetStyledLink = styled(NavLink)`
   }
 `;
 export const AddPetStyledBtn = styled('button')`
-  width: 129px;
+  /* width: 129px; */
   box-sizing: border-box;
   color: #fef9f9;
   background: #54adff;
@@ -36,7 +36,7 @@ export const AddPetStyledBtn = styled('button')`
   justify-content: center;
   padding: 8px 16px;
   border-radius: 40px;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -65,7 +65,7 @@ export const AddPetStyledLinkMobile = styled(NavLink)`
   justify-content: center;
   padding: 8px 16px;
   border-radius: 50%;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -95,7 +95,7 @@ export const AddPetStyledBtnMobile = styled('button')`
   justify-content: center;
   padding: 8px 16px;
   border-radius: 50%;
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
