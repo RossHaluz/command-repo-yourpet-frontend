@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://pets-back-end.onrender.com';
+const errorMsg = "Something's wrong. Please update page and try again";
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
@@ -9,8 +11,9 @@ export const fetchPets = createAsyncThunk(
     try {
       const response = await axios.get('/api/users/current');
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
     }
   }
 );
@@ -21,8 +24,9 @@ export const deletePet = createAsyncThunk(
     try {
       const response = await axios.delete(`/api/pets/${petId}`);
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
     }
   }
 );
@@ -34,7 +38,7 @@ export const addPet = createAsyncThunk(
       const response = await axios.post(`/api/pets`, newPet);
       return response.data;
     } catch (error) {
-      console.log(error.message);
+      toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }
   }
@@ -46,8 +50,9 @@ export const updateUserInfo = createAsyncThunk(
     try {
       const response = await axios.put(`/api/users/update`, userData);
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
     }
   }
 );
