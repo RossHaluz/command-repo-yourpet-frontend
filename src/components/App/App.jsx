@@ -59,6 +59,9 @@ const App = () => {
               <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
             }
           />
+          <Route path="notices/" element={
+              <PublicRoute redirectTo="sell" element={<NoticesPage />} />
+            } />
           <Route path="notices/:category" element={<NoticesPage />} />
 
           <Route path="friends" element={<OurFriendsPage />} />
