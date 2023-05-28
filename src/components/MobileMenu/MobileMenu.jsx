@@ -49,7 +49,7 @@ const MobileMenuMain = ({ closeMenu }) => {
             Our news
           </MobileManuMainNavigationItem>
           <MobileManuMainNavigationItem
-            to="notices"
+            to="notices/sell"
             onClick={() => closeMenu()}
           >
             Notices
