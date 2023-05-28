@@ -10,13 +10,13 @@ import {
 import { useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectIsUserLogin } from 'redux/auth/selectors';
+import { toast } from 'react-hot-toast';
 
 export const NoticesAddPetBtn = () => {
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
   const isLoggeIn = useSelector(selectIsUserLogin)
-  // const isPopUp = true; // will be recived from global redux object
   const handleNavLinkClick = () => {
-    alert('You should be authorized.'); //will be should Authoized popUp
+    toast.error('You should be authorized.');
   };
 
   return (

@@ -60,9 +60,30 @@ export const StyledCardButtonBottom = styled('button')`
   text-align: Left;
   vertical-align: Center;
   letter-spacing: 4%;
-  cursor: pointer;
   border: none;
   border-radius: 15px;
+`;
+export const StyledCardLinkBottom = styled('a')`
+  width: 80px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  background-color: #cce4fb;
+  color: #111111;
+  font-family: 'Manrope';
+  font-style: 'SemiBold';
+  font-size: 12px;
+  line-height: 16px;
+  line-height: 100%;
+  text-align: Left;
+  vertical-align: Center;
+  letter-spacing: 4%;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
   &:hover {
     background: linear-gradient(to bottom, #419ef1 0%, #9bd0ff 100%);
     color: white;

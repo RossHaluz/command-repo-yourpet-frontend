@@ -6,18 +6,15 @@ import { CategoryChipStyled, ImageBoxStyled, InfoBoxStyled, PetImageStyled, Info
 import { getNoticeById, addNoticeToFavorite, removeNoticeFromFavorite } from "api/NoticesApi";
 import { useSelector } from 'react-redux';
 import { selectUser, selectIsUserLogin } from "redux/auth/selectors";
+import { toast } from "react-hot-toast";
 
 const IMG_PLACEHOLDER = 'https://placehold.co/600x650';
 
-const ModalNotice = ({ isOpen, toggleModal, noticeId}) => {
+const ModalNotice = ({ isOpen, toggleModal, noticeId,isFavorite,handleToggleFavorite}) => {
   const [notice, setNotice] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isAddedToFavorite, setIsAddedToFavorite] = useState(false);
-
   const user = useSelector(selectUser);
-  const isUserLogin = useSelector(selectIsUserLogin);
-
   const getPhone = (owner) => <LinkStyled href={`tel: ${owner?.phone}`}>{owner?.phone}</LinkStyled>;
   const getEmail = (owner) => <LinkStyled href={`mailto: ${owner?.email}`}>{owner?.email}</LinkStyled>;
   const { name, title, imgURL, category, dateOfBirth, breed, place, sex, comments, owner } = notice;
@@ -37,7 +34,6 @@ const ModalNotice = ({ isOpen, toggleModal, noticeId}) => {
       getNoticeById(noticeId).then(({notice}) => {
         setNotice(notice);
         setIsLoading(false);
-        setIsAddedToFavorite(() => notice.favorite?.includes(user?._id))
       }).catch((e) => {
         setErrorMessage('Oops nothing found');
         setIsLoading(false);
@@ -45,24 +41,6 @@ const ModalNotice = ({ isOpen, toggleModal, noticeId}) => {
     }
 
   }, [isOpen, noticeId, user?._id])
-
-  const onAddToFavoritesClick = (e) => {
-    if (!isUserLogin) {
-      alert('You need to be authorized to add to favorites');
-      
-      return;
-    }
-
-    if (!isAddedToFavorite) {
-      addNoticeToFavorite(noticeId).then((data) => {
-        setIsAddedToFavorite(true)
-      })
-    } else {
-       removeNoticeFromFavorite(noticeId).then((data) => {
-         setIsAddedToFavorite(false)
-       })
-    }
-  }
 
   return (
     <>
@@ -115,8 +93,8 @@ const ModalNotice = ({ isOpen, toggleModal, noticeId}) => {
               Comments: {comments}
             </Typography>
             <Box display="flex" justifyContent="end" alignItems="center" sx={{marginTop: '20px'}}>
-              <Button onClick={onAddToFavoritesClick} variant={isAddedToFavorite ? 'contained' : 'outlined'} sx={{ width: '125px' }}>
-                {isAddedToFavorite ? `Remove` : `Add to`} &nbsp; <FavoriteBorderIcon sx={{ verticalAlign: 'top', fontSize: '24px' }} />
+              <Button onClick={()=>handleToggleFavorite(noticeId)} variant={isFavorite ? 'contained' : 'outlined'} sx={{ width: '125px' }}>
+                {isFavorite ? `Remove` : `Add to`} &nbsp; <FavoriteBorderIcon sx={{ verticalAlign: 'top', fontSize: '24px' }} />
               </Button>
               <Button component="a" href={`tel:${getPhone(user)}`} variant="outlined" sx={{width: '125px', marginLeft: '15px'}}>
                 Contact

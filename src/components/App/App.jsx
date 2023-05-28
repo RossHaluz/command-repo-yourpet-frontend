@@ -8,6 +8,7 @@ import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute/PublicRoute';
 import MobileMenuMain from 'components/MobileMenu/MobileMenu';
 import Theme from 'theme/Theme';
+import { Toaster } from 'react-hot-toast';
 
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -32,6 +33,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={Theme}>
+      <Toaster/>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
