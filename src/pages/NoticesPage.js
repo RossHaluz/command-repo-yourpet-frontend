@@ -23,20 +23,23 @@ const NoticesPage = () => {
 
   const params = useParams();
   const category = params.category;
+  console.log(category);
 
   // console.log(notices);
 
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 
-    dispatch(
-      fetchNoticesByCategory({
-        category,
-        search,
-        page,
-        limit: 12,
-      })
-    );
+    if (category !== 'favourite' || category !== 'own') {
+      dispatch(
+        fetchNoticesByCategory({
+          category,
+          search,
+          page,
+          limit: 12,
+        })
+      );
+    }
   }, [dispatch, page, category, search]);
 
   const handlePageChange = (e, page) => {
@@ -44,6 +47,7 @@ const NoticesPage = () => {
       block: 'start',
       behavior: 'smooth',
     });
+
     setPage(page);
   };
 
@@ -55,7 +59,9 @@ const NoticesPage = () => {
   return (
     <>
       <PageTitle>Find your favorite pet</PageTitle>
+
       <NoticesSearch handleSearch={handleNoticeSearch} />
+
       <Box
         sx={{
           display: 'flex',
@@ -67,6 +73,7 @@ const NoticesPage = () => {
       </Box>
 
       <NoticesCategoriesList ref={categoriesListRef} notices={notices} />
+
       <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
     </>
   );
