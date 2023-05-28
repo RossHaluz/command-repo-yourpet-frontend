@@ -15,11 +15,13 @@ import {
   NameUser,
 } from './MobileMenu.styled';
 import { useSelector } from 'react-redux';
-import { selectIsUserLogin } from 'redux/auth/selectors';
+import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
+
 
 const MobileMenuMain = ({ closeMenu }) => {
   const isLogin = useSelector(selectIsUserLogin);
-
+  const user = useSelector(selectUser);
+  const nickName = user.email.split('@')[0];
   return (
     <MobileMenu>
       <MobileMenuWrapper>
@@ -31,7 +33,7 @@ const MobileMenuMain = ({ closeMenu }) => {
       <MobileMenuAuthNav>
         {isLogin ? (
           <MobileMenuUser to="user" onClick={() => closeMenu()}>
-            <NameUser>John</NameUser>
+            <NameUser>{nickName}</NameUser>
             <UserIcon />
           </MobileMenuUser>
         ) : (

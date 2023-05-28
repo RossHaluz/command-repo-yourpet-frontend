@@ -11,6 +11,7 @@ import {
   MuiInputMobile,
 } from './NoticesSearch.styled';
 import { useMediaQuery } from '@mui/material';
+import { toast } from 'react-hot-toast';
 
 
 const NoticesSearch = ({handleSearch}) => {
@@ -21,8 +22,7 @@ const NoticesSearch = ({handleSearch}) => {
     onSubmit: (values, actions) => {
       const { search } = values;
       if (search.trim() === '' || search.trim().length > 50) {
-        //simple type of validation will be discused
-        alert('Invalid query'); // should be kind of toast
+        toast.error("Invalid query"); 
       } else {
         handleSearch(search)
       }

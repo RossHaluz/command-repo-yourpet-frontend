@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
-import { selectIsLoading }from 'redux/notices/selectors'
+import { selectIsLoading } from 'redux/notices/selectors';
 import { deleteNotice } from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
@@ -23,6 +23,7 @@ import {
   StyledCardButtonBottom,
   StyledCardButtonRight,
   StyledCardImgWrapper,
+  StyledCardLinkBottom,
   StyledCardWrapper,
   StyledComent,
 } from './NoticeCategoryItem.styled';
@@ -31,10 +32,12 @@ import {
   makeNoticeFavourite,
   removeNoticeFavourite,
 } from 'redux/notices/operations';
+import { toast } from 'react-hot-toast';
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
+    
   const {
     _id: noticeId,
     category,
@@ -46,8 +49,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
     comments,
     owner,
   } = petInfo;
-  const isLoading = useSelector(selectIsLoading)
-
+  const isLoading = useSelector(selectIsLoading);
+  const { _id: userId } = useSelector(selectUser);
+  const [isFavorite, setIsFavorite] = useState(favorite.includes(userId));
   function calculateTimeElapsedYears(dateString) {
     const startDate = new Date(dateString.split('.').reverse().join('.'));
     const currentDate = new Date();
@@ -65,22 +69,24 @@ const NoticeCategoryItem = ({ petInfo }) => {
   }
 
   const isLoggedIn = useSelector(selectIsUserLogin);
-  const { _id: userId } = useSelector(selectUser);
-  const isFavorite = favorite.includes(userId);
-
-  const isCreatedByMe = owner ? (userId === owner._id) : owner;
+  
+  const isCreatedByMe = owner ? userId === owner._id : owner;
   const handleToggleFavorite = noticeId => {
     if (isLoggedIn) {
       if (!isFavorite) {
         dispatch(makeNoticeFavourite(noticeId));
+        setIsFavorite(!isFavorite)
       } else {
         dispatch(removeNoticeFavourite(noticeId));
+        setIsFavorite(!isFavorite)
       }
+    } else {
+      toast.error('You should be authorized.');
     }
   };
 
   const handleDelete = id => {
-        dispatch(deleteNotice(id));
+    dispatch(deleteNotice(id));
   };
 
   const years = calculateTimeElapsedYears(dateOfBirth);
@@ -98,10 +104,13 @@ const NoticeCategoryItem = ({ petInfo }) => {
           />
           <CategoryBadge>{category}</CategoryBadge>
           <BottomButtonWrapper>
-            <StyledCardButtonBottom>
+            <StyledCardLinkBottom
+              target="_blank"
+              href={`https://www.google.com/maps/place/${place}`}
+            >
               <Location />
               <span>{place}</span>
-            </StyledCardButtonBottom>
+            </StyledCardLinkBottom>
             <StyledCardButtonBottom>
               <Age />
               <span>{years < 1 ? monthes + ' mon' : years + ' year'}</span>
@@ -118,7 +127,10 @@ const NoticeCategoryItem = ({ petInfo }) => {
               {isFavorite ? <FavoriteChecked /> : <Favorite />}
             </StyledCardButtonRight>
             {isCreatedByMe && (
-              <StyledCardButtonRight onClick={() => handleDelete(noticeId)} disable={isLoading}>
+              <StyledCardButtonRight
+                onClick={() => handleDelete(noticeId)}
+                disable={isLoading}
+              >
                 <GarbageCan />
               </StyledCardButtonRight>
             )}
@@ -134,6 +146,9 @@ const NoticeCategoryItem = ({ petInfo }) => {
           isOpen={isOpen}
           toggleModal={toggleModal}
           noticeId={noticeId}
+          handleToggleFavorite={handleToggleFavorite}
+          isFavorite={isFavorite}
+          
         />
       </StyledCardWrapper>
     </>
