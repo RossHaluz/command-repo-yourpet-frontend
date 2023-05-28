@@ -40,9 +40,12 @@ export const noticesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(deleteNotice.fulfilled, (state, action) => {
+        console.log(action.payload);
         return {
           items: [
-            ...state.items.filter(notice => notice.id !== action.payload.id),
+            ...state.items.filter(
+              notice => notice._id !== action.payload.data._id
+            ),
           ],
           isLoading: false,
         };
