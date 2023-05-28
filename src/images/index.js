@@ -7,3 +7,4 @@ export { default as sirius } from './ourFriends/sirius.png';
 export { default as purina } from './ourFriends/purina.png';
 export { default as pethelp } from './ourFriends/pethelp.png';
 export { default as lico } from './ourFriends/lico.png';
+export { default as avatarDefault } from './avatarDefault/avatarDefault.png';
