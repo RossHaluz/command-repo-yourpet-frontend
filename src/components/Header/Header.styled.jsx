@@ -1,26 +1,27 @@
 import styled from '@emotion/styled';
 
 export const MainHeader = styled.header`
-margin-bottom: 30px;
 `;
 
 export const HeaderContainer = styled.div`
  display: flex;
   margin: 0 auto;
-  padding: 0 15px;
 
   @media (min-width: 320px) {
     width: 320px;
     justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 10px;
+   padding: 20px 0;
   }
 
   @media (min-width: 768px) {
     width: 768px;
+    padding-top: 24px;
+    margin-bottom:  80px
   }
 
   @media (min-width: 1200px) {
+    padding-top: 20px;
+    margin-bottom: 30px;
     width: 1280px;
   }
 `;
