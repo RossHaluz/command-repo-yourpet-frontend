@@ -1,135 +1,68 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
 
+import { logout } from 'redux/auth/operations';
 import { updateUserInfo } from 'redux/pets/operations';
 import { selectUserInfo } from 'redux/pets/selectors';
-import useModal from 'hooks/useModal';
 
 import LogoutModal from '../Modal/LogoutModal';
-import { logout } from 'redux/auth/operations';
-import { avatarDefault } from 'images';
+
+import useModal from 'hooks/useModal';
+import EditPhoto from './EditPhoto';
 
 import {
   Container,
   Box,
   Title,
-  Img,
-  PhotoBox,
-  PhotoWrapper,
-  DivEditPhoto,
-  EditButtonPhoto,
-  IconWrapperCheck,
-  IconWrapperCross,
   Label,
   Input,
-  IconCamera,
   IconLogOut,
   IconEdit,
   DivLogOut,
   ButtonLogOut,
   DivIconCheck,
   IconCheck,
-  IconCross,
 } from './UserData.styled';
 
-const UserData = () => {
-  const fileInputRef = useRef(null);
-  const dispatch = useDispatch();
-  const { name, email, phone, birthday, city, avatarURL } =
-    useSelector(selectUserInfo);
+const validationSchema = yup.object().shape({
+  Name: yup.string().min(3).max(17),
+  Email: yup.string().email('Invalid email'),
+  Phone: yup.string(),
+  Birthday: yup.string(),
+  City: yup.string(),
+});
 
-  const [activeInput, setActiveInput] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [isEditingPhoto, setIsEditingPhoto] = useState(false);
-  const [isOpen, toggleModal] = useModal();
-  const [fieldValue, setFieldValue] = useState({
+const UserData = () => {
+  const dispatch = useDispatch();
+  const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
+  const initialValues = {
     Name: name || 'Name',
     Email: email,
     Phone: phone || '+380000000000',
     Birthday: birthday || '00.00.0000',
-    City: city || 'Dnipro',
-  });
-
-  const Field = ({ name, activeInput, handleClick, onChange }) => {
-    const isActive = activeInput === name;
-    const isEditing = isActive && activeInput !== null;
-
-    const handleIconCheckClick = () => {
-      onChange();
-      handleClick(name);
-    };
-
-    const handleInputChange = e => {
-      const { name: fieldName, value: fieldValue } = e.target;
-      setFieldValue(prevState => ({
-        ...prevState,
-        [fieldName]: fieldValue,
-      }));
-    };
-
-    return (
-      <Label>
-        {name}:
-        <Input
-          type="text"
-          name={name}
-          readOnly={!isActive}
-          className={isEditing ? 'editing' : ''}
-          value={fieldValue[name]}
-          onChange={handleInputChange}
-        />
-        {isActive ? (
-          <DivIconCheck>
-            <IconCheck onClick={handleIconCheckClick}></IconCheck>
-          </DivIconCheck>
-        ) : (
-          <IconEdit onClick={() => handleClick(name)}></IconEdit>
-        )}
-      </Label>
-    );
+    City: city || 'city',
   };
 
-  const handleFileChange = event => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+  const [activeInput, setActiveInput] = useState(null);
+  const [isOpen, toggleModal] = useModal();
+  const [formValues, setFormValues] = useState(initialValues);
+  const handleFieldChange = (fieldName, fieldValue) => {
+    setActiveInput(fieldName);
+    setFormValues(prevValues => ({
+      ...prevValues,
+      [fieldName]: fieldValue,
+    }));
   };
 
-  const handleClick = inputName => {
-    setActiveInput(prevInput => (prevInput === inputName ? null : inputName));
-  };
-
-  const handleSubmit = () => {
+  const handleFormSubmit = values => {
     const updatedData = new FormData();
-    updatedData.append('name', fieldValue.Name);
-    updatedData.append('phone', fieldValue.Phone);
-    updatedData.append('birthday', fieldValue.Birthday);
-    updatedData.append('city', fieldValue.City);
+    updatedData.append('name', values.Name);
+    updatedData.append('phone', values.Phone);
+    updatedData.append('birthday', values.Birthday);
+    updatedData.append('city', values.City);
     dispatch(updateUserInfo(updatedData));
-  };
-
-  const handleEditPhoto = () => {
-    setIsEditingPhoto(true);
-    fileInputRef.current.click();
-  };
-
-  const handleConfirmPhoto = () => {
-    const updatedData = new FormData();
-    updatedData.append('image', selectedFile, selectedFile.name);
-    dispatch(updateUserInfo(updatedData));
-  };
-
-  const handleCancelPhoto = () => {
-    setIsEditingPhoto(false);
-    setSelectedFile(null);
-  };
-
-  const handleButtonClick = () => {
-    if (isEditingPhoto) {
-      setIsEditingPhoto(false);
-    } else {
-      handleEditPhoto();
-    }
   };
 
   const handleLogout = () => {
@@ -137,61 +70,58 @@ const UserData = () => {
     dispatch(logout());
   };
 
-  const userInfoFields = ['Name', 'Email', 'Phone', 'Birthday', 'City'];
+  const renderField = name => {
+    const isActive = activeInput === name;
+    const isEditing = isActive && activeInput !== null;
+
+    const handleIconCheckClick = () => {
+      handleFormSubmit(formValues);
+      handleFieldChange(name);
+      setActiveInput(null);
+    };
+
+    return (
+      <Label key={name}>
+        {name}:
+        <Field name={name}>
+          {({ field }) => (
+            <Input
+              type="text"
+              {...field}
+              readOnly={!isActive}
+              className={isEditing ? 'editing' : ''}
+              onChange={e => {
+                field.onChange(e);
+                handleFieldChange(name, field.value);
+              }}
+            />
+          )}
+        </Field>
+        {isActive ? (
+          <DivIconCheck>
+            <IconCheck onClick={handleIconCheckClick} />
+          </DivIconCheck>
+        ) : (
+          <IconEdit onClick={() => handleFieldChange(name)} />
+        )}
+      </Label>
+    );
+  };
 
   return (
     <Container>
       <Title>My information:</Title>
 
       <Box>
-        <PhotoBox>
-          <PhotoWrapper>
-            {selectedFile ? (
-              <Img src={URL.createObjectURL(selectedFile)} alt="Photo" />
-            ) : (
-              <Img src={avatarURL || avatarDefault} alt="User" />
-            )}
-          </PhotoWrapper>
+        <EditPhoto />
 
-          <DivEditPhoto>
-            <EditButtonPhoto onClick={handleButtonClick}>
-              <input
-                ref={fileInputRef}
-                type="file"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-              />
-              {isEditingPhoto ? (
-                <>
-                  <IconWrapperCheck>
-                    <IconCheck onClick={handleConfirmPhoto} />
-                  </IconWrapperCheck>
-                  <span>Confirm</span>
-                  <IconWrapperCross>
-                    <IconCross onClick={handleCancelPhoto} />
-                  </IconWrapperCross>
-                </>
-              ) : (
-                <>
-                  <IconCamera />
-                  <span>Edit photo</span>
-                </>
-              )}
-            </EditButtonPhoto>
-          </DivEditPhoto>
-        </PhotoBox>
-
-        <Formik initialValues={fieldValue} onSubmit={handleSubmit}>
+        <Formik
+          initialValues={formValues}
+          onSubmit={handleFormSubmit}
+          validationSchema={validationSchema}
+        >
           <Form>
-            {userInfoFields.map(field => (
-              <Field
-                key={field}
-                name={field}
-                activeInput={activeInput}
-                handleClick={handleClick}
-                onChange={handleSubmit}
-              />
-            ))}
+            {Object.keys(formValues).map(field => renderField(field))}
 
             <DivLogOut>
               <ButtonLogOut type="button" onClick={handleLogout}>
@@ -202,7 +132,7 @@ const UserData = () => {
                 isOpen={isOpen}
                 toggleModal={toggleModal}
                 onLogout={handleLogout}
-              ></LogoutModal>
+              />
             </DivLogOut>
           </Form>
         </Formik>
