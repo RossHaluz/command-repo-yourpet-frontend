@@ -93,7 +93,6 @@ const UserData = () => {
               readOnly={!isActive}
               className={isEditing ? 'editing' : ''}
               onChange={e => {
-                console.log('test', field)
                 field.onChange(e);
                 handleFieldChange(name, field.value);
               }}
