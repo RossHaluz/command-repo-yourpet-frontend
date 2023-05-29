@@ -16,6 +16,10 @@ const UserPage = () => {
   const [isOpen, toggleModal, setIsOpen] = useModal();
 
   useEffect(() => {
+    document.title = 'YourPet | User';
+  });
+
+  useEffect(() => {
     setIsOpen(true);
     dispatch(fetchPets());
   }, [dispatch, setIsOpen]);
