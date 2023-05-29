@@ -84,7 +84,6 @@ const MoreInfo = ({
             {values.image ? 'Add photo' : 'Load the pet’s image: '}
           </PhotoText>
           <AddLabel>
-            {/* {console.log(values.file)} */}
             {values.image ? (
               <img src={URL.createObjectURL(values.image)} alt="pet" />
             ) : (
@@ -112,7 +111,7 @@ const MoreInfo = ({
               type="text"
               name="place"
               placeholder="Type location"
-              errors={touched.location && errors.location}
+              errors={touched.place && errors.place}
             />
             <Message name="place" component="div" />
           </Label>
@@ -137,6 +136,8 @@ const MoreInfo = ({
             as="textarea"
             name="comments"
             placeholder="Type comment"
+            category={category}
+            step={step}
             errors={touched.comments && errors.comments}
           />
           <Message name="comments" component="div" />
