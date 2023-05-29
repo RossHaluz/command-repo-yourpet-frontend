@@ -32,6 +32,9 @@ const authSlice = createSlice({
       state.isRefreshing = true;
       state.modalSuccessRegister = true;
     },
+    [register.rejected](state) {
+      state.isUserLogin = false;
+    },
     [login.pending](state, __) {
       state.isLoading = true;
     },
