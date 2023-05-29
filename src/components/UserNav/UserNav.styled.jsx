@@ -8,6 +8,7 @@ export const UserLink = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
 `;
 
 export const LogoutBtn = styled(Button)(({ theme }) => ({
