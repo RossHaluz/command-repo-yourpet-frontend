@@ -7,6 +7,7 @@ export const Title = styled.h2`
 
 export const List = styled.ul`
   margin-top: 24px;
+  margin-bottom: 24px;
 
   @media screen and (min-width: 748px) {
     display: flex;
