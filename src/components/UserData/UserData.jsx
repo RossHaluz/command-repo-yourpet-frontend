@@ -7,7 +7,7 @@ import { selectUserInfo } from 'redux/pets/selectors';
 import useModal from 'hooks/useModal';
 
 import LogoutModal from '../Modal/LogoutModal';
-import { logout } from 'redux/auth/operetions';
+import { logout } from 'redux/auth/operations';
 import { avatarDefault } from 'images';
 
 import {

@@ -5,7 +5,7 @@ import {
   logout,
   getCurrentUser,
   hideModalSuccessRegister,
-} from './operetions';
+} from './operations';
 
 const initialState = {
   user: { email: null, password: null },

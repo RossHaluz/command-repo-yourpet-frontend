@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import {FormButton} from './LoginForm.styled';
-import { login } from 'redux/auth/operetions';
+import { login } from 'redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/selectors';
 

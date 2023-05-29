@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import { FormButton } from './RegisterForm.styled';
-import { register } from 'redux/auth/operetions';
+import { register } from 'redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/selectors';
 
