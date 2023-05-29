@@ -12,12 +12,12 @@ export const AuthNavigation = styled.nav`
   @media (min-width: 768px) {
     display: flex;
     gap: 20px;
+    margin-left: auto;
     margin-right: 28px;
   }
 
   @media (min-width: 1200px) {
-    margin-left: 0;
-    margin-right: 0;
+   margin-left: auto;
   }
 `;
 
