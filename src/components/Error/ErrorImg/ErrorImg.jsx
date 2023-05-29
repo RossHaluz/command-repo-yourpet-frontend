@@ -15,7 +15,7 @@ const ErrorImg = () => {
       srcSet={`${error_sm_1x} 280w, ${error_sm_2x} 560w, ${error_mb_1x} 704w, ${error_mb_2x} 1408w, ${error_lg_1x} 822w ${error_lg_2x} 1644w`}
       src={error_sm_1x}
       alt="Error img"
-      sizes="(min-width: 1280px) 1644px, (min-width: 1200px) 822px, (min-width: 768px) 1408px, (min-width: 768px) 704px, (min-width: 480px) 560px, (min-width: 480px) 280px, 100vw"
+      sizes="(min-width: 1280px) 1644px, (min-width: 1280px) 822px, (min-width: 768px) 1408px, (min-width: 768px) 704px, (min-width: 480px) 560px, (min-width: 480px) 280px, 100vw"
     />
   );
 };
