@@ -85,3 +85,23 @@ export const Contacts = styled.p`
     font-size: 16px;
   }
 `;
+
+export const ContactsLink = styled.a`
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  color: #111111;
+  transition: color 250ms ease-in;
+
+  :hover {
+    color: #54adff;
+  }
+
+  @media screen and (min-width: 748px) and (max-width: 1279px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
+`;
