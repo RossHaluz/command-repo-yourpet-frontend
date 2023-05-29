@@ -37,6 +37,7 @@ const validationSchema = yup.object().shape({
 const UserData = () => {
   const dispatch = useDispatch();
   const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
+
   const initialValues = {
     Name: name || 'Name',
     Email: email,
@@ -48,6 +49,7 @@ const UserData = () => {
   const [activeInput, setActiveInput] = useState(null);
   const [isOpen, toggleModal] = useModal();
   const [formValues, setFormValues] = useState(initialValues);
+
   const handleFieldChange = (fieldName, fieldValue) => {
     setActiveInput(fieldName);
     setFormValues(prevValues => ({
@@ -57,6 +59,14 @@ const UserData = () => {
   };
 
   const handleFormSubmit = values => {
+    const hasEmptyValues = Object.values(values).some(
+      value => value === undefined || value === ''
+    );
+
+    if (hasEmptyValues) {
+      return;
+    }
+
     const updatedData = new FormData();
     updatedData.append('name', values.Name);
     updatedData.append('phone', values.Phone);
