@@ -33,11 +33,15 @@ const NoticesPage = () => {
           category,
           search,
           page,
-          limit: 12,
+          limit: 8,
         })
       );
     }
   }, [dispatch, page, category, search]);
+
+  const handleCategoryChange = () => {
+    setPage(1)
+  }
 
   const handlePageChange = (e, page) => {
     categoriesListRef.current.scrollIntoView({
@@ -65,13 +69,15 @@ const NoticesPage = () => {
           justifyContent: 'space-between',
         }}
       >
-        <NoticesCategoriesNav />
+        <NoticesCategoriesNav onCategoryChange={handleCategoryChange}/>
         <NoticesAddPetBtn />
       </Box>
 
       <NoticesCategoriesList ref={categoriesListRef} notices={notices} />
 
-      <PaginationBox onChange={handlePageChange} pagesCount={totalPages} />
+      {totalPages > 1 && (
+        <PaginationBox page={page} onChange={handlePageChange} pagesCount={totalPages} />
+      )}
     </>
   );
 };
