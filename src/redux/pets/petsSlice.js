@@ -25,7 +25,6 @@ const contactsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
-        console.log(payload);
         const updatedFields = payload;
         state.userInfo = {
           ...state.userInfo,

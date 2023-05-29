@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 const MainPage = () => {
   useEffect(() => {
-    document.title = 'YourPet';
+    document.title = 'YourPet | Main';
   });
 
   return <Home />;

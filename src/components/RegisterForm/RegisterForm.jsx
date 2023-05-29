@@ -12,8 +12,9 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import { FormButton } from './RegisterForm.styled';
-import { register } from 'redux/auth/operetions';
-import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/auth/selectors';
 
 const validationSchema = yup.object({
   email: yup
@@ -27,7 +28,7 @@ const validationSchema = yup.object({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'Password must match')
-    .required('Confirm password is require'),
+    .required('Confirm password is required'),
 });
 
 const RegisteForm = () => {
@@ -45,6 +46,7 @@ const RegisteForm = () => {
   };
 
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading)
 
   const formik = useFormik({
     initialValues: {
@@ -53,8 +55,8 @@ const RegisteForm = () => {
       confirmPassword: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(register(values));
+    onSubmit: ({ email, password }, { resetForm }) => {
+      dispatch(register({ email, password }));
 
       resetForm();
     },
@@ -134,7 +136,7 @@ const RegisteForm = () => {
           }}
         />
 
-        <FormButton type="submit" variant="contained">
+        <FormButton type="submit" variant="contained" disabled={isLoading}>
           Registration
         </FormButton>
         <Typography

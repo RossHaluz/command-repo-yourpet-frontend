@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://pets-back-end.onrender.com';
+axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -19,7 +20,8 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      toast.error(error.message);
+      return rejectWithValue('');
     }
   }
 );
@@ -32,7 +34,8 @@ export const login = createAsyncThunk(
       setAuthHeader(data.user.token);
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      toast.error(error.message);
+      return rejectWithValue('');
     }
   }
 );
@@ -44,7 +47,8 @@ export const logout = createAsyncThunk(
       await axios.post('/api/users/logout');
       removeAuthHeader();
     } catch (error) {
-      rejectWithValue(error.message);
+      toast.error(error.message);
+      return rejectWithValue('');
     }
   }
 );
@@ -53,7 +57,6 @@ export const getCurrentUser = createAsyncThunk(
   'auth/current',
   async (__, { getState, rejectWithValue }) => {
     const state = getState();
-    // console.log(state);
     const token = state.auth.token;
     if (!token) {
       return rejectWithValue();
@@ -64,7 +67,8 @@ export const getCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/api/users/current');
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      toast.error(error.message);
+      return rejectWithValue('');
     }
   }
 );
