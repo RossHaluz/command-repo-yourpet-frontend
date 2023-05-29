@@ -8,23 +8,25 @@ import {
   fetchNoticesFavourite, fetchUserNotices,
 } from 'redux/notices/operations';
 
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = ({onCategoryChange}) => {
   const isLoggedIn = useSelector(selectIsUserLogin);
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
     dispatch(fetchNoticesFavourite());
+    onCategoryChange();
   };
 
   const handleMyNotices = () => {
-    dispatch(fetchUserNotices());
+    dispatch(fetchUserNotices())
+    onCategoryChange();
   };
 
   return (
     <StyledNavLinkWrapper>
-      <StyledNavLink to={`/notices/sell`}>sell</StyledNavLink>
-      <StyledNavLink to={`/notices/lost-found`}>lost/found</StyledNavLink>
-      <StyledNavLink to={`/notices/for-free`}>in good hands</StyledNavLink>
+      <StyledNavLink onClick={onCategoryChange} to={`/notices/sell`}>sell</StyledNavLink>
+      <StyledNavLink onClick={onCategoryChange} to={`/notices/lost-found`}>lost/found</StyledNavLink>
+      <StyledNavLink onClick={onCategoryChange} to={`/notices/for-free`}>in good hands</StyledNavLink>
 
       {isLoggedIn && (
         <>

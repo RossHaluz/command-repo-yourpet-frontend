@@ -46,6 +46,7 @@ const ModalNotice = ({
     name,
     title,
     imgURL,
+    price,
     category,
     dateOfBirth,
     breed,
@@ -55,8 +56,9 @@ const ModalNotice = ({
     owner,
   } = notice;
 
-  const infoDefinitions = [
+  let infoDefinitions = [
     { name: 'Name:', definition: name },
+    { name: 'Price:', definition: price },
     { name: 'Birthday:', definition: dateOfBirth },
     { name: 'Breed:', definition: breed },
     { name: 'Place:', definition: place },
@@ -64,6 +66,7 @@ const ModalNotice = ({
     { name: 'Email:', definition: getEmail(owner) },
     { name: 'Phone:', definition: getPhone(owner) },
   ];
+  infoDefinitions = infoDefinitions.filter((item) => item.definition)
 
   useEffect(() => {
     if (isOpen) {

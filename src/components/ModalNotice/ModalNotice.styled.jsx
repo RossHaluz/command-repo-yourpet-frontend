@@ -31,6 +31,7 @@ export const PetImageStyled = styled('img')(({ theme }) => ({
 export const InfoBoxStyled = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('tablet')]: {
     marginLeft: '24px',
+    width: '260px',
   },
 }));
 
