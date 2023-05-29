@@ -36,10 +36,16 @@ export const fetchNoticeById = createAsyncThunk(
 
 export const fetchNoticesByCategory = createAsyncThunk(
   'notices/fetchNoticesByCategory',
-  async ({ category, search, page, limit = 10 }, thunkAPI) => {
+  async (params, thunkAPI) => {
+    const searchParams = new URLSearchParams(params);
+    searchParams.forEach((value, key) => {
+      if (value === '') {
+        searchParams.delete(key)
+      }
+    })
     try {
       const response = await axios.get(
-        `/api/notices/?category=${category}&search=${search}&page=${page}&limit=${limit}`
+        `/api/notices/?${searchParams.toString()}`
       );
       return response.data;
     } catch (error) {
