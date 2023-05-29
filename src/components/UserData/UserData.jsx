@@ -66,7 +66,6 @@ const UserData = () => {
   };
 
   const handleLogout = () => {
-    toggleModal();
     dispatch(logout());
   };
 
@@ -124,7 +123,7 @@ const UserData = () => {
             {Object.keys(formValues).map(field => renderField(field))}
 
             <DivLogOut>
-              <ButtonLogOut type="button" onClick={handleLogout}>
+              <ButtonLogOut type="button" onClick={toggleModal}>
                 <IconLogOut />
                 Log Out
               </ButtonLogOut>
