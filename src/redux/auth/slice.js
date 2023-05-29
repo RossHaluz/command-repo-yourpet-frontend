@@ -45,6 +45,9 @@ const authSlice = createSlice({
       state.isUserLogin = true;
       state.isRefreshing = true;
     },
+    [login.rejected](state) {
+      state.isLoading = false;
+    },
     [logout.fulfilled](state, __) {
       state.user = { name: null, email: null };
       state.token = null;

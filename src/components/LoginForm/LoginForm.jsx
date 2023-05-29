@@ -8,7 +8,8 @@ import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
 import {FormButton} from './LoginForm.styled';
 import { login } from 'redux/auth/operetions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/auth/selectors';
 
 const validationSchema = yup.object({
   email: yup
@@ -26,6 +27,7 @@ const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading)
 
   const formik = useFormik({
     initialValues: {
@@ -79,7 +81,7 @@ const LoginForm = () => {
               </InputAdornment>
           }}
         />
-        <FormButton type="submit" variant="contained">
+        <FormButton type="submit" variant="contained" disabled={isLoading}>
           Login
         </FormButton>
          <Typography component="p" sx={{ textAlign: 'center', mt: '15px', fontSize: '12px'}}>
