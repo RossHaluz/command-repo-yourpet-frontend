@@ -5,7 +5,7 @@ import * as yup from 'yup';
 
 import { logout } from 'redux/auth/operations';
 import { updateUserInfo } from 'redux/pets/operations';
-import { selectUserInfo } from 'redux/pets/selectors';
+import { selectUser } from 'redux/auth/selectors';
 
 import LogoutModal from '../Modal/LogoutModal';
 
@@ -36,7 +36,8 @@ const validationSchema = yup.object().shape({
 
 const UserData = () => {
   const dispatch = useDispatch();
-  const { name, email, phone, birthday, city } = useSelector(selectUserInfo);
+  console.log('rerender')
+  const { name, email, phone, birthday, city } = useSelector(selectUser);
   const initialValues = {
     Name: name || 'Name',
     Email: email,
@@ -49,6 +50,7 @@ const UserData = () => {
   const [isOpen, toggleModal] = useModal();
   const [formValues, setFormValues] = useState(initialValues);
   const handleFieldChange = (fieldName, fieldValue) => {
+    console.log('Changed value =', fieldValue)
     setActiveInput(fieldName);
     setFormValues(prevValues => ({
       ...prevValues,
@@ -91,6 +93,7 @@ const UserData = () => {
               readOnly={!isActive}
               className={isEditing ? 'editing' : ''}
               onChange={e => {
+                console.log('test', field)
                 field.onChange(e);
                 handleFieldChange(name, field.value);
               }}
