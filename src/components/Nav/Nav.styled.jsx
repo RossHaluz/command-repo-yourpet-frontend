@@ -12,5 +12,19 @@ export const MaineNavigation = styled.nav`
 `;
 
 export const MaineNavigationLink = styled(NavLink)`
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
   color: #030303;
+  transition: color 250ms ease-in-out;
+
+  &.active {
+    color: #ffc107;
+  }
+
+  &:hover,
+  &:focus {
+    color: #ffc107;
+  }
 `;
