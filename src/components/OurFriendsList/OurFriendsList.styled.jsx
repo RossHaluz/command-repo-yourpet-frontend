@@ -26,13 +26,13 @@ export const Item = styled.li`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 481px) {
+  @media screen and (max-width: 767px) {
     :not(:first-of-type) {
       margin-top: 20px;
     }
   }
 
-  @media screen and (min-width: 748px) {
+  @media screen and (min-width: 768px) {
     width: 336px;
     height: 275px;
   }
