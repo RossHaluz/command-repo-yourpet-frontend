@@ -79,6 +79,7 @@ export const Img = styled.img`
   height: 182px;
   border-radius: 40px;
   background-color: #ebebeb;
+  object-fit: fill;
 `;
 
 export const DivEditPhoto = styled.div`
