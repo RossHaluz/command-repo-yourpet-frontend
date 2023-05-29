@@ -102,7 +102,6 @@ const UserData = () => {
   const handleSubmit = () => {
     const updatedData = new FormData();
     updatedData.append('name', fieldValue.Name);
-    // updatedData.append('email', fieldValue.Email);
     updatedData.append('phone', fieldValue.Phone);
     updatedData.append('birthday', fieldValue.Birthday);
     updatedData.append('city', fieldValue.City);

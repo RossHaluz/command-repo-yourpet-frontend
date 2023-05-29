@@ -2,7 +2,6 @@ import { styled } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 
 export const AddPetStyledLink = styled(NavLink)`
-  /* width: 129px; */
   box-sizing: border-box;
   color: #fef9f9;
   background: #54adff;
@@ -27,7 +26,6 @@ export const AddPetStyledLink = styled(NavLink)`
   }
 `;
 export const AddPetStyledBtn = styled('button')`
-  /* width: 129px; */
   box-sizing: border-box;
   color: #fef9f9;
   background: #54adff;

@@ -4,7 +4,6 @@ import Nav from 'components/Nav';
 import UserNav from 'components/UserNav/UserNav';
 import { useSelector } from 'react-redux';
 import { NavWrapper } from './Navigation.styled';
-// import { selectIsUserLogin } from 'redux/auth /selectors';
 
 const Navigation = () => {
 const isLogin = useSelector(state => state.auth.isUserLogin)

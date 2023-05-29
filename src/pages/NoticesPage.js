@@ -24,8 +24,6 @@ const NoticesPage = () => {
   const params = useParams();
   const category = params.category;
 
-  // console.log(notices);
-
   useEffect(() => {
     document.title = 'YourPet | Find pet';
 

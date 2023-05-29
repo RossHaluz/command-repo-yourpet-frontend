@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
-  // selectError,
   selectPetsInfo,
 } from 'redux/pets/selectors';
 

@@ -20,8 +20,7 @@ export const NoticesAddPetBtn = () => {
   };
 
   return (
-    <>
-      {/* {isPopUp && <popUp/>} */}
+    <>      
       {isMobileScreen ? (
         isLoggeIn ? (
           <AddPetStyledLinkMobile to={'/add-pet'}>
