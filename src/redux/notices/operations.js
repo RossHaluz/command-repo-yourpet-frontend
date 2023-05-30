@@ -112,6 +112,20 @@ export const removeNoticeFavourite = createAsyncThunk(
   }
 );
 
+export const unMakeNoticeFavourite = createAsyncThunk(
+  'notices/unMakeNoticeFavourite',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`api/notices/favorite/${id}`);
+
+      return data.result;
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
+
 export const deleteNotice = createAsyncThunk(
   'notices/deleteNotice',
   async (id, thunkAPI) => {

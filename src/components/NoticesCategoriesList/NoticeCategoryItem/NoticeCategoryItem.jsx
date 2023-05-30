@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsUserLogin, selectUser } from 'redux/auth/selectors';
 import { selectIsNoticeLoading } from 'redux/notices/selectors';
-import { deleteNotice } from 'redux/notices/operations';
+import {deleteNotice, unMakeNoticeFavourite} from 'redux/notices/operations';
 
 import { ReactComponent as Femail } from './icons/famail.svg';
 import { ReactComponent as Male } from './icons/male.svg';
@@ -33,10 +33,13 @@ import {
   removeNoticeFavourite,
 } from 'redux/notices/operations';
 import { toast } from 'react-hot-toast';
+import {useParams} from "react-router-dom";
 
 const NoticeCategoryItem = ({ petInfo }) => {
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useModal();
+  const params = useParams();
+  const categoryParam = params.category;
 
   const {
     _id: noticeId,
@@ -83,7 +86,11 @@ const NoticeCategoryItem = ({ petInfo }) => {
         dispatch(makeNoticeFavourite(noticeId));
         setIsFavorite(!isFavorite);
       } else {
-        dispatch(removeNoticeFavourite(noticeId));
+        if (categoryParam === 'favourite') {
+          dispatch(removeNoticeFavourite(noticeId));
+        } else {
+          dispatch(unMakeNoticeFavourite(noticeId))
+        }
         setIsFavorite(!isFavorite);
       }
     } else {
