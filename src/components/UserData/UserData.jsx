@@ -81,6 +81,7 @@ const UserData = () => {
   };
 
   const handleLogout = () => {
+    toggleModal();
     dispatch(logout());
   };
 
