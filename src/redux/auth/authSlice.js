@@ -4,6 +4,7 @@ import {
   login,
   logout,
   getCurrentUser,
+  updateUserInfo,
   hideModalSuccessRegister,
 } from './operations';
 
@@ -52,6 +53,14 @@ const authSlice = createSlice({
         state.isUserLogin = true;
         state.isRefreshing = false;
       })
+      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+        const updatedFields = payload;
+        state.user = {
+          ...state.user,
+          ...updatedFields,
+        };
+      })
+
       .addCase(getCurrentUser.rejected, state => {
         state.isRefreshing = false;
         state.isUserLogin = false;
