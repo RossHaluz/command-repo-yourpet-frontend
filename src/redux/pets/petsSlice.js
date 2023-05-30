@@ -8,7 +8,6 @@ const getActions = type => extraActions.map(action => action[type]);
 const contactsSlice = createSlice({
   name: 'pets',
   initialState: {
-    userInfo: [],
     petsInfo: [],
     isLoading: false,
     error: null,
@@ -16,12 +15,11 @@ const contactsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.userInfo = payload.userInfo;
         state.petsInfo = payload.petsInfo;
       })
 
-      .addCase(addPet.fulfilled, (state, action) => {
-        state.petsInfo.push(action.payload);
+      .addCase(addPet.fulfilled, (state, { payload }) => {
+        state.petsInfo.push(payload);
         state.isLoading = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
@@ -41,9 +39,9 @@ const contactsSlice = createSlice({
         state.isLoading = true;
       })
 
-      .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
+      .addMatcher(isAnyOf(...getActions('rejected')), (state, { payload }) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = payload;
       })
 
       .addMatcher(isAnyOf(...getActions('fulfilled')), state => {

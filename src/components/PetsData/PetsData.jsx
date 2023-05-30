@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import {
-  selectIsLoading,
-  selectPetsInfo,
-} from 'redux/pets/selectors';
+import { selectIsLoading, selectPetsInfo } from 'redux/pets/selectors';
+
+// import { selectPets } from 'redux/auth/selectors';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Container, Title, AddButton, TitleContainer } from './PetsData.styled';

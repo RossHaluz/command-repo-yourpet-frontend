@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   user: { email: null, password: null },
+  pets: [],
   token: null,
   isLoading: false,
   isUserLogin: false,
@@ -47,6 +48,7 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.userInfo;
+        state.pets = action.payload.petsInfo;
         state.isUserLogin = true;
         state.isRefreshing = false;
       })

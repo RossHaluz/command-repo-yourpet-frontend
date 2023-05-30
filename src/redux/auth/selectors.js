@@ -1,5 +1,7 @@
 export const selectUser = state => state.auth.user;
 
+export const selectPets = state => state.auth.pets;
+
 export const selectIsUserLogin = state => state.auth.isUserLogin;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
