@@ -18,6 +18,7 @@ const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const AddPetPage = lazy(() => import('pages/AddPetPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 const ErrorPage = lazy(() => import('pages/ErrorPage'));
+const NewsPage = lazy(() => import('pages/NewsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="notices/:category" element={<NoticesPage />} />
 
           <Route path="friends" element={<OurFriendsPage />} />
+          <Route path="news" element={<NewsPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
