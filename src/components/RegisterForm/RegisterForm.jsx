@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { FormBox, FormTitle } from 'common/form/Form.styled';
-import { FormButton } from './RegisterForm.styled';
+import {FormButton, IconButtonStyled} from './RegisterForm.styled';
 import { register } from 'redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/selectors';
@@ -33,15 +33,8 @@ const validationSchema = yup.object({
 
 const RegisteForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = e => {
-    e.preventDefault();
-  };
-
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword(show => !show);
-  const handleMouseDownConfirmPassword = e => {
     e.preventDefault();
   };
 
@@ -92,14 +85,14 @@ const RegisteForm = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
+                <IconButtonStyled
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
+                </IconButtonStyled>
               </InputAdornment>
             ),
           }}
@@ -119,18 +112,18 @@ const RegisteForm = () => {
           helperText={
             formik.touched.confirmPassword && formik.errors.confirmPassword
           }
-          type={showConfirmPassword ? 'text' : 'password'}
+          type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
+                <IconButtonStyled
                   aria-label="toggle password visibility"
-                  onClick={handleClickShowConfirmPassword}
-                  onMouseDown={handleMouseDownConfirmPassword}
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleClickShowPassword}
                   edge="end"
                 >
-                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButtonStyled>
               </InputAdornment>
             ),
           }}
