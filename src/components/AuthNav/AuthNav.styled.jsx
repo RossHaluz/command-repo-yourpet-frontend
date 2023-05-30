@@ -17,13 +17,29 @@ export const AuthNavigation = styled.nav`
   }
 
   @media (min-width: 1200px) {
-   margin-left: auto;
+    margin-left: auto;
   }
 `;
 
-export const AuthNavigationItem = styled(NavLink)`
+export const AuthNavigationItemLogin = styled(NavLink)`
   background-color: #ffc107;
   border-radius: 40px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 22px;
   color: white;
+  padding: 9px 40px;
+`;
+
+export const AuthNavigationItemRegister = styled(NavLink)`
+  background: none;
+  border-radius: 40px;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 22px;
   padding: 9px 40px;
 `;

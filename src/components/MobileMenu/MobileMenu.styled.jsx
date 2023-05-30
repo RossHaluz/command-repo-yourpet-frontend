@@ -87,6 +87,11 @@ export const MobileManuMainNavigation = styled.nav`
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  transition: color 250ms ease-in-out;
+
+  &.active {
+    color: #ffc107;
+  }
 `;
 
 export const MobileManuMainNavigationItem = styled(NavLink)`

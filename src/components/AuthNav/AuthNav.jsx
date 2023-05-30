@@ -1,10 +1,16 @@
-import { AuthNavigation, AuthNavigationItem } from './AuthNav.styled';
+import {
+  AuthNavigation,
+  AuthNavigationItemRegister,
+  AuthNavigationItemLogin,
+} from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
     <AuthNavigation>
-      <AuthNavigationItem to="register">Register</AuthNavigationItem>
-      <AuthNavigationItem to="login">Login</AuthNavigationItem>
+      <AuthNavigationItemLogin to="login">Login</AuthNavigationItemLogin>
+      <AuthNavigationItemRegister to="register">
+        Register
+      </AuthNavigationItemRegister>
     </AuthNavigation>
   );
 };
