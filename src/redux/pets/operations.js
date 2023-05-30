@@ -39,6 +39,10 @@ export const addPet = createAsyncThunk(
       const response = await axios.post(`/api/pets`, newPet);
       return response.data;
     } catch (error) {
+      if (error.response.status === 409) {
+        toast.error('You already have a pet with this name');
+        return thunkAPI.rejectWithValue('');
+      }
       toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }
