@@ -15,10 +15,6 @@ export const AuthNavigation = styled.nav`
     margin-left: auto;
     margin-right: 28px;
   }
-
-  @media (min-width: 1200px) {
-    margin-left: auto;
-  }
 `;
 
 export const AuthNavigationItemLogin = styled(NavLink)`
