@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 
 import { logout } from 'redux/auth/operations';
-import { updateUserInfo } from 'redux/pets/operations';
+import { updateUserInfo } from 'redux/auth/operations';
 import { selectUser } from 'redux/auth/selectors';
 
 import LogoutModal from '../Modal/LogoutModal';
@@ -36,21 +36,21 @@ const validationSchema = yup.object().shape({
 
 const UserData = () => {
   const dispatch = useDispatch();
-  console.log('rerender')
   const { name, email, phone, birthday, city } = useSelector(selectUser);
+
   const initialValues = {
-    Name: name || 'Name',
+    Name: name || 'Your name',
     Email: email,
-    Phone: phone || '+380000000000',
+    Phone: phone || '+38 000 000 00 00',
     Birthday: birthday || '00.00.0000',
-    City: city || 'city',
+    City: city || 'Dnipro',
   };
 
   const [activeInput, setActiveInput] = useState(null);
-  const [isOpen, toggleModal] = useModal();
   const [formValues, setFormValues] = useState(initialValues);
+  const [isOpen, toggleModal] = useModal();
+
   const handleFieldChange = (fieldName, fieldValue) => {
-    console.log('Changed value =', fieldValue)
     setActiveInput(fieldName);
     setFormValues(prevValues => ({
       ...prevValues,
@@ -59,11 +59,24 @@ const UserData = () => {
   };
 
   const handleFormSubmit = values => {
+    const updatedValues = {
+      ...formValues,
+      ...values,
+    };
+
+    const hasEmptyValues = Object.values(updatedValues).some(
+      value => value === undefined || value === ''
+    );
+
+    if (hasEmptyValues) {
+      return;
+    }
+
     const updatedData = new FormData();
-    updatedData.append('name', values.Name);
-    updatedData.append('phone', values.Phone);
-    updatedData.append('birthday', values.Birthday);
-    updatedData.append('city', values.City);
+    updatedData.append('name', updatedValues.Name);
+    updatedData.append('phone', updatedValues.Phone);
+    updatedData.append('birthday', updatedValues.Birthday);
+    updatedData.append('city', updatedValues.City);
     dispatch(updateUserInfo(updatedData));
   };
 
@@ -75,12 +88,6 @@ const UserData = () => {
   const renderField = name => {
     const isActive = activeInput === name;
     const isEditing = isActive && activeInput !== null;
-
-    const handleIconCheckClick = () => {
-      handleFormSubmit(formValues);
-      handleFieldChange(name);
-      setActiveInput(null);
-    };
 
     return (
       <Label key={name}>
@@ -94,14 +101,19 @@ const UserData = () => {
               className={isEditing ? 'editing' : ''}
               onChange={e => {
                 field.onChange(e);
-                handleFieldChange(name, field.value);
+                handleFieldChange(name, e.target.value);
               }}
             />
           )}
         </Field>
         {isActive ? (
           <DivIconCheck>
-            <IconCheck onClick={handleIconCheckClick} />
+            <IconCheck
+              onClick={() => {
+                handleFormSubmit(formValues);
+                setActiveInput(null);
+              }}
+            />
           </DivIconCheck>
         ) : (
           <IconEdit onClick={() => handleFieldChange(name)} />
@@ -126,7 +138,7 @@ const UserData = () => {
             {Object.keys(formValues).map(field => renderField(field))}
 
             <DivLogOut>
-              <ButtonLogOut type="button" onClick={handleLogout}>
+              <ButtonLogOut type="button" onClick={toggleModal}>
                 <IconLogOut />
                 Log Out
               </ButtonLogOut>

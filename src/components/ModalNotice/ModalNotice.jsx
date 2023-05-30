@@ -173,7 +173,6 @@ const ModalNotice = ({
                 />
               </Button>
               <Button
-                component="div"
                 variant="outlined"
                 sx={{ width: '125px', marginLeft: '15px' }}
                 onClick={() => setIsChildOpen(true)}

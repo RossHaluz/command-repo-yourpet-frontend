@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Image = styled.img`
+  display: block;
   width: 240px;
   height: 240px;
   border-radius: 20px;
+  object-fit: cover;
 
   @media screen and (min-width: 748px) and (max-width: 1279.98px) {
     width: 128px;

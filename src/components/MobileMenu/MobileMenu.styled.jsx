@@ -33,6 +33,7 @@ export const MobileMenuCrossBtn = styled.button`
 `;
 
 export const LoginBtn = styled(NavLink)`
+  border: 1px solid #ffc107;
   background-color: #ffc107;
   padding: 9px 41px;
   text-align: center;
@@ -41,6 +42,12 @@ export const LoginBtn = styled(NavLink)`
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+
+  :hover {
+    color: #ffc107;
+    background-color: white;
+  }
 `;
 
 export const RegisterBtn = styled(NavLink)`
@@ -52,6 +59,12 @@ export const RegisterBtn = styled(NavLink)`
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+
+  :hover {
+    background-color: #ffc107;
+    color: white;
+  }
 `;
 
 export const MobileMenuAuthWrapper = styled.div`
@@ -75,6 +88,11 @@ export const MobileManuMainNavigation = styled.nav`
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  transition: color 250ms ease-in-out;
+
+  &.active {
+    color: #ffc107;
+  }
 `;
 
 export const MobileManuMainNavigationItem = styled(NavLink)`
@@ -83,11 +101,11 @@ export const MobileManuMainNavigationItem = styled(NavLink)`
   line-height: 44px;
   letter-spacing: 0.04em;
   color: #111111;
+  transition: color 250ms ease-in;
 
-  &.active {
-    font-weight: 700;
+  :hover, &.active {
     color: #ffc107;
-  }
+  }   
 `;
 
 export const MobileMenuUser = styled(NavLink)`

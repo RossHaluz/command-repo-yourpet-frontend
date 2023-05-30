@@ -39,20 +39,6 @@ export const addPet = createAsyncThunk(
       const response = await axios.post(`/api/pets`, newPet);
       return response.data;
     } catch (error) {
-      console.log(error);
-      toast.error(errorMsg);
-      return thunkAPI.rejectWithValue('');
-    }
-  }
-);
-
-export const updateUserInfo = createAsyncThunk(
-  'pets/updateUserInfo',
-  async (userData, thunkAPI) => {
-    try {
-      const response = await axios.put(`/api/users/update`, userData);
-      return response.data;
-    } catch (error) {
       toast.error(errorMsg);
       return thunkAPI.rejectWithValue('');
     }

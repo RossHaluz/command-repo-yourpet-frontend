@@ -1,14 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchPets, addPet, deletePet, updateUserInfo } from './operations';
+import { fetchPets, addPet, deletePet } from './operations';
 
-const extraActions = [fetchPets, addPet, deletePet, updateUserInfo];
+const extraActions = [fetchPets, addPet, deletePet];
 
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
   name: 'pets',
   initialState: {
-    userInfo: [],
     petsInfo: [],
     isLoading: false,
     error: null,
@@ -16,20 +15,12 @@ const contactsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.userInfo = payload.userInfo;
         state.petsInfo = payload.petsInfo;
       })
 
-      .addCase(addPet.fulfilled, (state, action) => {
-        state.petsInfo.push(action.payload);
+      .addCase(addPet.fulfilled, (state, { payload }) => {
+        state.petsInfo.push(payload);
         state.isLoading = false;
-      })
-      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
-        const updatedFields = payload;
-        state.userInfo = {
-          ...state.userInfo,
-          ...updatedFields,
-        };
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         state.petsInfo = state.petsInfo.filter(
@@ -41,9 +32,9 @@ const contactsSlice = createSlice({
         state.isLoading = true;
       })
 
-      .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
+      .addMatcher(isAnyOf(...getActions('rejected')), (state, { payload }) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = payload;
       })
 
       .addMatcher(isAnyOf(...getActions('fulfilled')), state => {

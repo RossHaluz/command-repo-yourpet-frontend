@@ -1,7 +1,15 @@
-import { List, Item, Name, ImgThumb, Image, Contacts } from './OurFriendsList.styled';
+import { List, Item, Name, ImgThumb, Image, Contacts, ContactsLink } from './OurFriendsList.styled';
 import Box from '@mui/material/Box';
  
 export const OurFriendsList = ({ ourFriends }) => {
+  function formatPhone(number) {
+    if (number === 'email only') {
+      return 0
+    }
+    return number.split(' ').join('')
+    
+  }
+
   return (
     <List>
       {ourFriends.length > 0 &&
@@ -35,12 +43,12 @@ export const OurFriendsList = ({ ourFriends }) => {
                 <Contacts>
                   Email
                   <br />
-                  {friend.email}
+                 <ContactsLink href={`mailto:${friend.email}`}> {friend.email}</ContactsLink>
                 </Contacts>
                 <Contacts>
                   Phone
                   <br />
-                  {friend.phone}
+                  <ContactsLink href={`tel:${formatPhone(friend.phone)}`}> {friend.phone}</ContactsLink>
                 </Contacts>
               </Box>
               </Box>

@@ -8,14 +8,24 @@ export const MoreInfoWrapper = styled.div`
     display: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? 'flex' : 'block'};
     gap: 45px;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 79px;
+  }
 `;
 
 export const TheSexWrapper = styled.div`
   position: relative;
   margin-bottom: 16px;
 
+  @media (min-width: 768px) {
+    margin-bottom: 50px;
+  }
+
   > div {
     display: flex;
+    gap: 23px;
   }
 `;
 
@@ -29,6 +39,7 @@ export const TheSexTitle = styled.p`
 export const SexLabel = styled.label`
   display: flex;
   align-items: center;
+  /* gap: 10px; */
 
   font-weight: 400;
   font-size: 16px;
@@ -36,6 +47,12 @@ export const SexLabel = styled.label`
   letter-spacing: 0.04em;
   color: ${props => (props.checked ? '#00C3AD' : '#888888')};
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  will-change: transform;
+
+  :hover {
+    transform: scale(1.05);
+  }
 
   > input {
     visibility: hidden;
@@ -82,6 +99,12 @@ export const AddLabel = styled.label`
   height: 112px;
   background-color: #cce4fb;
   border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    transform: scale(1.05);
+  }
 
   @media (min-width: 768px) {
     width: 182px;
@@ -103,10 +126,6 @@ export const AddLabel = styled.label`
   > div {
     width: 200px;
     left: 0;
-
-    @media (min-width: 768px) {
-      // left: 50px;
-    }
   }
 `;
 
@@ -116,8 +135,10 @@ export const FormFields = styled.div`
   gap: 20px;
 
   @media (min-width: 768px) {
+    gap: 24px;
     width: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? '395px' : '100%'};
+  }
 `;
 
 export const Label = styled.label`
@@ -152,13 +173,12 @@ export const CommentsLabel = styled.label`
 `;
 
 export const TextArea = styled(Field)`
-
   width: 100%;
-  height: 112px;
+  height: 92px;
   padding: 9px 15px;
   margin-top: 4px;
 
-  color: #888888
+  color: #888888;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
@@ -169,6 +189,17 @@ export const TextArea = styled(Field)`
   border-radius: 20px;
   border: 1px solid;
   border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
+
+  @media (min-width: 768px) {
+    height: ${props =>
+      props.category === 'lost-found' ||
+      (props.category === 'for-free' && props.step === 2)
+        ? '182px'
+        : '79px'};
+  }
+
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const Message = styled(ErrorMessage)`

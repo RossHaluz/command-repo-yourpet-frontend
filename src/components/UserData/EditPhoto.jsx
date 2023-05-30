@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo } from 'redux/pets/operations';
+import { updateUserInfo } from 'redux/auth/operations';
 import { useSelector } from 'react-redux';
-import { selectUserInfo } from 'redux/pets/selectors';
+import { selectUser } from 'redux/auth/selectors';
 
 import { avatarDefault } from 'images';
 
@@ -25,7 +25,7 @@ const EditPhoto = () => {
 
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const { avatarURL } = useSelector(selectUserInfo);
+  const { avatarURL } = useSelector(selectUser);
 
   const handleFileChange = event => {
     const file = event.target.files[0];
@@ -38,6 +38,10 @@ const EditPhoto = () => {
   };
 
   const handleConfirmPhoto = () => {
+    if (!selectedFile) {
+      return;
+    }
+
     setIsEditingPhoto(false);
 
     const updatedData = new FormData();

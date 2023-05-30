@@ -8,6 +8,7 @@ export const FormBox = styled('form')(({ theme }) => ({
   width: '280px',
   margin: '50px auto 0',
   boxShadow: ' 3px 8px 14px rgba(136, 198, 253, 0.19)',
+  backgroundColor: '#fff',
   padding: '40px 20px',
   borderRadius: '20px',
   [theme.breakpoints.up('tablet')]: {
@@ -28,4 +29,4 @@ export const FormTitle = styled(Typography)(({ theme }) => ({
     fontSize: '36px',
     fontWeight: theme.typography.fontWeightMedium,
   },
-}))
+}));

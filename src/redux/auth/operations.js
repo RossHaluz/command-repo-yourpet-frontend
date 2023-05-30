@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://pets-back-end.onrender.com';
 // axios.defaults.baseURL = process.env.REACT_APP_MAIN_URL;
+const errorMsg = "Something's wrong. Please update page and try again";
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -21,7 +22,7 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      toast.error(error.message);
+      toast.error(errorMsg);
       return rejectWithValue('');
     }
   }
@@ -35,7 +36,7 @@ export const login = createAsyncThunk(
       setAuthHeader(data.user.token);
       return data;
     } catch (error) {
-      toast.error(error.message);
+      toast.error(errorMsg);
       return rejectWithValue('');
     }
   }
@@ -48,7 +49,7 @@ export const logout = createAsyncThunk(
       await axios.post('/api/users/logout');
       removeAuthHeader();
     } catch (error) {
-      toast.error(error.message);
+      toast.error(errorMsg);
       return rejectWithValue('');
     }
   }
@@ -68,8 +69,21 @@ export const getCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/api/users/current');
       return data;
     } catch (error) {
-      toast.error(error.message);
+      toast.error(errorMsg);
       return rejectWithValue('');
+    }
+  }
+);
+
+export const updateUserInfo = createAsyncThunk(
+  'pets/updateUserInfo',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.put(`/api/users/update`, userData);
+      return response.data;
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
     }
   }
 );

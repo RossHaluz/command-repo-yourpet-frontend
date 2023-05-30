@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Form } from 'formik';
 
 export const AddPetFormWrapper = styled.div`
   margin: 0 auto;
@@ -13,7 +12,16 @@ export const AddPetFormWrapper = styled.div`
   @media (min-width: 768px) {
     padding: 20px 32px;
     max-width: ${props =>
+      props.category !== 'my-pet' && props.step === 2 ? '704px' : '458px'};
+  }
+
+  @media (min-width: 1280px) {
+    max-width: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? '822px' : '458px'};
+    padding: ${props =>
+      props.category !== 'my-pet' && props.step === 2
+        ? '30px 75px'
+        : '20px 32px'};
   }
 `;
 
@@ -27,8 +35,10 @@ export const PetFormTitle = styled.h1`
   color: #111111;
 
   @media (min-width: 768px) {
+    margin-left: 0;
     text-align: ${props =>
       props.category !== 'my-pet' && props.step === 2 ? 'center' : 'left'};
+  }
 `;
 
 export const StepsList = styled.ul`
@@ -36,10 +46,11 @@ export const StepsList = styled.ul`
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-bottom: ${props => (props.category === 'your pet' ? '40px' : '36px')};
+  margin-bottom: 36px;
 
   @media (min-width: 768px) {
     gap: 16px;
+    margin-bottom: ${props => (props.step === 0 ? '60px' : '36px')};
   }
 `;
 
@@ -93,10 +104,6 @@ export const Step = styled.li`
   }
 `;
 
-export const FormWrap = styled(Form)`
-  // display: flex;
-`;
-
 export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,6 +118,7 @@ export const ButtonWrap = styled.div`
 `;
 
 export const ButtonFilled = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,13 +131,21 @@ export const ButtonFilled = styled.button`
   line-height: calc(22 / 16);
   color: #fef9f9;
   letter-spacing: 0.04em;
-
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  background-position: 0 0, center;
+  background-size: 0% 0%, cover;
+  background-repeat: no-repeat;
   background-color: #54adff;
   border: none;
   border-radius: 40px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-  disabled: true;
+  :hover {
+    transition: all 0.2s ease-in-out;
+    background-size: 100% 100%, cover;
+    transform: scale(1.05);
+  }
 
   :disabled {
     opacity: 0.5;
@@ -152,4 +168,9 @@ export const Button = styled.button`
   border: none;
   color: #54adff;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    transform: scale(1.05);
+  }
 `;

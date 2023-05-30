@@ -7,7 +7,7 @@ export const MobileMenuBurger = styled(FiMenu)`
   display: flex;
   align-items: center;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     display: none;
   }
 `;
