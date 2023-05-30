@@ -38,6 +38,10 @@ const EditPhoto = () => {
   };
 
   const handleConfirmPhoto = () => {
+    if (!selectedFile) {
+      return;
+    }
+
     setIsEditingPhoto(false);
 
     const updatedData = new FormData();
