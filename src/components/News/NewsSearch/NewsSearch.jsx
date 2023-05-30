@@ -30,7 +30,6 @@ const NewsSearch = () => {
   });
 
   const handleCrossButtonClick = () => {
-    handleSearch('');
     formik.resetForm();
   };
 
