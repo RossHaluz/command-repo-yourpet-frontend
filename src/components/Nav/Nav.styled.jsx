@@ -6,7 +6,7 @@ export const MaineNavigation = styled.nav`
   gap: 15px;
   margin-right: 30px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1280px) {
     display: none;
   }
 `;
