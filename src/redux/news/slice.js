@@ -4,11 +4,17 @@ import { getOurNews } from './operetions';
 const initialState = {
   newsList: [],
   isLoading: false,
+  search: '',
 };
 
 const newsSlice = createSlice({
   name: 'news',
   initialState,
+  reducers: {
+    searchNews(state, action) {
+      state.search = action.payload;
+    },
+  },
   extraReducers: {
     [getOurNews.pending](state, __) {
       state.isLoading = true;
@@ -19,5 +25,7 @@ const newsSlice = createSlice({
     },
   },
 });
+
+export const { searchNews } = newsSlice.actions;
 
 export const newsReducer = newsSlice.reducer;

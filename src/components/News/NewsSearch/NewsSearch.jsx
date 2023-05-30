@@ -9,11 +9,15 @@ import {
   MuiFormMobile,
   MuiInputDesctop,
   MuiInputMobile,
-} from './NoticesSearch.styled';
+} from './NewsSearch.styled';
 import { useMediaQuery } from '@mui/material';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { searchNews } from 'redux/news/slice';
 
 const NewsSearch = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       search: '',
@@ -23,7 +27,7 @@ const NewsSearch = () => {
       if (search.trim() === '' || search.trim().length > 50) {
         toast.error('Invalid query');
       }
-      console.log(search);
+      dispatch(searchNews(search));
       resetForm();
     },
   });
