@@ -10,7 +10,9 @@ export const PetsItem = ({ pet }) => {
 
   return (
     <>
-      <Image src={pet.imgURL} alt="pet description" width="240" height="240" />
+      <div>
+        <Image src={pet.imgURL} alt="pet description" />
+      </div>
       <Box
         sx={{
           position: 'relative',
