@@ -43,22 +43,27 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const AddButton = styled(NavLink)(({ theme }) => ({
-  width: '129px',
-  height: '40px',
+export const AddButton = styled(NavLink)`
+  box-sizing: border-box;
+  color: #fef9f9;
+  background: #54adff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  align-items: center;
+  letter-spacing: 0.04em;
+  gap: 15px;
+  cursor: pointer;
+  border: none;
 
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '8px',
-
-  fontWeight: theme.typography.fontWeightBold,
-  fontFamily: theme.typography.fontFamily,
-  fontSize: '16px',
-  lineHeight: '22px',
-
-  color: '#fef9f9',
-  background: '#54adff',
-  borderRadius: '40px',
-}));
+  &:hover {
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+`;
