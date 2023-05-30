@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo } from 'redux/pets/operations';
+import { updateUserInfo } from 'redux/auth/operations';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 
@@ -38,6 +38,10 @@ const EditPhoto = () => {
   };
 
   const handleConfirmPhoto = () => {
+    if (!selectedFile) {
+      return;
+    }
+
     setIsEditingPhoto(false);
 
     const updatedData = new FormData();
