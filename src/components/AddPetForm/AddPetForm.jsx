@@ -5,7 +5,7 @@ import { selectIsNoticeLoading } from 'redux/notices/selectors';
 import { addNotice } from 'redux/notices/operations';
 import { addPet } from 'redux/pets/operations';
 import { useNavigate } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import ChooseOption from './ChooseOption/ChooseOption';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
 import MoreInfo from './MoreInfo/MoreInfo';
@@ -17,7 +17,6 @@ import {
   Button,
   ButtonFilled,
   ButtonWrap,
-  FormWrap,
 } from './AddPetForm.styled';
 import { Pets, West } from '@mui/icons-material';
 import validationSchema from './validationSchema';
@@ -154,8 +153,8 @@ const AddPetForm = () => {
               ? 'Add lost pet'
               : 'Add for free'}
           </PetFormTitle>
-          <FormWrap>
-            <StepsList>
+          <Form>
+            <StepsList step={step}>
               {steps.map((stepName, index) => (
                 <Step
                   key={stepName}
@@ -235,7 +234,8 @@ const AddPetForm = () => {
                     }
                   }}
                 >
-                  <span>Next</span>
+                  Next
+                  {/* <span>Next</span> */}
                   <Pets
                     sx={{ width: 24, height: 24, transform: 'rotate(25deg)' }}
                   />
@@ -249,7 +249,7 @@ const AddPetForm = () => {
                 <span>{step === 0 ? 'Cancel' : 'Back'}</span>
               </Button>
             </ButtonWrap>
-          </FormWrap>
+          </Form>
         </AddPetFormWrapper>
       )}
     </Formik>
