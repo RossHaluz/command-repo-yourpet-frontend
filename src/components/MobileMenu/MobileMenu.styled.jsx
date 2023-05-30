@@ -41,6 +41,12 @@ export const LoginBtn = styled(NavLink)`
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+
+  hover: {
+    color: #ffc107;
+    background-color: white;
+  }
 `;
 
 export const RegisterBtn = styled(NavLink)`
@@ -52,6 +58,12 @@ export const RegisterBtn = styled(NavLink)`
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+
+  hover: {
+    background-color: #ffc107;
+    color: white;
+  }
 `;
 
 export const MobileMenuAuthWrapper = styled.div`
