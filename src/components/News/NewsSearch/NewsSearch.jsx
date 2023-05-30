@@ -22,9 +22,8 @@ const NewsSearch = () => {
       const { search } = values;
       if (search.trim() === '' || search.trim().length > 50) {
         toast.error('Invalid query');
-      } else {
-        console.log(search);
       }
+      console.log(search);
       resetForm();
     },
   });

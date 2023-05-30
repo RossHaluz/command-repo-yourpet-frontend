@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   List,
   ListItem,
@@ -9,76 +10,40 @@ import {
   ListItemDate,
   ListItemBtn,
 } from './NewsList.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectNewsList } from 'redux/news/selectors';
+import { getOurNews } from 'redux/news/operetions';
 
 const NewsList = () => {
+  const dispatch = useDispatch();
+  const { news } = useSelector(selectNewsList);
+
+  useEffect(() => {
+    dispatch(getOurNews());
+  }, [dispatch]);
+
   return (
-    <List>
-      <ListItem>
-        <ListItemImg
-          src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"
-          alt="Img"
-          width="280"
-          height="252"
-        />
-        <ListItemDescWrapper>
-          <ListItemTitle>On Pets, Moral Logic and Love</ListItemTitle>
-          <ListItemDesc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit vero ad
-            praesentium amet omnis exercitationem commodi consectetur, officiis
-            hic eius veniam quas explicabo tempora nobis, quisquam itaque at
-            atque possimus.
-          </ListItemDesc>
-          <ListItemWrapper>
-            <ListItemDate>15/03/2023</ListItemDate>
-            <ListItemBtn>Read more</ListItemBtn>
-          </ListItemWrapper>
-        </ListItemDescWrapper>
-      </ListItem>
-
-      <ListItem>
-        <ListItemImg
-          src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"
-          alt="Img"
-          width="280"
-          height="252"
-        />
-        <ListItemDescWrapper>
-          <ListItemTitle>On Pets, Moral Logic and Love</ListItemTitle>
-          <ListItemDesc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit vero ad
-            praesentium amet omnis exercitationem commodi consectetur, officiis
-            hic eius veniam quas explicabo tempora nobis, quisquam itaque at
-            atque possimus.
-          </ListItemDesc>
-          <ListItemWrapper>
-            <ListItemDate>15/03/2023</ListItemDate>
-            <ListItemBtn>Read more</ListItemBtn>
-          </ListItemWrapper>
-        </ListItemDescWrapper>
-      </ListItem>
-
-      <ListItem>
-        <ListItemImg
-          src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"
-          alt="Img"
-          width="280"
-          height="252"
-        />
-        <ListItemDescWrapper>
-          <ListItemTitle>On Pets, Moral Logic and Love</ListItemTitle>
-          <ListItemDesc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit vero ad
-            praesentium amet omnis exercitationem commodi consectetur, officiis
-            hic eius veniam quas explicabo tempora nobis, quisquam itaque at
-            atque possimus.
-          </ListItemDesc>
-          <ListItemWrapper>
-            <ListItemDate>15/03/2023</ListItemDate>
-            <ListItemBtn>Read more</ListItemBtn>
-          </ListItemWrapper>
-        </ListItemDescWrapper>
-      </ListItem>
-    </List>
+    <>
+      {news && (
+        <List>
+          {news.map(({ img, title, desc, date, _id: id }) => {
+            return (
+              <ListItem key={id}>
+                <ListItemImg src={img} alt="Img" width="280" height="252" />
+                <ListItemDescWrapper>
+                  <ListItemTitle>{title}</ListItemTitle>
+                  <ListItemDesc>{desc}</ListItemDesc>
+                  <ListItemWrapper>
+                    <ListItemDate>{date}</ListItemDate>
+                    <ListItemBtn>Read more</ListItemBtn>
+                  </ListItemWrapper>
+                </ListItemDescWrapper>
+              </ListItem>
+            );
+          })}
+        </List>
+      )}
+    </>
   );
 };
 
