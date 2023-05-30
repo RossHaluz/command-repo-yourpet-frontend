@@ -23,17 +23,17 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.token = action.payload.token;
+      .addCase(register.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.token = payload.token;
         state.isLoading = false;
         state.isUserLogin = true;
         state.isRefreshing = true;
         state.modalSuccessRegister = true;
       })
-      .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.user.token;
+      .addCase(login.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.user.token;
         state.isLoading = false;
         state.isUserLogin = true;
         state.isRefreshing = true;
@@ -47,9 +47,9 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(getCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload.userInfo;
-        state.pets = action.payload.petsInfo;
+      .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
+        state.user = payload.userInfo;
+        state.pets = payload.petsInfo;
         state.isUserLogin = true;
         state.isRefreshing = false;
       })
@@ -65,8 +65,8 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isUserLogin = false;
       })
-      .addCase(hideModalSuccessRegister.fulfilled, (state, action) => {
-        state.modalSuccessRegister = action.payload;
+      .addCase(hideModalSuccessRegister.fulfilled, (state, { payload }) => {
+        state.modalSuccessRegister = payload;
       })
       .addMatcher(isAnyOf(register.rejected, login.rejected), state => {
         state.isLoading = false;
