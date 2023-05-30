@@ -18,7 +18,7 @@ export const HeaderContainer = styled.div`
     margin-bottom: 80px;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     padding-top: 30px;
     margin-bottom: 30px;
     width: 1280px;
@@ -29,14 +29,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 32px 0px;
-
-  @media (max-width: 1200px) {
-    justify-content: space-between;
-  }
-
-  @media (min-width: 1200px) {
-    justify-content: space-between;
-  }
+  justify-content: space-between;  
 `;
 
 export const AuthNavigation = styled.div`

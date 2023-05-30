@@ -98,6 +98,16 @@ const NoticeCategoryItem = ({ petInfo }) => {
   const years = calculateTimeElapsedYears(dateOfBirth);
   const monthes = calculateTimeElapsedMonthses(dateOfBirth);
 
+  function formatCategory(category) {
+    if (category === 'lost-found') {
+      return 'lost/found'
+    }
+    else if (category === 'for-free') {
+      return 'in good hands'
+    }
+    else return category
+  }
+
   return (
     <>
       <StyledCardWrapper>
@@ -108,7 +118,7 @@ const NoticeCategoryItem = ({ petInfo }) => {
             }
             alt="img"
           />
-          <CategoryBadge>{category}</CategoryBadge>
+          <CategoryBadge>{formatCategory(category)}</CategoryBadge>
           <BottomButtonWrapper>
             <StyledCardLinkBottom
               target="_blank"
